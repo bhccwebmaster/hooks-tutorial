@@ -1,0 +1,10 @@
+uuid: 73a64215-6203-4c1d-847c-0be0a282a784
+langcode: en
+status: true
+dependencies: {  }
+id: text
+label: Text
+icon_uuid: null
+icon_default: null
+description: 'A basic text paragraph'
+behavior_plugins: {  }
