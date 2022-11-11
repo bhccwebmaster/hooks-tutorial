@@ -1,0 +1,23 @@
+uuid: 959c5604-10e1-49cc-82fb-f5f105b7f7c6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_embargoed
+    - node.type.news_article
+id: node.news_article.field_embargoed
+field_name: field_embargoed
+entity_type: node
+bundle: news_article
+label: Embargoed
+description: 'Not to be disclosed yet.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

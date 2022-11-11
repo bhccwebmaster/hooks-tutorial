@@ -1,0 +1,15 @@
+uuid: e81df854-68ba-4d7f-963b-943b3d82ec67
+langcode: en
+status: true
+dependencies: {  }
+name: news_full_image
+label: 'News Full Image'
+effects:
+  6b5aa3cb-43d7-44be-8e8f-a99964fad24e:
+    uuid: 6b5aa3cb-43d7-44be-8e8f-a99964fad24e
+    id: image_scale
+    weight: 1
+    data:
+      width: 1024
+      height: 768
+      upscale: false

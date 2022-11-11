@@ -1,0 +1,20 @@
+uuid: a51d30db-8a37-4ff4-8dbb-3ffcc2db43fc
+langcode: en
+status: true
+dependencies: {  }
+name: taxonomy_small
+label: 'Taxonomy small'
+effects:
+  53d7aa81-b4db-4d1a-bb7b-d071630314d8:
+    uuid: 53d7aa81-b4db-4d1a-bb7b-d071630314d8
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 150
+      height: 150
+      anchor: center-center
+  68855b20-c2c9-4219-a0a0-e64705f67705:
+    uuid: 68855b20-c2c9-4219-a0a0-e64705f67705
+    id: image_desaturate
+    weight: 2
+    data: {  }

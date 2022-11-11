@@ -1,0 +1,30 @@
+uuid: d82b05f8-dd10-4fe2-8502-5077b524f70b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.freeform_page.field_content
+    - node.type.freeform_page
+  module:
+    - entity_reference_revisions
+    - user
+id: node.freeform_page.default
+targetEntityType: node
+bundle: freeform_page
+mode: default
+content:
+  field_content:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }
