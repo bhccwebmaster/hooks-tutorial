@@ -1,0 +1,39 @@
+uuid: 5040c7f0-fd93-42b2-add0-fc4f08c40e51
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_content
+    - node.type.freeform_page
+    - paragraphs.paragraphs_type.media_image
+    - paragraphs.paragraphs_type.text
+  module:
+    - entity_reference_revisions
+id: node.freeform_page.field_content
+field_name: field_content
+entity_type: node
+bundle: freeform_page
+label: Content
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      text: text
+      media_image: media_image
+    negate: 0
+    target_bundles_drag_drop:
+      media_image:
+        weight: -6
+        enabled: true
+      page_section:
+        weight: -5
+        enabled: false
+      text:
+        weight: -7
+        enabled: true
+field_type: entity_reference_revisions

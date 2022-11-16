@@ -1,0 +1,17 @@
+uuid: e7a73993-fdab-43d5-a863-8caf65006529
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'News Article'
+type: news_article
+description: 'Write a news article'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: true

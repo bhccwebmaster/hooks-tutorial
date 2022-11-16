@@ -1,26 +1,27 @@
-uuid: 07a90d45-f99a-490a-aa46-59fc900df856
+uuid: b8a32334-38ba-4aac-9b5d-02a39d7c1f63
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.media.news_teaser
     - field.field.media.image.field_media_image
-    - image.style.large
+    - image.style.taxonomy_small
     - media.type.image
   module:
     - image
 _core:
   default_config_hash: 73xaTNkI5J6sfFcBmNYeuk070X3mQS_iwwWaPYyfG2M
-id: media.image.default
+id: media.image.news_teaser
 targetEntityType: media
 bundle: image
-mode: default
+mode: news_teaser
 content:
   field_media_image:
     type: image
     label: visually_hidden
     settings:
       image_link: ''
-      image_style: large
+      image_style: taxonomy_small
       image_loading:
         attribute: lazy
     third_party_settings: {  }

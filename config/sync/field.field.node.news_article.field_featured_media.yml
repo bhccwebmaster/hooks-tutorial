@@ -1,0 +1,29 @@
+uuid: 31de2312-50cf-4481-bec7-ecc9db7a54ee
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_featured_media
+    - media.type.image
+    - node.type.news_article
+id: node.news_article.field_featured_media
+field_name: field_featured_media
+entity_type: node
+bundle: news_article
+label: 'Featured Media'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: created
+      direction: ASC
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference

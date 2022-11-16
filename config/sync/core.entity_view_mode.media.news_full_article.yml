@@ -1,0 +1,10 @@
+uuid: 83a7c416-c2b0-455e-8c54-f63b6b367f91
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.news_full_article
+label: 'News Full Article'
+targetEntityType: media
+cache: true
