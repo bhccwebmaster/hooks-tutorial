@@ -12,8 +12,30 @@ dependencies:
     - field.field.node.news_article.field_tags
     - node.type.news_article
   module:
+    - field_group
     - text
     - user
+third_party_settings:
+  field_group:
+    group_category:
+      children:
+        - field_category
+      label: Category
+      parent_name: ''
+      region: content
+      weight: 1
+      format_type: html_element
+      format_settings:
+        classes: field--tags
+        show_empty_fields: false
+        id: ''
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
 id: node.news_article.full
 targetEntityType: node
 bundle: news_article

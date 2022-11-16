@@ -11,9 +11,76 @@ dependencies:
     - field.field.node.news_article.field_tags
     - node.type.news_article
   module:
+    - field_group
     - media_library
     - path
     - text
+third_party_settings:
+  field_group:
+    group_tabs:
+      children:
+        - group_content
+        - group_media
+        - group_meta
+      label: Tabs
+      region: content
+      parent_name: ''
+      weight: 0
+      format_type: tabs
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        direction: vertical
+        width_breakpoint: 1320
+    group_content:
+      children:
+        - title
+        - body
+      label: Content
+      region: content
+      parent_name: group_tabs
+      weight: 14
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        formatter: open
+        description: ''
+        required_fields: true
+    group_media:
+      children:
+        - field_featured_media
+      label: Media
+      region: content
+      parent_name: group_tabs
+      weight: 15
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        formatter: closed
+        description: ''
+        required_fields: false
+    group_meta:
+      children:
+        - field_category
+        - field_tags
+        - field_embargoed
+      label: Meta
+      region: content
+      parent_name: group_tabs
+      weight: 16
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        formatter: closed
+        description: ''
+        required_fields: false
 id: node.news_article.default
 targetEntityType: node
 bundle: news_article
@@ -31,33 +98,33 @@ content:
     third_party_settings: {  }
   created:
     type: datetime_timestamp
-    weight: 2
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
   field_category:
     type: options_buttons
-    weight: 21
+    weight: 9
     region: content
     settings: {  }
     third_party_settings: {  }
   field_embargoed:
     type: boolean_checkbox
-    weight: 22
+    weight: 11
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_featured_media:
     type: media_library_widget
-    weight: 27
+    weight: 11
     region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
   field_tags:
     type: entity_reference_autocomplete_tags
-    weight: 23
+    weight: 10
     region: content
     settings:
       match_operator: CONTAINS
@@ -67,27 +134,27 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 5
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
-    weight: 3
+    weight: 5
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 6
+    weight: 8
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    weight: 4
+    weight: 6
     region: content
     settings:
       display_label: true
@@ -102,7 +169,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 1
+    weight: 3
     region: content
     settings:
       match_operator: CONTAINS
