@@ -1,0 +1,511 @@
+/*
+ * @file
+ *
+ * This file is for utilities that are either applied to the global layout or are applied across components
+ */
+
+/* Containers */
+
+.page-container {
+  max-width: var(--page-container);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* On homepage, we need to allow the search and icons to reach the edge of the
+ * viewport on smaller devices, but keep to the standard width when it gets
+ * to that size so it keeps the page inline.
+ *
+ * @todo: replace this with padding-left/right on the main page-container,
+ *        and just remove it here. But need to check where it breaks first.
+ */
+.page-container--allow-bleed {
+  max-width: calc(var(--page-container) - var(--spacing-small) - var(--spacing-small));
+}
+
+.content-container p,
+.content-container h2,
+.content-container h3,
+.content-container h4,
+.content-container h5,
+.content-container h6,
+.content-container ol,
+.content-container ul,
+.constrain-width {
+  max-width: var(--content-container);
+}
+
+.width-100pc {
+  width: 100%;
+}
+
+.height-100pc {
+  height: 100%;
+}
+
+/* Pulls */
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
+
+/* Lists */
+
+.list-unstyled {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.list-inline {
+  padding-left: 0;
+}
+
+.list-inline > li {
+  display: inline-block;
+}
+
+/* Generic Displays and positions */
+
+.block {
+  display: block;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-align-center {
+  align-items: center;
+}
+
+@media only screen and (min-width: 768px) {
+  .m\:flex-align-center {
+    align-items: center;
+  }
+}
+
+.flex-align-left {
+  align-items: flex-start;
+}
+
+@media only screen and (min-width: 768px) {
+  .m\:flex-align-left {
+    align-items: flex-start;
+  }
+}
+
+.flex-align-right {
+  align-items: flex-end;
+}
+
+@media only screen and (min-width: 768px) {
+  .m\:flex-align-right {
+    align-items: flex-end;
+  }
+}
+
+.flex-space-between {
+  justify-content: space-between;
+}
+
+@media only screen and (min-width: 768px) {
+  .m\:flex-space-between {
+    justify-content: space-between;
+  }
+}
+
+.flex-justify-center {
+  justify-content: center;
+}
+
+@media only screen and (min-width: 768px) {
+  .m\:flex-justify-center {
+    justify-content: center;
+  }
+}
+
+.flex-justify-left {
+  justify-content: flex-start;
+}
+
+@media only screen and (min-width: 768px) {
+  .m\:flex-justify-left {
+    justify-content: flex-start;
+  }
+}
+
+.flex-justify-right {
+  justify-content: flex-end;
+}
+
+@media only screen and (min-width: 768px) {
+  .m\:flex-justify-right {
+    justify-content: flex-end;
+  }
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+@media only screen and (min-width: 768px) {
+  .m\:flex-column {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .m\:flex-row {
+    flex-direction: row;
+  }
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.left-neg-medium {
+  left: calc(var(--spacing-medium) * -1);
+}
+
+.top-neg-x-small {
+  top: calc(var(--spacing-x-small) * -1);
+}
+
+.top-reset {
+  top: 0;
+}
+
+.right-reset {
+  right: 0;
+}
+
+.bottom-reset {
+  bottom: 0;
+}
+
+.left-reset {
+  left: 0;
+}
+
+.position-cover {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.top-large {
+  top: var(--spacing-large);
+}
+
+.right-large {
+  right: var(--spacing-large);
+}
+
+.bottom-large {
+  bottom: var(--spacing-large);
+}
+
+.left-large {
+  left: var(--spacing-large);
+}
+
+.top-small {
+  top: var(--spacing-small);
+}
+
+.right-small {
+  right: var(--spacing-small);
+}
+
+.bottom-small {
+  bottom: var(--spacing-small);
+}
+
+.left-small {
+  left: var(--spacing-small);
+}
+
+.z-index-100 {
+  z-index: 100;
+}
+
+.z-index-80 {
+  z-index: 80;
+}
+
+.z-index-60 {
+  z-index: 60;
+}
+
+.z-index-40 {
+  z-index: 40;
+}
+
+.z-index-20 {
+  z-index: 20;
+}
+
+@media screen and (min-width: 48rem) {
+  .show-mobile {
+    display: none !important;
+  }
+}
+
+
+@media screen and (max-width: 767px) {
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
+.sr-only {
+  border: 0 !important;
+  clip: rect(0,0,0,0) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+/* Frames and component containers */
+
+.esri-map-embed-container {
+  position: relative;
+  padding-bottom: 80%;
+}
+
+.esri-map-embed-container > iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.iframe-wrapper {
+  position: relative;
+  overflow: hidden;
+  padding-top: 56.25%;
+}
+
+.iframe-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.rounded {
+  border-radius: var(--default-radius);
+}
+
+.rounded--input-radius {
+  border-radius: var(--input-radius);
+}
+
+/* Generic Padding */
+
+/* Reset */
+.padding-top-reset    { padding-top: 0 !important; }
+.padding-right-reset  { padding-right: 0 !important; }
+.padding-bottom-reset { padding-bottom: 0 !important; }
+.padding-left-reset   { padding-left: 0 !important; }
+.padding-reset        { padding: 0 !important; }
+
+/* 5px */
+.padding-top-xx-small    { padding-top: var(--spacing-xx-small) !important; }
+.padding-right-xx-small  { padding-right: var(--spacing-xx-small) !important; }
+.padding-bottom-xx-small { padding-bottom: var(--spacing-xx-small) !important; }
+.padding-left-xx-small   { padding-left: var(--spacing-xx-small) !important; }
+.padding-xx-small        { padding: var(--spacing-xx-small) !important; }
+
+/* 10px */
+.padding-top-x-small     { padding-top: var(--spacing-x-small) !important; }
+.padding-right-x-small   { padding-right: var(--spacing-x-small) !important; }
+.padding-bottom-x-small  { padding-bottom: var(--spacing-x-small) !important; }
+.padding-left-x-small    { padding-left: var(--spacing-x-small) !important; }
+.padding-x-small         { padding: var(--spacing-x-small) !important; }
+
+/* 15px */
+.padding-top-small       { padding-top: var(--spacing-small) !important; }
+.padding-right-small     { padding-right: var(--spacing-small) !important; }
+.padding-bottom-small    { padding-bottom: var(--spacing-small) !important; }
+.padding-left-small      { padding-left: var(--spacing-small) !important; }
+.padding-small           { padding: var(--spacing-small) !important; }
+
+/* 20px */
+.padding-top-medium     { padding-top: var(--spacing-medium) !important; }
+.padding-right-medium   { padding-right: var(--spacing-medium) !important; }
+.padding-bottom-medium  { padding-bottom: var(--spacing-medium) !important; }
+.padding-left-medium    { padding-left: var(--spacing-medium) !important; }
+.padding-medium         { padding: var(--spacing-medium) !important; }
+
+/* 30px */
+.padding-top-large       { padding-top: var(--spacing-large) !important; }
+.padding-right-large     { padding-right: var(--spacing-large) !important; }
+.padding-bottom-large    { padding-bottom: var(--spacing-large) !important; }
+.padding-left-large      { padding-left: var(--spacing-large) !important; }
+.padding-large           { padding: var(--spacing-large) !important; }
+
+/* 40px */
+.padding-top-x-large     { padding-top: var(--spacing-x-large) !important; }
+.padding-right-x-large   { padding-right: var(--spacing-x-large) !important; }
+.padding-bottom-x-large  { padding-bottom: var(--spacing-x-large) !important; }
+.padding-left-x-large    { padding-left: var(--spacing-x-large) !important; }
+.padding-x-large         { padding: var(--spacing-x-large) !important; }
+
+/* 60px */
+.padding-top-xx-large    { padding-top: var(--spacing-xx-large) !important; }
+.padding-right-xx-large  { padding-right: var(--spacing-xx-large) !important; }
+.padding-bottom-xx-large { padding-bottom: var(--spacing-xx-large) !important; }
+.padding-left-xx-large   { padding-left: var(--spacing-xx-large) !important; }
+.padding-xx-large        { padding: var(--spacing-xx-large) !important; }
+
+/* 120px */
+.padding-top-xxx-large    { padding-top: var(--spacing-xxx-large) !important; }
+.padding-right-xxx-large  { padding-right: var(--spacing-xxx-large) !important; }
+.padding-bottom-xxx-large { padding-bottom: var(--spacing-xxx-large) !important; }
+.padding-left-xxx-large   { padding-left: var(--spacing-xxx-large) !important; }
+.padding-xxx-large        { padding: var(--spacing-xxx-large) !important; }
+
+/* Generic margin */
+
+/* Reset */
+.margin-top-reset    { margin-top: 0 !important; }
+.margin-right-reset  { margin-right: 0 !important; }
+.margin-bottom-reset { margin-bottom: 0 !important; }
+.margin-left-reset   { margin-left: 0 !important; }
+.margin-reset        { margin: 0 !important; }
+
+/* 5px */
+.margin-top-xx-small    { margin-top: var(--spacing-xx-small) !important; }
+.margin-right-xx-small  { margin-right: var(--spacing-xx-small) !important; }
+.margin-bottom-xx-small { margin-bottom: var(--spacing-xx-small) !important; }
+.margin-left-xx-small   { margin-left: var(--spacing-xx-small) !important; }
+.margin-xx-small        { margin: var(--spacing-xx-small) !important; }
+
+/* 10px */
+.margin-top-x-small     { margin-top: var(--spacing-x-small) !important; }
+.margin-right-x-small   { margin-right: var(--spacing-x-small) !important; }
+.margin-bottom-x-small  { margin-bottom: var(--spacing-x-small) !important; }
+.margin-left-x-small    { margin-left: var(--spacing-x-small) !important; }
+.margin-x-small         { margin: var(--spacing-x-small) !important; }
+
+/* 15px */
+.margin-top-small       { margin-top: var(--spacing-small) !important; }
+.margin-right-small     { margin-right: var(--spacing-small) !important; }
+.margin-bottom-small    { margin-bottom: var(--spacing-small) !important; }
+.margin-left-small      { margin-left: var(--spacing-small) !important; }
+.margin-small           { margin: var(--spacing-small) !important; }
+
+/* 20px */
+.margin-top-medium     { margin-top: var(--spacing-medium) !important; }
+.margin-right-medium   { margin-right: var(--spacing-medium) !important; }
+.margin-bottom-medium  { margin-bottom: var(--spacing-medium) !important; }
+.margin-left-medium    { margin-left: var(--spacing-medium) !important; }
+.margin-medium         { margin: var(--spacing-medium) !important; }
+
+/* -20px */
+.margin-negative-top-medium     { margin-top: calc(0px - var(--spacing-medium)) !important; }
+.margin-negative-right-medium   { margin-right: calc(0px - var(--spacing-medium)) !important; }
+.margin-negative-bottom-medium  { margin-bottom: calc(0px - var(--spacing-medium)) !important; }
+.margin-negative-left-medium    { margin-left: calc(0px - var(--spacing-medium)) !important; }
+.margin-negative-medium         { margin: calc(0px - var(--spacing-medium)) !important; }
+
+/* 30px */
+.margin-top-large       { margin-top: var(--spacing-large) !important; }
+.margin-right-large     { margin-right: var(--spacing-large) !important; }
+.margin-bottom-large    { margin-bottom: var(--spacing-large) !important; }
+.margin-left-large      { margin-left: var(--spacing-large) !important; }
+.margin-large           { margin: var(--spacing-large) !important; }
+
+/* -30px */
+.margin-negative-top-large     { margin-top: calc(0px - var(--spacing-large)) !important; }
+.margin-negative-right-large   { margin-right: calc(0px - var(--spacing-large)) !important; }
+.margin-negative-bottom-large  { margin-bottom: calc(0px - var(--spacing-large)) !important; }
+.margin-negative-left-large    { margin-left: calc(0px - var(--spacing-large)) !important; }
+.margin-negative-large         { margin: calc(0px - var(--spacing-large)) !important; }
+
+/* 40px */
+.margin-top-x-large     { margin-top: var(--spacing-x-large) !important; }
+.margin-right-x-large   { margin-right: var(--spacing-x-large) !important; }
+.margin-bottom-x-large  { margin-bottom: var(--spacing-x-large) !important; }
+.margin-left-x-large    { margin-left: var(--spacing-x-large) !important; }
+.margin-x-large         { margin: var(--spacing-x-large) !important; }
+
+/* 60px */
+.margin-top-xx-large    { margin-top: var(--spacing-xx-large) !important; }
+.margin-right-xx-large  { margin-right: var(--spacing-xx-large) !important; }
+.margin-bottom-xx-large { margin-bottom: var(--spacing-xx-large) !important; }
+.margin-left-xx-large   { margin-left: var(--spacing-xx-large) !important; }
+.margin-xx-large        { margin: var(--spacing-xx-large) !important; }
+
+/* 120px */
+.margin-top-xxx-large    { margin-top: var(--spacing-xxx-large) !important; }
+.margin-right-xxx-large  { margin-right: var(--spacing-xxx-large) !important; }
+.margin-bottom-xxx-large { margin-bottom: var(--spacing-xxx-large) !important; }
+.margin-left-xxx-large   { margin-left: var(--spacing-xxx-large) !important; }
+.margin-xxx-large        { margin: var(--spacing-xxx-large) !important; }
+
+/* Collapse inner margin
+ * use when adding padding to a container to remove the top and bottom margins
+ * from child elements. */
+.collapse-margins :first-child {
+  margin-top: 0;
+}
+.collapse-margins :last-child {
+  margin-bottom: 0;
+}
+.collapse-direct-margins > :first-child {
+  margin-top: 0;
+}
+.collapse-direct-margins > :last-child {
+  margin-bottom: 0;
+}
+
+/* Clearfix */
+
+.clearfix::after {
+  visibility: hidden;
+  display: block;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+* html .clearfix { zoom: 1; }
+*:first-child+html .clearfix { zoom: 1; }
+
+/* Layout utlilities */
+/* @todo move to own layout-builder.css */
+
+.layout__region > :first-child {
+  margin-top: 0 !important;
+}
+
+.layout__region > :last-child {
+  margin-bottom: 0 !important;
+}
+
+.field--layout-paragraphs > div + div {
+  margin-top: var(--spacing-large);
+}

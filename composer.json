@@ -102,5 +102,11 @@
                 "      composer remove drupal/core-project-message"
             ]
         }
+    },
+    "scripts": {
+        "post-update-cmd": [
+            "mkdir -p docroot/libraries/bootstrap",
+            "cp -R vendor/twbs/bootstrap/dist docroot/libraries/bootstrap"
+        ]
     }
 }
