@@ -1,0 +1,22 @@
+uuid: a4ad6699-853a-4114-a03b-6d3c04b56b00
+langcode: en
+status: true
+dependencies:
+  module:
+    - localgov_alert_banner
+  theme:
+    - bootstrap_tutorial
+id: bootstrap_tutorial_alertbanner
+theme: bootstrap_tutorial
+region: header
+weight: -7
+provider: null
+plugin: localgov_alert_banner_block
+settings:
+  id: localgov_alert_banner_block
+  label: 'Alert banner'
+  label_display: '0'
+  provider: localgov_alert_banner
+  include_types:
+    localgov_alert_banner: '0'
+visibility: {  }

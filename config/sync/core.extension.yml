@@ -70,4 +70,5 @@ theme:
   gin: 0
   bootstrap_barrio: 0
   bootstrap_barrio_subtheme: 0
+  bootstrap_tutorial: 0
 profile: standard

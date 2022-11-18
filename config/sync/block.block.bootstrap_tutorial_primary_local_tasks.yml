@@ -1,0 +1,22 @@
+uuid: 6ef517d9-f392-480b-ba2d-07ea7e4dea85
+langcode: en
+status: true
+dependencies:
+  theme:
+    - bootstrap_tutorial
+_core:
+  default_config_hash: nGE3EoPQQaQCuqTUtZgw0-KIzmrqdKDzdNQf2JyPUt4
+id: bootstrap_tutorial_primary_local_tasks
+theme: bootstrap_tutorial
+region: header
+weight: -4
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Primary tabs'
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: false
+visibility: {  }

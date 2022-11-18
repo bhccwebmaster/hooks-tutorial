@@ -1,0 +1,29 @@
+uuid: 50b0d877-fa8f-4621-b131-aab729583321
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.recent_articles
+  module:
+    - system
+    - views
+  theme:
+    - bootstrap_tutorial
+id: bootstrap_tutorial_views_block__recent_articles_block_1
+theme: bootstrap_tutorial
+region: header
+weight: 0
+provider: null
+plugin: 'views_block:recent_articles-block_1'
+settings:
+  id: 'views_block:recent_articles-block_1'
+  label: ''
+  label_display: visible
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: "/news\r\n"

@@ -1,14 +1,14 @@
 _core:
   default_config_hash: VDJxTZtQR21qB4lvOq8zszJZLvLKrSPQpdn2E3T71Ww
 langcode: en
-uuid: d37e159b-059f-4917-ab9d-419cb1cd2d5f
+uuid: f0ec95af-c0ca-49c2-8dde-e33257e95fd6
 name: 'Templating tutorial'
 mail: webmaster@brighton-hove.gov.uk
 slogan: ''
 page:
   403: ''
   404: ''
-  front: /node
+  front: /home-page
 admin_compact_mode: false
 weight_select_max: 100
 default_langcode: en
