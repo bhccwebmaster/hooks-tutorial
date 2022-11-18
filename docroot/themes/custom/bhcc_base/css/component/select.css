@@ -1,0 +1,24 @@
+/*
+ * This file is for styling the select component
+ */
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-right: var(--form-base);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background-image: url(../../images/select.svg);
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: calc((var(--form-base-quarter) * 2) + 1.25em);
+}
+
+.select--white,
+.background-accent > select,
+.background-burgundy-alt > select {
+  border: 1px sold var(--color-accent);
+  background-image: url(../../images/select--accent.svg);
+  background-size: 38px;
+}

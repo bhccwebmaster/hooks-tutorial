@@ -11,8 +11,8 @@ dependencies:
     - bootstrap_tutorial
 id: bootstrap_tutorial_exposedformnewspage_1
 theme: bootstrap_tutorial
-region: header
-weight: 0
+region: sidebar_second
+weight: -9
 provider: null
 plugin: 'views_exposed_filter_block:news-page_1'
 settings:

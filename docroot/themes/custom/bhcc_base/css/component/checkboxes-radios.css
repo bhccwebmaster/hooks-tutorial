@@ -1,0 +1,92 @@
+/*
+ * This file is for styling the checkbox and radios components
+ */
+
+.form-checkboxes > .form-item:not(:first-child),
+.form-radios > .form-item:not(:first-child) {
+  margin-top: var(--spacing-small);
+}
+
+.form-checkboxes > .form-item:last-of-type,
+.form-radios > .form-item:last-of-type {
+  margin-bottom: 0;
+}
+
+.form-item input[type="checkbox"],
+.form-item input[type="radio"] {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: var(--form-base);
+  height: var(--form-base);
+  cursor: pointer;
+  opacity: 0;
+}
+
+.form-item input[type="checkbox"] + label,
+.form-item input[type="radio"] + label {
+  display: inline-block;
+  margin-left: var(--form-base);
+  margin-bottom: 0;
+  padding: var(--form-base-quarter);
+  padding-left: var(--spacing-medium);
+  font-weight: 400;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+@media only screen and (min-width: 992px) {
+  .form-item input[type="checkbox"] + label,
+  .form-item input[type="radio"] + label {
+    padding-top: calc(var(--form-base-quarter) / 1.5);
+    padding-bottom: calc(var(--form-base-quarter) / 1.5);
+  }
+}
+
+.facet-item input[type="checkbox"] + label,
+.facet-item input[type="radio"] + label {
+  margin-left: calc(var(--form-base) * 0.675);
+}
+
+.form-item input[type="checkbox"] + label::before,
+.form-item input[type="radio"] + label::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: var(--form-base);
+  height: var(--form-base);
+  content: "";
+  border: 1px solid var(--color-grey-dark);
+  background-color: var(--color-white);
+}
+
+.form-item input[type="radio"] + label::before {
+  border-radius: 50% 50%;
+}
+
+.form-item input[type="checkbox"]:checked + label::before {
+  background-image: url(../../images/checkbox.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: 1px solid var(--color-link);
+}
+
+.form-item input[type="radio"]:checked + label::before {
+  background-color: var(--color-link);
+  border: 1px solid var(--color-link);
+}
+
+.form-item input[type="radio"]:checked + label::after {
+  position: absolute;
+  top: var(--form-base-quarter);
+  left: var(--form-base-quarter);
+  box-sizing: border-box;
+  width: var(--form-base-half);
+  height: var(--form-base-half);
+  content: "";
+  background-color: var(--color-white);
+  border-radius: 50% 50%;
+}

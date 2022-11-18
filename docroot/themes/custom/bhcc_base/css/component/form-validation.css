@@ -1,0 +1,21 @@
+/*
+ * @file
+ *
+ * This file is for styling form validation messages
+ */
+
+.form-item--error {
+  padding-left: var(--spacing-medium);
+  border-left: 3px solid var(--color-error);
+}
+
+.form-item--error-message {
+  margin-bottom: var(--spacing-x-small);
+  font-weight: 600;
+  color: var(--color-error);
+}
+
+.form-item input:not([type="submit"]):not([type="file"]).error,
+.form-item textarea.error {
+  border: 2px solid var(--color-error);
+}

@@ -1,0 +1,27 @@
+{% if items %}
+  <div class="service-landing-update margin-top-large margin-bottom-xx-large">
+    <h2 class="smaller-heading color-secondary margin-bottom-small">Service updates</h2>
+
+    <ol class="service-landing-update__list list-unstyled margin-bottom-small">
+      {% for item in items %}
+        <li class="service-landing-update__row">
+          <div class="service-landing-update__content">
+            <div class="service-landing-update__date padding-right-small">{{ item.date|date("d.m.Y") }}</div>
+            <div>
+              <div class="service-landing-update__title">{{ item.title }}</div>
+
+              {% if item.description %}
+                <div class="service-landing-update__description">
+                  {{ item.description }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+          <a class="action-link action-link--next" href="{{ item.url }}">Read more<span class="sr-only"> about {{item.title|lower|trim}}</span></a>
+        </li>
+      {% endfor %}
+    </ol>
+
+    <a href="{{ see_all_link|render }}" class="pull-right action-link action-link--next">See all<span class="sr-only"> service updates</span></a>
+  </div>
+{% endif %}

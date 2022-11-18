@@ -1,0 +1,303 @@
+/*
+ * @file
+ *
+ * This file is for styling webform elements
+ *
+ * Most elements are namespaced with webform or webform-element
+ *
+ * @todo - break these up into components where suitable
+ */
+
+
+.node--type-webform .webform-submission-form,
+.controller-based-form {
+  max-width: 48rem;
+}
+
+/* Progress */
+
+.webform-progress {
+  display: none;
+}
+
+/* Buttons */
+
+.form-actions > .webform-button--previous:before {
+  left: var(--spacing);
+  right: auto;
+  transform: rotate(180deg);
+  background-image: url(../../images/arrow-right-white.svg);
+}
+
+/*@media screen and (min-width: 48rem) {*/
+/*  .form-actions > .webform-button--previous,*/
+/*  .form-actions > .webform-button--next {*/
+/*    margin-right: var(--spacing-medium);*/
+/*  }*/
+/*}*/
+
+
+/* Details */
+
+.description,
+.webform-element-description {
+  margin-top: var(--spacing-x-small);
+  line-height: 1.5;
+  max-width: 80ch;
+}
+
+.description .webform-element-description {
+  margin-top: 0;
+}
+
+.form-item__prefix-suffix-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.form-item__prefix-suffix-wrapper .field-prefix {
+  margin-right: var(--spacing-x-small);
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.webform-element-more {
+  margin-top: var(--spacing-x-small);
+}
+
+.webform-element-more--link {
+  position: relative;
+  padding-left: var(--spacing-medium);
+}
+
+.webform-element-more--link:before {
+  position: absolute;
+  left: 0px;
+  top: 3px;
+  color: var(--color-link);
+}
+
+.webform-element-more--content {
+  margin-top: var(--spacing-x-small);
+}
+
+/* Error Summary */
+
+.webform-submission-form > .status-messages > .status-message {
+  margin-top: var(--spacing-x-large);
+  margin-bottom: var(--spacing-xx-large);
+  color: var(--color-text);
+}
+
+.webform-submission-form > .status-messages > .status-message .item-list__comma-list {
+  display: block;
+  margin-top: var(--color-x-small);
+  list-style: none;
+}
+
+.webform-submission-form > .status-messages > .status-message .item-list__comma-list li {
+  display: block;
+  margin: var(--spacing-x-small) 0;
+}
+
+.webform-submission-form > .status-messages > .status-message .item-list__comma-list li::after {
+  content: '';
+}
+
+.webform-submission-form > .status-messages > .status-message a {
+  color: var(--color-error);
+}
+
+/* Radios, Checkboxes, Selects */
+
+.webform-radios-other,
+.webform-checkboxes-other {
+  margin-bottom: var(--spacing-x-large);
+}
+
+.webform-radios-other-input,
+.webform-checkboxes-other-input {
+  margin-top: var(--spacing-x-small);
+}
+
+.webform-select-other {
+  margin-bottom: var(--spacing-x-large);
+}
+
+.webform-select-other-input {
+  margin-top: var(--spacing-x-small);
+}
+
+.webform-checkbox-single__wrapper {
+  position: relative;
+}
+
+.webform-checkbox-single input[type="checkbox"] + label {
+  font-weight: 600;
+}
+
+.bhcc-webform-select-other-checkbox {
+  margin-top: var(--spacing-x-small);
+}
+
+/* Fieldset */
+
+.webform-submission-form > .form-wrapper:not(.form-actions) > .webform-type-fieldset, 
+.controller-based-form-fieldset
+{
+  padding: var(--spacing-x-large) var(--spacing-large);
+  background-color: var(--color-white);
+  /*margin-bottom: var(--spacing-x-large);*/
+}
+
+.webform-submission-form fieldset:not(:first-of-type),
+.webform-submission-form fieldset:not(:first-child),
+.webform-submission-form .js-webform-states-hidden > *:first-child,
+.webform-submission-form .bhcc-webform-hidden-element-wrapper:not(:first-child),
+.webform-submission-form .bhcc-webform-date--wrapper:not(:first-child),
+.webform-submission-form .form-item--webform_markup:not(:first-child),
+.webform-submission-form .form-item--webform_document_file:not(:first-child),
+.webform-submission-form .form-item--webform_document_file .form-submit,
+.webform-submission-form #ajax-wrapper:not(:first-child) .form-item--webform_document_file,
+.webform-submission-form .form-item--select:not(:first-child),
+.webform-submission-form .form-item--textfield:not(:first-child),
+.webform-submission-form .form-item--textarea:not(:first-child),
+.webform-submission-form .form-item--checkbox:not(:first-child),
+.webform-submission-form .form-item--email:not(:first-child),
+.webform-submission-form .form-item--datelist:not(:first-child),
+.webform-submission-form .form-item--number:not(:first-child),
+.webform-submission-form .form-item--processed_text:not(:first-child),
+.webform-submission-form .form-item--item:not(:first-child),
+.webform-submission-form .webform-message:not(:first-child),
+.webform-submission-form .form-wrapper:not(:first-child) .webform-message,
+.webform-submission-form > .form-actions,
+.webform-submission-form .field-prefix + div,
+.bhcc-contact-form > .form-actions,
+.controller-based-form > .form-actions,
+.address-select-container,
+.zone-view-info .zone-info,
+.controller-based-form > .controller-based-form-result,
+.controller-based-form .form-item + .form-item:not(.form-item--radio):not(.form-item--checkbox),
+.controller-based-form .form-item + .form-item--single-checkbox {
+  margin-top: var(--spacing-large);
+}
+
+.filter-form {
+ padding: var(--spacing-medium);
+}
+
+.filter-form form > div:not(:first-child),
+.filter-form fieldset:not(:first-of-type),
+.filter-form fieldset:not(:first-child),
+.filter-form .origin-address-autocomplete,
+.filter-form .form-item--textfield:not(:first-child),
+.filter-form .form-item--select:not(:first-child),
+.filter-form .form-item--date:not(:first-child) {
+  margin-top: var(--spacing-medium);
+}
+
+.filter-form .form-actions,
+.filter-form > .form-submit {
+  margin-top: var(--spacing-large);
+}
+
+.webform-submission-form .form-item--textfield + .form-item--textfield {
+  margin-top: var(--spacing-medium);
+}
+
+.webform-submission-form .webform-document-file + .description {
+  margin-top: var(--spacing-small);
+}
+
+.address-actions {
+  margin-top: var(--spacing-large);
+}
+
+.centralhub-address-lookup .manual-address {
+  margin-top: var(--spacing-small);
+}
+
+.webform-type-fieldset > legend {
+  display: none;
+}
+
+.webform-type-fieldset > legend + .fieldset-wrapper {
+  margin-top: 0;
+}
+
+.webform-type-fieldset > .fieldset-wrapper {
+  max-width: var(--content-container);
+}
+
+/* File upload */
+
+.form-managed-file > .file,
+.webform-document-file > .js-form-type-checkbox {
+  display: block;
+  font-weight: 600;
+}
+
+.webform-document-file > .js-form-type-checkbox {
+  margin-top: var(--spacing-x-small);
+  margin-bottom: var(--spacing-x-small);
+}
+
+.form-managed-file > .button--success {
+  margin-top: var(--spacing-medium);
+  padding: var(--spacing-small) var(--spacing-large) var(--spacing-small) 3rem;
+  text-align: center;
+  color: var(--color-negative);
+  background-color: var(--color-error);
+  border-radius: var(--input-radius);
+}
+
+.form-managed-file > .button--success::before {
+  background-image: url(../../images/icon-bin.svg);
+  top: calc(50% - 9px);
+  right: 0;
+  left: var(--spacing);
+}
+
+/* Labels */
+
+.form-element-label,
+.bhcc-contact-form .fieldset-legend {
+  margin-bottom: var(--spacing-x-small);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Override rich text elements for webforms */
+@media only screen and (min-width: 768px) {
+  .webform-submission-form .form-element-label,
+  .bhcc-contact-form .form-element-label,
+  .bhcc-contact-form .fieldset-legend {
+    font-size: 1.188rem;
+  }
+}
+
+.description + *,
+.webform-submission-form legend + *,
+.bhcc-contact-form legend + * {
+  margin-top: var(--spacing-x-small);
+}
+
+.bhcc-webform-person--date_of_birth > div:first-of-type:not(.form-item--error):not(.form-item--error-message),
+.bhcc-webform-person--date_of_birth > div:nth-of-type(2):not(.form-item--error):not(.form-item--error-message),
+.bhcc-webform-person--date_of_birth > div:nth-of-type(3):not(.form-item--error):not(.form-item--error-message) {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.bhcc-webform-person--date_of_birth > div:first-of-type:not(.form-item--error):not(.form-item--error-message),
+.bhcc-webform-person--date_of_birth > div:nth-of-type(2):not(.form-item--error):not(.form-item--error-message) {
+  width: 70px;
+}
+
+.bhcc-webform-person--date_of_birth > div:nth-of-type(3):not(.form-item--error):not(.form-item--error-message) {
+  width: 80px;
+}
+
+.webform-submission-form .bhcc-webform-person--date_of_birth > .form-item--textfield {
+  margin-top: 0;
+}

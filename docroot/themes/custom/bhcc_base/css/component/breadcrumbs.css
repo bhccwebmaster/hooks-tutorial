@@ -1,0 +1,25 @@
+/*
+ * @file
+ *
+ * This file is for styling the global site breadcrumbs
+ */
+
+.block-system-breadcrumb-block {
+  background-color: var(--breadcrumb-background-color,  var(--color-brand));
+  color: var(--color-negative);
+}
+
+.breadcrumbs__item:not(:first-child) {
+  position: relative;
+  padding-left: var(--spacing);
+}
+
+.breadcrumbs__item:not(:first-child)::before {
+  content: '/';
+  position: absolute;
+  left: 7px;
+}
+
+.breadcrumbs__link {
+  color: var(--color-negative);
+}

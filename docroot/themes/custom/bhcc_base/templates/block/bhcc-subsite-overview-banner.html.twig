@@ -1,0 +1,18 @@
+{#
+/**
+ * @file
+ * Theme BHCC subsites overview banner
+ *
+ * Available variables:
+ * - heading: Page heading (Subsite page title).
+ * - banner: Rendered Subsite banner media entity (from Subsite Overview).
+ * - banner_uri: Subsite banner drupal file uri (public://).
+ * - banner_url: Subsite banner absolute url (http://)
+ * - banner_path: Subsite banner path.
+ */
+#}
+<header class="subsite-overview-banner"{% if banner_path %} style="background-image:url({{ banner_path }});"{% endif %}>
+  <div class="subsite-overview-banner__content page-container padding-medium flex flex-align-center flex-justify-left collapse-margins">
+    <h1 class="subsite-overview-banner__title serif-text weight-semi large-header">{{ heading }}</h1>
+  </div>
+</header>

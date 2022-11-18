@@ -1,0 +1,41 @@
+/*
+ * @file
+ *
+ * This file is for the sitewide overlays
+ */
+
+.overlay--multiply {
+  mix-blend-mode: multiply;
+}
+
+.overlay--grey {
+  background-color: rgba(0,0,0,0.3);
+}
+
+.overlay--burgundy {
+  background-color: var(--color-burgundy);
+}
+  
+.overlay--green {
+  background-color: var(--color-colourway-green);
+}
+
+.overlay--red {
+  background-color: var(--color-colourway-red);
+}
+
+.overlay--pink {
+  background-color: var(--color-colourway-pink);
+}
+
+.overlay--cyan {
+  background-color: var(--color-colourway-cyan);
+}
+
+.overlay--orange {
+  background-color: var(--color-colourway-orange);
+}
+
+.overlay--blue {
+  background-color: var(--color-colourway-blue);
+}

@@ -1,0 +1,69 @@
+/*
+ * @file
+ *
+ * This file is for styling the service landing update list.
+ */
+
+.service-landing-update__row {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--color-grey-mid-dark);
+  padding: var(--spacing-x-small) 0;
+}
+
+@media screen and (min-width: 1024px) {
+  .service-landing-update__row {
+    flex-direction: row;
+  }
+}
+
+.service-landing-update__row .action-link {
+  padding-top: var(--spacing-x-small);
+  padding-bottom: var(--spacing-x-small);
+  padding-left: var(--spacing-medium);
+  flex-shrink: 0;
+  align-self: flex-end;
+}
+
+.service-landing-update__date {
+  font-weight: 600;
+  color: var(--color-grey-dark);
+  margin-bottom: var(--spacing-x-small);
+}
+
+@media screen and (min-width: 1024px) {
+  .service-landing-update__date {
+    margin-bottom: 0;
+  }
+}
+
+.service-landing-update__title {
+  font-weight: 600;
+  color: var(--color-black-lighter);
+}
+
+.service-landing-update__description {
+  flex-grow: 1;
+  padding-top: var(--spacing-small);
+  line-height: 1.375;
+}
+
+@media screen and (min-width: 1024px) {
+  .service-landing-update__description  {
+    padding-right: var(--spacing-medium);
+  }
+}
+
+.service-landing-update__content {
+  display: flex;
+  flex-direction: column;
+  padding-top: var(--spacing-x-small);
+  padding-bottom: var(--spacing-x-small);
+}
+
+@media screen and (min-width: 1024px) {
+  .service-landing-update__content {
+    flex-direction: row;
+  }
+}

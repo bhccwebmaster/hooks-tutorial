@@ -1,0 +1,20 @@
+/*
+ * @file
+ *
+ * This file is for styling images
+ */
+
+.background-image-cover {
+  background-size: cover;
+}
+
+.background-image-center {
+  background-position: center;
+}
+
+.news-banner {
+  background-image: url(/themes/custom/bhcc_base/images/newsroom-hero.jpeg);
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: 28rem;
+}

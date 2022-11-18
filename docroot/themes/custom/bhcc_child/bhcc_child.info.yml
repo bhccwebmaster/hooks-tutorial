@@ -1,0 +1,27 @@
+name: BHCC Child
+type: theme
+description: 'A child theme for Brighton & Hove City Council'
+package: Other
+core_version_requirement: ^9 || ^10
+# libraries:
+#   - bhcc_base/global
+
+base theme: bhcc_base
+
+regions:
+  tabs: Tabs
+  header: Header
+  search: Search
+  primary_menu: Primary Menu
+  secondary_menu: Secondary Menu
+  mobile_menu: Mobile Menu
+  portal_menu: Portal Menu
+  banner: Banner
+  breadcrumb: Breadcrumb
+  content_top: Content Top
+  sidebar_left: Sidebar Left
+  content: Content
+  sidebar_right: Sidebar Right
+  footer_left: Footer Left
+  footer_right: Footer Right
+  disabled: Disabled

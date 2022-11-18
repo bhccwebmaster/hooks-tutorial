@@ -1,0 +1,23 @@
+uuid: 16e50dc7-0bdf-4c01-88f1-a729be559607
+langcode: en
+status: false
+dependencies:
+  module:
+    - search
+  theme:
+    - bhcc_base
+_core:
+  default_config_hash: yEBET0cqDbk8dkWzaJw-8CKft0961VBflsISoSR6Lj8
+id: bhcc_base_search_form_narrow
+theme: bhcc_base
+region: primary_menu
+weight: -4
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: 'Search form (narrow)'
+  label_display: '0'
+  provider: search
+  page_id: ''
+visibility: {  }

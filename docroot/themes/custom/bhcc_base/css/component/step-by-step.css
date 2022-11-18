@@ -1,0 +1,67 @@
+/* Block container for step-by-step */
+.step-by-step-pages__relationship {
+  border-left-color: var(--color-brand);
+}
+
+/* Sidebar Block Header */
+@media screen and (min-width: 48rem) {
+  .block-views-blocklocalgov-step-by-step-navigation-steps .step-by-step-pages__relationship {
+    display: none;
+  }
+}
+
+.step-by-step-pages__relationship .step-by-step-pages__part-of {
+  color: var(--color-brand);
+}
+
+/* Active step title */
+.step-by-step-pages ol.step-list .step.step--active .step__title a {
+  color: var(--color-brand);
+}
+
+/* The bullet numbers beside each step */
+.step-by-step-pages ol.step-list .step.step--active::before {
+  border-color: var(--color-brand);
+  background-color: var(--color-brand);
+}
+
+/* The border from the active step to the next one */
+.step-by-step-pages ol.step-list .step.step--active:not(:last-of-type)::after {
+  border-color: var(--color-brand);
+}
+
+/* Override the localgov step-by-step-nav.css */
+.step-by-step-pages .step-master {
+  color: var(--color-text);
+}
+
+.step-by-step-pages ol.step-list .step .step__title a {
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+.step-by-step-pages ol.step-list .step .step__title  {
+  font-size: 1.125rem;
+  font-weight: normal;
+}
+
+.step-by-step-pages ol.step-list .step .step__title a {
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+.step-by-step-pages .step-master:focus, 
+.step-by-step-pages .step-master:hover, 
+.step-by-step-pages .step-master:active,
+.step-by-step-pages ol.step-list .step .step__title a:hover,
+.step-by-step-pages ol.step-list .step .step__title a:focus,
+.step-by-step-pages ol.step-list .step .step__title a:active,
+.step-by-step-pages ol.step-list .step .step__title .step-show:focus, 
+.step-by-step-pages ol.step-list .step .step__title .step-show:hover, 
+.step-by-step-pages ol.step-list .step .step__title .step-show:active {
+  background-color: initial;
+  color: var(--color-link);
+  box-shadow: initial;
+  text-decoration: underline;
+  cursor: pointer;
+}

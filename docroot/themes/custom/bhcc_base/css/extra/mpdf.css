@@ -1,0 +1,56 @@
+/* General */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  line-height: 1.5;
+}
+
+a {
+  color: inherit;
+}
+
+h1, h2, h3, h4, h5, h6, p, ul, ol {
+  margin-top: 0;
+}
+
+:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* Hide from PDFs */
+.hidden-print {
+  display: none;
+}
+
+/* Hasc snippit */
+
+.paragraph--type--indexed-snippet-content {
+  margin-bottom: 5mm;
+  border-bottom: .4mm solid #d8d8d8;
+  padding-bottom: 5mm;
+}
+
+.qa-section {
+  background-color: transparent;
+  padding: 5mm;
+  margin-bottom: 10mm;
+  page-break-inside: avoid;
+  border: .4mm solid #000;
+}
+
+.qa-section__heading {
+  background-color: transparent;
+  color: #000;
+  margin: -5mm -5mm 5mm;
+  padding: 5mm;
+  font-size: 14pt;
+  line-height: 1;
+}
+
+.qa-section__heading a {
+  text-decoration: none;
+}

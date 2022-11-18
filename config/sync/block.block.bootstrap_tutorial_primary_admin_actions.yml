@@ -8,8 +8,8 @@ _core:
   default_config_hash: Q9_2whdOj1YIomfvsIfopROW4FT_X5pY0DjdOiOaQ5U
 id: bootstrap_tutorial_primary_admin_actions
 theme: bootstrap_tutorial
-region: header
-weight: -6
+region: above_conent
+weight: -7
 provider: null
 plugin: local_actions_block
 settings:

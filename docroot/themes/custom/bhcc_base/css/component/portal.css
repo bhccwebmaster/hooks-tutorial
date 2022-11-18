@@ -1,0 +1,94 @@
+/*
+ * @file
+ *
+ * This file is for the portal menu page element
+ */
+
+.portal-overview-block,
+.portal-page-block {
+  min-height: 16rem;
+}
+
+.portal-tile {
+  height: 100%;
+}
+
+.portal-tile__image {
+  height: 8rem;
+}
+
+.portal-tile__text h2 {
+  line-height: 1.375;
+}
+
+.portal-tile__text p {
+  line-height: 1.5;
+}
+
+.portal-menu__toggle {
+  color: var(--color-white);
+  width: 100%;
+  border-radius: 0;
+  padding: var(--spacing-small);
+}
+
+.portal-menu__toggle.show-hide-toggle::before {
+  background-image: url(../../images/arrow-right-white.svg);
+  right: var(--spacing-small);
+}
+
+.portal-menu__container {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .portal-menu__container {
+    display: flex !important;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .menubar-portal .portal-menu__toggle {
+    /* important needed as .button:not(.hidden):not(.js-hide) overides this */
+    display: none !important;
+  }
+}
+
+.portal-menu__list {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 768px) {
+  .portal-menu__list {
+    flex-direction: row;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .portal-menu__item {
+    display: flex;
+  }
+}
+
+.portal-menu__item > a {
+  padding: var(--spacing-small);
+  display: block;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.portal-menu__toggle:focus,
+.portal-menu__item > a:focus {
+  outline-offset: -4px;
+}
+
+@media screen and (min-width: 768px) {
+  .menubar-portal {
+    padding: 0 var(--spacing-small);
+  }
+}
+
+.menubar-portal a {
+  color: var(--color-negative);
+}

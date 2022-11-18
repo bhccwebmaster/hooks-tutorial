@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * Homepage icons paragraph type.
+ */
+#}
+
+{% set icon_attributes = create_attribute() %}
+{%
+  set icon_classes = [
+    content.bhcc_icon.0['#icons'].0['#style'] ? content.bhcc_icon.0['#icons'].0['#style']|clean_class,
+    content.bhcc_icon.0['#icons'].0['#name'] ? content.bhcc_icon.0['#icons'].0['#name']|clean_class,
+    'homepage-icon__icon'
+  ]
+%}
+
+<div{{ attributes.addClass('services--feature-block')}}>
+  <a href="{{ field_link }}" class="homepage-icon">
+    <div{{ icon_attributes.addClass(icon_classes).setAttribute('aria-hidden', 'true') }}></div>
+    <div class="homepage-icon__title">{{ content.bhcc_title }}</div>
+  </a>
+</div>

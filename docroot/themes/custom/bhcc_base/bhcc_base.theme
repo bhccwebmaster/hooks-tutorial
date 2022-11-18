@@ -1,0 +1,1634 @@
+<?php
+
+use Drupal\Core\Link;
+use Drupal\Core\Render\Markup;
+use Drupal\image\Entity\ImageStyle;
+use Drupal\Core\Url;
+use Drupal\node\NodeInterface;
+use Drupal\Core\Template\Attribute;
+use Drupal\Component\Utility\Crypt;
+
+/**
+ * @file
+ * Functions to support theming in the bhcc_base theme.
+ */
+
+
+/**
+ * Preprocess hooks.
+ * -----------------------------------------------------------------------
+ */
+
+/**
+ * Implements hook_preprocess_page() for page.html.twig.
+ */
+function bhcc_base_preprocess_page(array &$variables) {
+
+  $system_region = system_region_list('bhcc_base', $show = REGIONS_ALL);
+
+  foreach ($system_region as $key => $value) {
+    $region = $key;
+    $has = 'has_' . $region;
+    $copy = $variables['page'][$region];
+    // Fix so the system messages render.
+    // @see https://github.com/localgovdrupal/localgov_base/issues/154
+    $renderer = \Drupal::service('renderer');
+    if ($region == 'content_top') {
+      $rendered = $renderer->renderPlain($variables['page'][$region]);
+    } else {
+      $rendered = $renderer->renderPlain($copy);
+    }
+    $variables[$has] = !empty(trim(strip_tags($rendered, '<drupal-render-placeholder><embed><hr><iframe><img><input><link><object><script><source><style><video>')));
+
+    if ($region == 'sidebar_left') {
+      $has_left_sidebar = $variables[$has];
+    }
+    elseif ($region == 'sidebar_right') {
+      $has_right_sidebar = $variables[$has];
+    }
+  }
+
+  $variables['layout_attributes'] = _bhcc_base_generate_layout_classes(
+    $has_left_sidebar,
+    $has_right_sidebar,
+  );
+
+  if($node = \Drupal::routeMatch()->getParameter('node')) {
+    if ($node->bundle() == 'html_page') {
+      if (!empty($node->get('field_pdf')) && (!empty($node->get('field_pdf')->entity)) ) {
+        $bannerURL = \Drupal::service('file_url_generator')->generateAbsoluteString($node->get('field_pdf')->entity->getFileUri());
+        $variables['html_pdf'] = $bannerURL;
+      }
+      if (!empty($node->get('field_pdf_text')) && (!empty($node->get('field_pdf_text')->value)) ) {
+        $variables['html_pdf_text'] = $node->get('field_pdf_text')->value;
+      }
+    }
+  }
+
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bhcc_base_preprocess_field(&$variables) {
+
+  $field_name = $variables['field_name'];
+  $entity_type = $variables['entity_type'];
+  $bundle = $variables['element']['#bundle'];
+  $view_mode = $variables['element']['#view_mode'];
+  $field_items = $variables['element']['#items'];
+  $field_type = $variables['field_type'];
+  $formatter = $variables['element']['#formatter'];
+
+  if ($entity_type == 'node') {
+
+    if ($field_name == 'localgov_subsites_content') {
+      $variables['attributes']['class'][] = 'rich-text';
+    }
+  }
+
+  if ($entity_type == 'paragraph') {
+
+    if ($bundle == 'bhcc_arrow_title' && $field_name == 'localgov_paragraphs') {
+      $variables['attributes']['class'][] = 'arrow-title-container__paragraphs';
+
+      // Apply classes to each field.
+      foreach ($variables['items'] as $key => $item) {
+        $variables['items'][$key]['attributes']->addClass('arrow-title-container__item');
+      }
+    }
+
+    if ($bundle == 'bhcc_tick_cross_item' && $field_name == 'localgov_body_text') {
+      $variables['attributes']['class'][] = 'tick-cross-item__body';
+    }
+
+    if ($bundle == 'bhcc_tick_cross_list' && $field_name == 'localgov_title') {
+      $variables['attributes']['class'][] = 'tick-cross-list__title';
+    }
+
+    if ($bundle == 'newsroom_teasers' && $field_name == 'bhcc_summary') {
+      $variables['attributes']['class'][] = 'top-story__body';
+    }
+
+    if ($bundle == 'bhcc_box_text_listing' && $field_name == 'localgov_paragraphs') {
+
+        // If we have an even number of items,
+        // display as halves for mid-size screens.
+        if ($field_items->count() % 2 == 0) {
+          $layout_classes = [
+            'lgd-row__full',
+            'm:lgd-row__one-half',
+            'l:lgd-row__one-third',
+          ];
+        }
+        else {
+          // Otherwise, go straight from single column to thirds.
+          $layout_classes = [
+            'lgd-row__full',
+            'm:lgd-row__one-third',
+          ];
+        }
+
+        // Apply row class to field and add larger vertical gap.
+        // The is so that if box links are stacked they get an extra spacing.
+        $variables['attributes']['class'][] = 'lgd-row grid-gap-v2-h1';
+
+        // Apply layout classes to each field.
+        foreach ($variables['items'] as $key => $item) {
+          $variables['items'][$key]['attributes']->addClass($layout_classes);
+        }
+    }
+
+    if ($bundle == 'bhcc_box_text' && $field_name == 'bhcc_summary_text') {
+      $variables['attributes']['class'][] = 'margin-top-small';
+    }
+  }
+
+  // Add class for styling children of any wysiwyg content field.
+  $wysiwyg_field_types = [
+    'text_long',
+    'text_with_summary'
+  ];
+
+  // Limit view modes – don't alter specialist types, e.g. cards.
+  $view_modes = [
+    'full',
+    'default',
+    'preview',
+  ];
+
+  // Exclude these specific fields.
+  $exclude_fields = [
+    'localgov_caption',
+  ];
+
+  if (!in_array($field_name, $exclude_fields)) {
+    if (in_array($field_type, $wysiwyg_field_types) && in_array($view_mode, $view_modes)) {
+      $variables['attributes']['class'][] = 'rich-text__item';
+    }
+
+    if ($field_name == 'bhcc_application_link') {
+      $variables['attributes']['class'][] = 'rich-text__item';
+    }
+  }
+
+  // Output for the directories link fields.
+  if ($field_name == 'bhcc_facebook') {
+    $variables['items'][0]['content']['#title'] = 'Facebook';
+  }
+  if ($field_name == 'bhcc_twitter') {
+    $variables['items'][0]['content']['#title'] = 'Twitter';
+  }
+  if ($field_name == 'bhcc_inspection_report') {
+    $variables['items'][0]['content']['#title'] = 'Inspection report';
+  }
+
+  // Website field should check if there is a title first.
+  if ($field_name == 'localgov_directory_website') {
+    foreach($variables['items'] as &$item) {
+      if (!empty($item['content']['#url'])) {
+        $title = $item['content']['#title'];
+        $url = $item['content']['#url']->toString();
+        if (empty($title) || $title == $url) {
+          $item['content']['#title'] = 'Website';
+        }
+      }
+    }
+  }
+
+  // Layout paragraphs.
+  if ($formatter == 'layout_paragraphs') {
+    $variables['attributes']['class'][] = 'field--layout-paragraphs';
+  }
+
+  // Contact your councillor link.
+  if ($field_name == 'bhcc_contact_councillor_link') {
+    $link_class = [
+      'button',
+      'button--action',
+      'button--single',
+      'rounded',
+    ];
+    // Have to set to content, as 'attributes' does not work.
+    $variables['items'][0]['content']['#attributes']['class'] = $link_class;
+
+    $icon_classes = [
+      'button__icon',
+      'button__icon--after',
+    ];
+    $icon_markup = _bhcc_base_generate_icon_markup( '#arrow-right', $icon_classes);
+    $variables['items'][0]['content']['#title'] = Markup::create( $variables['items'][0]['content']['#title'] . $icon_markup);
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bhcc_base_preprocess_form(&$variables) {
+
+  $form = $variables['element'];
+
+  if (!empty($form['#view_id'])) {
+    if ($form['#view_id'] == 'localgov_news_search' && $form['#display_id'] == 'page_search_news') {
+      $variables['attributes']['class'][] = 'news-search-form';
+    }
+
+    if ($form['#view_id'] == '#form_id' && $form['#display_id'] == 'page_search_news') {
+      $variables['attributes']['class'][] = 'news-search-form';
+    }
+
+  }
+
+  $filter_form_ids = [
+    'views_exposed_form',
+    'bhcc_jobs_search_form',
+  ];
+
+  $exclude_display_ids = [
+    'page_search_news',
+  ];
+
+  // Add filter-form class to certain forms.
+  if (in_array($form['#form_id'], $filter_form_ids)) {
+
+    // First check whether this form has a display_id which we can check on.
+    if (empty($form['#display_id'])) {
+
+      // This form doesn't have a display_id, so just add the class.
+      $variables['attributes']['class'][] = 'filter-form';
+    }
+    else {
+
+      // This form has a display_id,
+      // so we'll check it's not one we need to exclude.
+      if (!in_array($form['#display_id'], $exclude_display_ids)) {
+
+        // It's not in the exclusion list, so we'll add the class.
+        $variables['attributes']['class'][] = 'filter-form';
+      }
+    }
+  }
+
+  if ($form['#form_id'] == 'search_block_form') {
+    $variables['element']['actions']['submit']['#attributes']['class'][] = 'button--search';
+    $variables['element']['actions']['#attributes']['class'][] = 'actions--search';
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bhcc_base_preprocess_form_element(&$variables) {
+
+  $type = $variables['type'];
+  $form_element = $variables['element'];
+
+  $variables['attributes']['class'][] = 'form-item--' . $type;
+
+  if (!empty($form_element['#description']) && $form_element['#description_display'] == 'after') {
+    $variables['attributes']['class'][] = 'form-item--with-description';
+  }
+
+  $text_types = [
+    'processed_text',
+    'webform_markup',
+  ];
+
+  if (in_array($type, $text_types)) {
+    $variables['attributes']['class'][] = 'rich-text__item';
+  }
+
+  if ($type == 'item' && !empty($form_element['#mode']) && $form_element['#mode'] == 'html') {
+    $variables['attributes']['class'][] = 'rich-text__item';
+  }
+}
+
+/**
+ * Implements hook_preprocess_container().
+ */
+function bhcc_base_preprocess_container(&$variables) {
+
+  $container = $variables['element'];
+
+  if (!empty($container['#webform_element'])) {
+    if (isset($container['#states']['visible']) && $container['#states']['visible']) {
+      $variables['#attributes']['class'][] = 'bhcc-webform-hidden-element-wrapper';
+    }
+
+    // Add spacing between the address selection dropdown
+    // and the set of address fields.
+    if (!empty($container['#attributes']['class'])) {
+      if (in_array('js-address-entry-container', $container['#attributes']['class'])) {
+        $variables['attributes']['class'][] = 'bhcc-webform-hidden-element-wrapper';
+      }
+    }
+  }
+
+  // Implement container workaround to avoid ID collisions on the search block
+  // which is causing accessbility failures with the HTML validator.
+  // @see https://github.com/bhccwebmaster/bhcclocalgov/issues/609
+  // @see https://www.drupal.org/project/drupal/issues/1852090#comment-13115760
+  if (isset($variables['element']['#id'])) {
+    $id = $variables['element']['#id'];
+    if (strpos($id, 'edit-actions') === 0 && strlen($id) <= 16) {
+      $id .= '--' . Crypt::randomBytesBase64(8);
+      $variables['element']['#id'] = $id;
+      $variables['attributes']['id'] = $id;
+      $variables['attributes']['data-drupal-selector'] = $id;
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bhcc_base_preprocess_highway_notices(&$variables) {
+
+  $highway_notice = $variables['elements']['#highway_notices'];
+
+  foreach ($variables['content'] as $key => $content) {
+
+    if ($highway_notice->get($key)->isEmpty()) {
+      $variables['content'][$key] = [];
+    }
+    else {
+      $variables['content'][$key]['#label_display'] = 'hidden';
+    }
+  }
+
+  if ($highway_notice->hasField('field_business') && !$highway_notice->field_business->isEmpty()) {
+
+    // Make a new template for the output to use.
+    $template = '<h2 class="margin-bottom-reset">{{ value|nl2br }}</h2>';
+
+    foreach ($highway_notice->get('field_business')->getValue() as $key => $field) {
+      $variables['content']['field_business'][$key]['#template'] = $template;
+    }
+  }
+
+  if ($highway_notice->hasField('field_address') && !$highway_notice->field_address->isEmpty()) {
+
+    foreach ($highway_notice->get('field_address')->getValue() as $key => $field) {
+      $text = str_replace("\n \n", "\n", $field['value']);
+      $variables['content']['field_address'][$key]['#text'] = $text;
+    }
+  }
+
+  if ($highway_notice->hasField('field_consultation_end_date') && !$highway_notice->field_consultation_end_date->isEmpty()) {
+
+    $date = $highway_notice->field_consultation_end_date->value;
+
+    foreach ($highway_notice->get('field_consultation_end_date')->getValue() as $key => $field) {
+      $variables['content']['field_consultation_end_date'][$key]['#text'] = date('d/m/Y', strtotime($date . ' +7 days'));
+    }
+  }
+
+  if ($highway_notice->hasField('field_proposed_location') && !$highway_notice->field_proposed_location->isEmpty()) {
+
+    $text = $highway_notice->field_proposed_location->value;
+
+    // Append proposed space text.
+    if ($highway_notice->hasField('field_proposed_space') && !$highway_notice->field_proposed_space->isEmpty()) {
+      $text .= ' taking ' . $highway_notice->field_proposed_space->value . 'm²';
+    }
+
+    $variables['content']['proposed_location_and_space'] = [
+      '#type' => 'html_tag',
+      '#tag' => 'p',
+      '#value' => $text,
+    ];
+  }
+}
+
+/**
+ * Implements hook_preprocess_input().
+ */
+function bhcc_base_preprocess_input(&$variables) {
+
+  $input = $variables['element'];
+  $type = $input['#type'];
+
+  if ($type == 'submit' || $type == 'button') {
+
+    $variables['attributes']['class'][] = 'button';
+
+    if (in_array('address-searchbutton', $variables['attributes']['class'])) {
+      $variables['attributes']['class'][] = 'button--action';
+    }
+
+    $variables['value'] = $variables['attributes']['value'];
+  }
+
+  if ($type == 'submit') {
+
+    if (!in_array('button--search', $variables['attributes']['class'])) {
+      $variables['attributes']['class'][] = 'button--action';
+    }
+
+    if (in_array('webform-button--next', $variables['attributes']['class'])) {
+
+      $variables['attributes']['class'][] = 'button--next';
+    }
+
+    if (in_array('webform-button--previous', $variables['attributes']['class'])) {
+
+      $variables['attributes']['class'][] = 'button--previous';
+
+      $icon_before_classes = [
+        'button__icon',
+        'button__icon--before',
+      ];
+      $variables['icon_before'] = _bhcc_base_generate_icon_render_array('#arrow-left', $icon_before_classes);
+    }
+
+    if (in_array('button--search', $variables['attributes']['class'])) {
+
+      $variables['attributes']['class'][] = 'button--single-icon';
+
+      $icon_classes = [
+        'button__icon',
+      ];
+      $variables['icon_before'] = _bhcc_base_generate_icon_render_array('#search', $icon_classes);
+    }
+
+    if (!in_array('webform-button--previous', $variables['attributes']['class']) &&
+      !in_array('button--search', $variables['attributes']['class'])) {
+
+      $icon_after_classes = [
+        'button__icon',
+        'button__icon--after',
+      ];
+      $variables['icon_after'] = _bhcc_base_generate_icon_render_array('#arrow-right', $icon_after_classes);
+    }
+  }
+
+  // Implement container workaround to avoid ID collisions on the search block
+  // which is causing accessibility failures with the HTML validator.
+  // @see https://github.com/bhccwebmaster/bhcclocalgov/issues/609
+  // @see https://www.drupal.org/project/drupal/issues/1852090#comment-13624394
+  if (isset($variables['element']['#id'])) {
+    $id = $variables['element']['#id'];
+    if (strpos($id, 'edit-submit') === 0 && strlen($id) <= 15) {
+      $id .= '--' . Crypt::randomBytesBase64(8);
+      $variables['element']['#id'] = $id;
+      $variables['attributes']['id'] = $id;
+      $variables['attributes']['data-drupal-selector'] = $id;
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bhcc_base_preprocess_job_details(&$variables) {
+
+  if ($variables['hideapply'] != 'hide') {
+
+    $job_id = $variables['jobID'];
+
+    // Build the apply link.
+    $apply_link_url = Url::fromUri('https://recruitment.orbispartnership.co.uk/members/index.php?j=' . $job_id, [
+      'attributes' => [
+        'class' => [
+          'button',
+          'button--action',
+          'button--single',
+        ],
+      ],
+    ]);
+
+    $icon_classes = [
+      'button__icon',
+      'button__icon--after',
+    ];
+    $icon_markup = _bhcc_base_generate_icon_markup( '#arrow-right', $icon_classes);
+
+    $apply_link_text = Markup::create( 'Apply' . $icon_markup);
+
+    // Put it altogether for display in the template.
+    $variables['apply_button'] = Link::fromTextAndUrl($apply_link_text, $apply_link_url)->toRenderable();
+  }
+}
+
+/**
+ * Implements hook_preprocess_menu_local_task().
+ */
+function bhcc_base_preprocess_menu_local_task(array &$variables) {
+
+  $variables['attributes']['class'][] = 'menu-local-tasks__item';
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bhcc_base_preprocess_region(&$variables) {
+
+  $classes = [];
+
+  $node = \Drupal::routeMatch()->getParameter('node');
+
+  switch ($variables['region']) {
+
+    case 'breadcrumb':
+      $classes = [
+        'hide-mobile',
+      ];
+      break;
+
+    case 'sidebar_left':
+
+      if ($node instanceof NodeInterface) {
+
+        if ($node->bundle() == 'localgov_services_page') {
+
+          $classes = [
+            'lgd-row__one-third',
+          ];
+        }
+      }
+      else {
+        $classes = [
+          'lgd-row__one-quarter',
+        ];
+      }
+      break;
+  }
+
+  // Initialise value if empty.
+  if (empty($variables['attributes']['class'])) {
+    $variables['attributes']['class'] = [];
+  }
+
+  // Merge new classes with any existing ones.
+  $variables['attributes']['class'] = array_merge($classes, $variables['attributes']['class']);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bhcc_base_preprocess_node(&$variables) {
+
+  /** @var Drupal\node\Entity\Node $node */
+  $node = $variables['node'];
+  $view_mode = $variables['view_mode'];
+  $bundle = $node->bundle();
+
+  $classes = [];
+  $content_classes = [];
+
+  // Skip applying teaser preprocess for those with special theming.
+  // Currently, this is the news article type which is used on /news.
+  $skip_teaser_bundles = [
+    'localgov_news_article'
+  ];
+
+  if ($view_mode == 'teaser' && !in_array($bundle, $skip_teaser_bundles)) {
+
+    $classes = [
+      'teaser',
+      'teaser--' . $bundle,
+    ];
+
+    $localgov_directories = [
+      'localgov_directories_venue',
+      'localgov_directories_page'
+    ];
+
+    if (in_array($bundle, $localgov_directories)) {
+
+      $classes = array_merge($classes, [
+        'default-shadow',
+        'margin-bottom-large',
+        'padding-medium',
+        'background-negative'
+      ]);
+    }
+
+    // Remove role attribute.
+    unset($variables['attributes']['role']);
+
+    $content_classes = [
+      'teaser__content',
+      'teaser__content--' . $bundle,
+    ];
+
+    // Remove image fields.
+    $fields_to_hide = [
+      'field_media_image',
+      'localgov_event_image',
+    ];
+
+    foreach ($fields_to_hide as $field_name) {
+      unset($variables['content'][$field_name]);
+    }
+
+    // Add extra content to teaser.
+    $link_title = Markup::create('More information<span class="sr-only"> about ' . $node->label() . '</span>');
+    $action_link = Link::fromTextAndUrl($link_title, $node->toUrl())->toRenderable();
+    $action_link['#attributes'] = [
+      'class' => [
+        'action-link',
+        'action-link--next',
+      ]
+    ];
+
+    $variables['content']['action_link'] = [
+      '#type' => 'container',
+      '#attributes' => [
+        'class' => [
+          'flex',
+          'margin-top-medium',
+        ],
+      ],
+    ];
+
+    $variables['content']['action_link'][] = $action_link;
+  }
+
+  if (!empty($classes)) {
+
+    // Initialise array key if empty.
+    if (empty($variables['attributes']['class'])) {
+      $variables['attributes']['class'] = [];
+    }
+
+    $variables['attributes']['class'] = array_merge(
+      $variables['attributes']['class'],
+      $classes
+    );
+  }
+
+  if (!empty($content_classes)) {
+
+    // Before we add content classes, ensure existence of array key.
+    if (empty($variables['content_attributes']['class'])) {
+      $variables['content_attributes']['class'] = [];
+    }
+
+    $variables['content_attributes']['class'] = array_merge(
+      $variables['content_attributes']['class'],
+      $content_classes
+    );
+  }
+
+  // Remove book navigation (use block instead).
+  unset($variables['content']['book_navigation']);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bhcc_base_preprocess_node__card(&$variables) {
+
+  /** @var NodeInterface $node */
+  $node = $variables['node'];
+
+  if ($node->bundle() == 'localgov_services_page') {
+
+    // If there's no summary content, don't display the body field at all.
+    if ($node->hasField('body') && empty($node->body->summary)) {
+      unset($variables['content']['body']);
+    }
+  }
+}
+
+function bhcc_base_preprocess_node__localgov_event__full(&$variables) {
+
+  /** @var Drupal\node\Entity\Node $node */
+  $node = $variables['node'];
+
+  $summary_fields = [
+    'localgov_event_provider',
+    'localgov_event_venue',
+    'localgov_event_location',
+    'bhcc_location_details',
+    'bhcc_cost_details',
+    'bhcc_minimum_age',
+    'bhcc_maximum_age',
+    'bhcc_online_event',
+  ];
+
+  $variables['has_summary_content'] = _bhcc_base_fields_have_content($summary_fields, $node);
+
+  if (!$node->localgov_event_call_to_action->isEmpty()) {
+    $variables['content']['localgov_event_call_to_action'][0]['#options']['attributes'] = [
+      'class' => [
+        'button',
+        'button--single',
+        'button--success',
+      ],
+    ];
+  }
+}
+
+function bhcc_base_preprocess_node__localgov_services_landing__full(&$variables) {
+
+  /** @var Drupal\node\Entity\Node $node */
+  $node = $variables['node'];
+
+  $contact_fields = [
+    'localgov_email_address',
+    'localgov_address',
+    'localgov_opening_hours',
+    'localgov_phone',
+  ];
+
+  $variables['has_contact_content'] = _bhcc_base_fields_have_content($contact_fields, $node);
+
+  if ($node->hasField('localgov_email_address') && !$node->localgov_email_address->isEmpty()) {
+
+    // Grab the email address from the field.
+    $email_address = $node->localgov_email_address->value;
+
+    // Build the mailto: link.
+    $link_url = Url::fromUri('mailto:' . $email_address);
+
+    // Put it altogether for display in the template.
+    $variables['content']['localgov_email_address'] = Link::fromTextAndUrl($email_address, $link_url)->toRenderable();
+
+    $variables['content']['localgov_email_address_action'] = Link::fromTextAndUrl(t('Message'), $link_url)->toRenderable();
+    $variables['content']['localgov_email_address_action']['#attributes'] = [
+      'class' => [
+        'contact-card__action-link',
+      ],
+    ];
+  }
+
+  if ($node->hasField('localgov_phone') && !$node->localgov_phone->isEmpty()) {
+
+    // Grab the phone number from the field.
+    $phone_number = $node->localgov_phone->value;
+
+    // Build the mailto: link.
+    $link_url = Url::fromUri('tel:' . $phone_number);
+    $link_url->setOption('attributes', [
+      'class' => [
+        'contact-card__action-link',
+        'contact-card__action-link--phone',
+      ]
+    ]);
+
+    // Put it altogether for display in the template.
+    $variables['content']['localgov_phone_action'] = Link::fromTextAndUrl($phone_number, $link_url)->toRenderable();
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bhcc_base_preprocess_paragraph(&$variables) {
+
+  $paragraph = $variables['paragraph'];
+  $type = $paragraph->getType();
+
+  // Determine the layout region when using layout paragraphs.
+  $layout_region = $paragraph->getBehaviorSetting('layout_paragraphs', 'region');
+
+  $add_spacing_types = [
+    'bhcc_link_and_summary_listing',
+  ];
+
+  // Add extra spacing if...
+  // - A paragraph type that explicitly requires extra spacing.
+  // - This paragraphs parent is in a layout region.
+  //   (so sibling paragraphs have space between them).
+  //   @todo - switch to grid-gap in the layout templates.
+  if (in_array($type, $add_spacing_types) || !empty($layout_region)) {
+
+    $variables['attributes']['class'] = [
+      'margin-top-large',
+      'margin-bottom-large'
+    ];
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bhcc_base_preprocess_paragraph__bhcc_arrow_title(&$variables) {
+
+  $paragraph = $variables['paragraph'];
+
+  $variables['attributes']['class'][] = 'arrow-title-container';
+
+  if ($paragraph->hasField('localgov_title') && !$paragraph->localgov_title->isEmpty()) {
+
+    $variables['content']['localgov_title']['#attributes']['class'][] = 'arrow-title-container__title';
+
+    // Make a new template for the output to use.
+    $template = '<h2>{{ value|nl2br }}</h2>';
+
+    foreach ($paragraph->get('localgov_title')->getValue() as $key => $link) {
+
+      // Assign our new template to each field value.
+      $variables['content']['localgov_title'][$key]['#template'] = $template;
+    }
+  }
+
+  if ($paragraph->hasField('localgov_paragraphs') && !$paragraph->localgov_paragraphs->isEmpty()) {
+
+    $paragraphs_wrapper = [
+      '#type' => 'container',
+      '#attributes' => [
+        'class' => [
+          'padding-medium',
+        ],
+      ],
+    ];
+
+    $paragraphs_wrapper[] = $variables['content']['localgov_paragraphs'];
+
+    $variables['content']['localgov_paragraphs'] = $paragraphs_wrapper;
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bhcc_base_preprocess_paragraph__bhcc_box_text(&$variables) {
+
+  $paragraph = $variables['paragraph'];
+
+  $variables['attributes']['class'] = [
+    'margin-bottom-medium',
+  ];
+
+  $variables = _bhcc_base_format_new_window_link($variables, $paragraph);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bhcc_base_preprocess_paragraph__bhcc_contact_card(&$variables)  {
+
+  /** @var Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+
+  $variables['attributes']['class'][] = 'lgd-row';
+
+  if ($paragraph->hasField('localgov_contact_email') && !$paragraph->localgov_contact_email->isEmpty()) {
+
+    // Grab the email address from the field.
+    $email_address = $paragraph->localgov_contact_email->value;
+
+    $variables['content']['localgov_email_address_action'] = Link::fromTextAndUrl(
+      t('Message'),
+      Url::fromUri('mailto:' . $email_address)
+    )->toRenderable();
+
+    $variables['content']['localgov_email_address_action']['#attributes'] = [
+      'class' => [
+        'contact-card__action-link',
+      ],
+    ];
+  }
+
+  if ($paragraph->hasField('localgov_contact_phone') && !$paragraph->localgov_contact_phone->isEmpty()) {
+
+    // Grab the phone number from the field.
+    $phone_number = $paragraph->localgov_contact_phone->value;
+
+    // Build the url: link.
+    $link_url = Url::fromUri('tel:' . $phone_number);
+    $link_url->setOption('attributes', [
+      'class' => [
+        'contact-card__action-link',
+        'contact-card__action-link--phone',
+      ]
+    ]);
+
+    // Put it altogether for display in the template.
+    $variables['content']['localgov_phone_action'] = Link::fromTextAndUrl($phone_number, $link_url)->toRenderable();
+  }
+}
+
+function bhcc_base_preprocess_paragraph__bhcc_media_with_text_2_1_ratio(&$variables) {
+
+  $paragraph = $variables['paragraph'];
+
+  if ($paragraph->hasField('bhcc_media_position_left_right') && !$paragraph->bhcc_media_position_left_right->isEmpty()) {
+
+    // Initialise variable to false, then override if condition matches.
+    $variables['media_position_left'] = FALSE;
+
+    // Grab the field value, which in this case is the key.
+    $media_position = $paragraph->bhcc_media_position_left_right->value;
+
+    // If media is set to display left or top, set boolean accordingly,
+    // otherwise default will be used.
+    if ($media_position == 'left' || $media_position == 'top') {
+      $variables['media_position_left'] = TRUE;
+    }
+  }
+
+  $variables = _bhcc_base_format_new_window_link($variables, $paragraph);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bhcc_base_preprocess_paragraph__bhcc_heading(&$variables) {
+
+  $paragraph = $variables['paragraph'];
+
+  // Let this paragraph type inherit body text styles.
+  $variables['attributes']['class'][] = 'rich-text__item';
+
+  if ($paragraph->hasField('localgov_header_text') && !$paragraph->localgov_header_text->isEmpty()) {
+
+    // Grab the heading level value from the field.
+    // It has a default value of <h2>, so no need to presence check this time.
+    $h_tag = $paragraph->localgov_heading_level->value;
+
+    // Make a new template for the output to use.
+    $template = '<' . $h_tag . '>{{ value|nl2br }}</' . $h_tag . '>';
+
+    foreach ($paragraph->get('localgov_header_text')->getValue() as $key => $link) {
+
+      // Assign our new template to each field value.
+      $variables['content']['localgov_header_text'][$key]['#template'] = $template;
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bhcc_base_preprocess_paragraph__bhcc_tick_cross_item(&$variables) {
+
+  $paragraph = $variables['paragraph'];
+
+  $variables['attributes']['class'][] = 'tick-cross-item';
+  $variables['attributes']['class'][] = 'flex';
+
+  if ($paragraph->hasField('bhcc_tick_or_cross') && !$paragraph->bhcc_tick_or_cross->isEmpty()) {
+
+    $icon = 'tick';
+    if ($paragraph->bhcc_tick_or_cross->value == 'cross') {
+      $icon = 'cross';
+    }
+
+    $icon_classes = [
+      'tick-cross-item__icon',
+      'tick-cross-item__icon--' . $icon,
+    ];
+    $icon_render_array = _bhcc_base_generate_icon_render_array('#' . $icon, $icon_classes);
+
+    // Add icon before the content.
+    array_unshift($variables['content'], $icon_render_array);
+  }
+
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bhcc_base_preprocess_paragraph__homepage_ia_blocks(&$variables) {
+
+  $paragraph = $variables['paragraph'];
+
+  // Check if paragraph is promoted.
+  $variables['promoted'] = (bool) $paragraph->get('bhcc_promoted')->first()->getValue()['value'];
+
+  // Set url in plain text as renderable field in the template.
+  if (!$paragraph->get('bhcc_title_link')->isEmpty()) {
+    $link = $paragraph->get('bhcc_title_link')->first()->getValue();
+    $variables['field_link'] = Url::fromUri($link['uri'])->toString();
+  }
+
+  // Render the links in a list.
+  $links = [];
+  foreach ($paragraph->get('bhcc_service_title_link')->getValue() as $link) {
+    $links[] = [
+      'title' => $link['title'],
+      'url' => Url::fromUri($link['uri'])
+    ];
+  }
+
+  $variables['list'] = [
+    '#theme' => 'links',
+    '#links' => $links,
+  ];
+
+  $variables['attributes']['class'] = [
+    'margin-top-small',
+  ];
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bhcc_base_preprocess_paragraph__homepage_icons(&$variables) {
+
+  $paragraph = $variables['paragraph'];
+
+  // Set url in plain text as renderable field in the template.
+  if (!$paragraph->get('bhcc_link')->isEmpty()) {
+    $link = $paragraph->get('bhcc_link')->first()->getValue();
+    $variables['field_link'] = Url::fromUri($link['uri'])->toString();
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bhcc_base_preprocess_paragraph__indexed_snippet_content(&$variables) {
+
+  $paragraph = $variables['paragraph'];
+  $view_mode = $variables['elements']['#view_mode'];
+
+  $classes = [
+    'paragraph',
+    'paragraph--type--indexed-snippet-content',
+    'paragraph--view-mode--' . $view_mode,
+    !$paragraph->isPublished() ? 'paragraph--unpublished' : '',
+  ];
+
+  if ($view_mode == 'preview') {
+    $classes[] = 'margin-bottom-xx-large';
+  }
+
+  if (empty($variables['attributes']['class'])) {
+    $variables['attributes']['class'] = [];
+  }
+
+  $variables['attributes']['class'] = array_merge(
+    $variables['attributes']['class'],
+    $classes
+  );
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bhcc_base_preprocess_paragraph__localgov_call_out_box(&$variables) {
+
+  /** @var Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+
+  if ($paragraph->hasField('localgov_button') && !$paragraph->localgov_button->isEmpty()) {
+    // Link should open in a new window – set the attributes accordingly.
+    foreach ($variables['content']['localgov_button']['#items'] as $key => $item) {
+
+      $variables['content']['localgov_button'][$key]['#options']['attributes'] = [
+        'class' => [
+          'button',
+          'call-out-box__button',
+          'rounded--input-radius',
+        ],
+      ];
+    }
+  }
+
+  if (!empty($variables['background_url'])) {
+    $variables['attributes']['style'][] = 'background-image: url(' . $variables['background_url'] . ');';
+  }
+
+  $variables = _bhcc_base_format_new_window_link($variables, $paragraph);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bhcc_base_preprocess_paragraph__localgov_image(&$variables) {
+
+  /** @var Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+
+  if ($paragraph->hasField('localgov_caption') && !$paragraph->localgov_caption->isEmpty()) {
+
+    $variables['content']['localgov_caption']['#attributes']['class'] = [
+      'margin-top-xx-small',
+      'weight-semi',
+    ];
+  }
+
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bhcc_base_preprocess_paragraph__bhcc_inset_text(&$variables) {
+
+  $variables['attributes']['class'][] = 'inset-text';
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bhcc_base_preprocess_paragraph__portal_tile(&$variables) {
+
+  $paragraph = $variables['paragraph'];
+
+  // Set url in plain text as renderable field in the template.
+  if(!$paragraph->get('bhcc_portal_tile_link')->isEmpty()) {
+    $link = $paragraph->get('bhcc_portal_tile_link')->first()->getValue();
+    $linkText = $paragraph->get('bhcc_portal_tile_link')->title;
+    $variables['link_url'] = Url::fromUri($link['uri'])->toString();
+    $variables['link_text'] = $linkText;
+  }
+
+  if(!$paragraph->get('bhcc_portal_tile_description')->isEmpty()) {
+    $description = $paragraph->get('bhcc_portal_tile_description')->getString();
+    $variables['description'] = $description;
+  }
+
+  if(!$paragraph->get('bhcc_portal_tile_image')->isEmpty()) {
+    $image_entity = $paragraph->get('bhcc_portal_tile_image')->entity->get('field_media_image')->entity;
+    if(isset($image_entity)) {
+      $imageUrl = ImageStyle::load('large_28_9_2x')->buildUrl($image_entity->getFileUri());
+      $variables['image_url'] = \Drupal::service('file_url_generator')->transformRelative($imageUrl);
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bhcc_base_preprocess_paragraph__bhcc_video_with_text(&$variables) {
+
+  $paragraph = $variables['paragraph'];
+
+  $variables['attributes']['class'][] = 'margin-bottom-large';
+
+  if ($paragraph->hasField('localgov_video') && !$paragraph->localgov_video->isEmpty()) {
+
+    // If there's text to display under the video, provide some spacing above.
+    if ($paragraph->hasField('localgov_text') && !$paragraph->localgov_text->isEmpty()) {
+      $variables['content']['localgov_text']['#attributes']['class'][] = 'margin-top-small';
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bhcc_base_preprocess_views_view(&$variables) {
+
+  $view = $variables['view']->element;
+
+  if (!empty($view['#view_id']) && $view['#view_id'] == 'taxonomy_term') {
+
+    $taxonomy_term = Drupal::request()->attributes->get('taxonomy_term');
+    $taxonomy_bundle = $taxonomy_term->bundle();
+
+    // News category has its own styling, so leave that one out.
+    if ($taxonomy_bundle != 'news_category') {
+      $variables['attributes']['class'][] = 'taxonomy-index';
+
+      unset($variables['feed_icons']);
+    }
+  }
+
+  if (!empty($view['#view_id']) && $view['#view_id'] == 'html_page_navigation_new') {
+
+    // Add a toggle for mobile menu show/hide function.
+    $variables['attachment_before'] = [
+      '#type' => 'html_tag',
+      '#tag' => 'button',
+      '#value' => t('Contents'),
+      '#attributes' => [
+        'class' => [
+          'content-list__toggle',
+          'show-hide-toggle',
+          'uppercase',
+          'unstyled',
+          'weight-semi',
+          'smaller-text',
+          'default-line-height',
+          'letter-spacing-2pc',
+          'color-secondary',
+        ],
+        'data-target' => 'html-page-menu',
+        'aria-controls' => 'html-page-menu',
+        'aria-label' => t('Contents'),
+      ],
+    ];
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bhcc_base_preprocess_views_view_list(&$variables) {
+
+  $view = $variables['view']->element;
+
+  if (!empty($view['#view_id']) && $view['#view_id'] == 'highway_notices') {
+
+    if (empty($variables['list']['attributes'])) {
+      $variables['list']['attributes'] = new Attribute();
+    }
+
+    $variables['list']['attributes']->addClass('list-unstyled');
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bhcc_base_preprocess_views_view_unformatted(&$variables) {
+
+  $view = $variables['view']->element;
+
+  if (!empty($view['#view_id']) && $view['#view_id'] == 'taxonomy_term') {
+
+    $taxonomy_term = Drupal::request()->attributes->get('taxonomy_term');
+    $taxonomy_bundle = $taxonomy_term->bundle();
+
+    // News category has its own styling, so leave that one out.
+    if ($taxonomy_bundle != 'news_category') {
+
+      $row_classes = [
+        'taxonomy-index__item',
+        'margin-bottom-large',
+      ];
+
+      foreach ($variables['rows'] as $key => $row) {
+        $variables['rows'][$key]['attributes']->setAttribute('class', $row_classes);
+      }
+    }
+  }
+
+  if (!empty($view['#view_id']) && $view['#view_id'] == 'html_page_navigation_new') {
+
+    // Add ID and class needed for mobile menu show/hide function.
+    // This view will only ever have one row, so adding an ID here is safe.
+    foreach ($variables['rows'] as $key => $row) {
+      $variables['rows'][$key]['attributes']->setAttribute('id', 'html-page-menu');
+      $variables['rows'][$key]['attributes']->addClass('show-hide');
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_facets_item_list__checkbox__localgov_directories_facets().
+ */
+function bhcc_base_preprocess_facets_item_list__checkbox__localgov_directories_facets(array &$variables) {
+  $items = $variables['items'];
+  foreach ($items as $group_key => $group) {
+
+    // Default the group to closed.
+    $variables['items'][$group_key]['open'] = FALSE;
+    foreach ($group['items'] as $item_key => $item) {
+
+      // If an facet is selected, mark the whole group as open.
+      if (!empty($item['value']['#title']['#is_active'])) {
+        $variables['items'][$group_key]['open'] = TRUE;
+
+        // Don't need to evaluate the others in the group.
+        break;
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bhcc_base_preprocess_webform(&$variables) {
+
+  $webform = $variables['element'];
+
+  if ($webform['#webform_ajax_scroll_top']) {
+    $variables['attributes']['class'][] = 'webform--ajax-submit';
+  }
+}
+
+
+/**
+ * Theme suggestions.
+ * --------------------------------------------------
+ */
+
+/**
+ * Implements hook_theme_suggestions_form_alter().
+ */
+function bhcc_base_theme_suggestions_form_alter(array &$suggestions, array $variables) {
+  foreach (array_reverse($variables['element']['#theme']) as $theme_suggestion) {
+    $suggestions[] = 'form__' . $theme_suggestion;
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_services_landing_cta_block_alter().
+ */
+function bhcc_base_theme_suggestions_services_landing_cta_block_alter(array &$suggestions, array $variables) {
+
+  /** @var \Drupal\bhcc_localgov_services_portal\PortalHelper $portal_helper */
+  $portal_helper = \Drupal::service('bhcc_localgov_services_portal.portal_helper');
+  $portal_helper->serviceFromCurrentRoute();
+
+  // Determine if in portal.
+  if ($portal_helper->isPortal()) {
+    $suggestions[] = 'services_landing_cta_block__portal';
+  }
+
+}
+
+/**
+ * Implements hook_theme_suggestions_page_alter().
+ */
+function bhcc_base_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    $content_type = $node->bundle();
+    $suggestions[] = 'page__' . $content_type;
+  }
+}
+
+
+/**
+ * Attachments.
+ * --------------------------------------------------
+ */
+
+/**
+ * Implements hook_theme_page_attachments_alter().
+ */
+function bhcc_base_page_attachments_alter(array &$attachments) {
+  // Conditionally attach an asset to the page.
+  // This is to get the Sentianal font to apply on prod.
+  // @src https://drupal.stackexchange.com/a/267554
+  if (\Drupal::request()->getHost() == 'www.brighton-hove.gov.uk') {
+    $attachments['#attached']['library'][] = 'bhcc_base/typography-prod';
+  }
+  else {
+    $attachments['#attached']['library'][] = 'bhcc_base/typography-dev';
+  }
+}
+
+/**
+ * Helper functions.
+ * -----------------------------------------------------------------------
+ */
+
+/**
+ * Produces classes based on whether a given page has sidebar(s) or not.
+ *
+ * @param bool $has_left_sidebar
+ *   Whether a given page has a left sidebar.
+ * @param bool $has_right_sidebar
+ *   Whether a given page has a right sidebar.
+ *
+ * @return array
+ *   Classes of sidebar
+ */
+function _bhcc_base_generate_layout_classes($has_left_sidebar, $has_right_sidebar) {
+
+  $attributes = [];
+  $left_sidebar = [];
+  $right_sidebar = [];
+
+  $two_sidebars = FALSE;
+  if ($has_left_sidebar && $has_right_sidebar) {
+    $two_sidebars = TRUE;
+  }
+
+  $wrapper = [
+    'lgd-row',
+  ];
+
+  if ($two_sidebars) {
+    // Page has two sidebars.
+
+    $left_sidebar = [
+      'm:lgd-row__one-third',
+      'l:lgd-row__one-quarter',
+      'margin-bottom-large',
+    ];
+
+    $content = [
+      'm:lgd-row__two-thirds',
+      'l:lgd-row__one-half',
+    ];
+
+    $right_sidebar = [
+      'm:lgd-row__full',
+      'l:lgd-row__one-quarter',
+    ];
+  }
+  else {
+
+    // Page has only one, or zero, sidebars.
+    // First, assume page has no sidebars, then overwrite with specific values.
+    $content = [
+      'lgd-row__full',
+    ];
+
+    // Page has only a left sidebar.
+    if ($has_left_sidebar) {
+
+      $left_sidebar = [
+        'm:lgd-row__one-third',
+        'l:lgd-row__one-quarter',
+        'margin-bottom-large',
+      ];
+
+      $content = [
+        'm:lgd-row__two-thirds',
+        'l:lgd-row__three-quarters',
+      ];
+    }
+
+    // Page has only a right sidebar.
+    if ($has_right_sidebar) {
+
+      $content = [
+        'lgd-row__full',
+        'm:lgd-row__two-thirds',
+      ];
+
+      $right_sidebar = [
+        'lgd-row__full',
+        'm:lgd-row__one-third',
+      ];
+    }
+  }
+
+  // Add extra spacing on pages which have a sidebar.
+  if ($has_left_sidebar || $has_right_sidebar) {
+    $wrapper[] = 'm:grid-gap-2';
+  }
+
+  // Add classes that are always present.
+  $left_sidebar[] = 'layout-sidebar-first';
+  $content[] = 'layout-content';
+  $right_sidebar[] = 'layout-sidebar-second';
+
+  if (!empty($wrapper)) {
+    $attributes['wrapper'] = new Attribute();
+    $attributes['wrapper']->addClass($wrapper);
+  }
+
+  if (!empty($content)) {
+    $attributes['content'] = new Attribute();
+    $attributes['content']->addClass($content);
+  }
+
+  if (!empty($left_sidebar)) {
+    $attributes['left_sidebar'] = new Attribute();
+    $attributes['left_sidebar']->addClass($left_sidebar);
+  }
+
+  if (!empty($right_sidebar)) {
+    $attributes['right_sidebar'] = new Attribute();
+    $attributes['right_sidebar']->addClass($right_sidebar);
+  }
+
+  return $attributes;
+}
+
+/**
+ * Checks whether a given set of fields in a given entity have content.
+ * Keeps template files clean by providing one value to check against.
+ *
+ * @param array $fields
+ *   A list of field names.
+ *
+ * @param mixed $entity
+ *   An entity which has these fields.
+ *
+ * @return bool
+ *   Whether any of the set of fields has a value.
+ */
+function _bhcc_base_fields_have_content($fields, $entity): bool {
+
+  foreach ($fields as $field) {
+    if ($entity->hasField($field) && !$entity->get($field)->isEmpty()) {
+
+      // This field has content.
+      // Once we know there's content in one of the fields,
+      // we don't care about the rest.
+      return TRUE;
+    }
+  }
+
+  return FALSE;
+}
+
+/**
+ * Formats link field with attributes and title to open in a new window.
+ *
+ * @param array $variables
+ *   The variables array.
+ *
+ * @return array $variables
+ *   The variables array with altered field values, or unaltered.
+ */
+function _bhcc_base_format_new_window_link(array $variables, $entity): array {
+
+  $fields = [
+    'localgov_link',
+    'localgov_button',
+  ];
+
+  foreach ($fields as $field) {
+
+    if ($entity->hasField($field) && !$entity->get($field)->isEmpty()) {
+
+      $variables['content'][$field]['#attributes']['class'][] = 'margin-top-small';
+
+      if (!$entity->hasField('localgov_opens_in_a_new_window') || $entity->localgov_opens_in_a_new_window->isEmpty()) {
+        return $variables;
+      }
+
+      if (!$entity->localgov_opens_in_a_new_window->value) {
+        return $variables;
+      }
+
+      $new_window_attributes = [
+        'target' => '_blank',
+        'rel' => implode(' ', [
+          'external',
+          'noopener',
+          'noreferrer',
+        ]),
+      ];
+
+      // Link should open in a new window – set the attributes accordingly.
+      foreach ($variables['content'][$field]['#items'] as $key => $item) {
+
+        // Merge new attributes with any that already exist.
+        $variables['content'][$field][$key]['#options']['attributes'] = array_merge(
+          $new_window_attributes,
+          $variables['content'][$field][$key]['#options']['attributes']
+        );
+
+        // Store the existing text title.
+        $title = $variables['content'][$field][$key]['#title'];
+
+        // Wrap it up together with our helpful span content and reassign.
+        $variables['content'][$field][$key]['#title'] = Markup::create($title . '<span class="visually-hidden">(opens in a new window)</span>');
+      }
+
+    }
+  }
+
+  return $variables;
+}
+
+/**
+ * Generates a render array for a given svg icon.
+ *
+ * @param string $href
+ * @param array $class
+ *
+ * @return array
+ */
+function _bhcc_base_generate_icon_render_array(string $href, array $class = []): array {
+
+  $icons = [
+    '#tick' => [
+      'viewBox' => '0 0 34 34',
+    ],
+    '#cross' => [
+      'viewBox' => '0 0 34 34',
+    ],
+    '#arrow-right' => [
+      'viewBox' => '0 0 13 22',
+    ],
+    '#arrow-left' => [
+      'viewBox' => '0 0 13 22',
+    ],
+    '#search' => [
+      'viewBox' => '0 0 18 18',
+    ],
+  ];
+
+  return [
+    '#type' => 'html_tag',
+    '#tag' => 'svg',
+    '#attributes' => [
+      'class' => $class,
+      'xmlns' => 'http://www.w3.org/2000/svg',
+      'viewBox' => $icons[$href]['viewBox'],
+      'aria-hidden' => 'true',
+      'focusable' => 'false',
+    ],
+    'child' => [
+      '#type' => 'html_tag',
+      '#tag' => 'use',
+      '#attributes' => [
+        'xmlns' => 'http://www.w3.org/1999/xlink',
+        'xlink:href' => $href,
+      ],
+    ],
+  ];
+}
+
+/**
+ * Generates html markup from a render array.
+ *
+ * @param string $href
+ * @param array $class
+ *
+ * @return \Drupal\Core\Render\Markup
+ */
+function _bhcc_base_generate_icon_markup(string $href, array $class): Markup {
+
+  $icon_render_array = _bhcc_base_generate_icon_render_array($href, $class);
+
+  $renderer = \Drupal::service('renderer');
+  return $renderer->renderPlain($icon_render_array);
+}

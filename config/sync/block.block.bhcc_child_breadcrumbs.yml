@@ -1,0 +1,22 @@
+uuid: 8df46979-fd5f-47a4-b32b-eb21e24464c1
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - bhcc_child
+_core:
+  default_config_hash: VhBzWb7lMRtIOg9G7VSw_0uopi-7zXeHq4vXqqV1HFE
+id: bhcc_child_breadcrumbs
+theme: bhcc_child
+region: breadcrumb
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility: {  }

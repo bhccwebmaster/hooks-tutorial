@@ -1,0 +1,31 @@
+/*
+ * @file
+ *
+ * This file is for styling the page header block.
+ */
+
+.page-header-block__title {
+  font-size: 2.125rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .page-header-block__title {
+    font-size: 2.25rem;
+  }
+}
+
+.page-header-block__subtitle p:last-of-type {
+  margin-bottom: 0;
+}
+
+
+.page-header-block__subtitle p {
+  font-size: 1.313rem;
+  line-height: 1.25;
+}
+
+@media only screen and (min-width: 768px) {
+  .page-header-block__subtitle p {
+    font-size: 1.5rem;
+  }
+}

@@ -1,0 +1,48 @@
+/*
+ * @file
+ *
+ * This file is for styling the mobile menu.
+ */
+
+.mobile-menu {
+  border: 2px solid var(--color-grey-mid-light);
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.mobile-menu .menu__services-links__link {
+  display: block;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--color-text);
+  padding: var(--spacing-x-small) var(--spacing);
+}
+
+.mobile-menu .menu-level-1 > li > .menu__services-links__link {
+  font-size: 1.25em;
+  font-weight: 700;
+  border-bottom: 2px solid var(--color-white);
+}
+
+.mobile-menu .menu-level-1 > li > .menu__services-links__link:not(.menu-link--orange):not(.menu-link--burgandy) {
+  background: var(--color-grey-mid-light);
+}
+
+.mobile-menu .menu__submenu .menu__services-links {
+  position: relative;
+  border-bottom: 1px solid var(--color-grey-mid-light);
+  padding: 0 calc(var(--icon-base) * 2) 0 var(--spacing-small);
+}
+
+.mobile-menu .menu__submenu .menu__services-links::after {
+  content: '';
+  position: absolute;
+  right: var(--spacing-small);
+  top: calc(50% - 8px);
+  width: var(--icon-base);
+  height: var(--icon-base);
+  background-image: url(../../images/arrow-right-black.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}

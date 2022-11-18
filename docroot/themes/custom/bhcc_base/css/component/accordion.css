@@ -1,0 +1,47 @@
+/*
+ * @file
+ *
+ * This file is for styling accordion elements
+ */
+
+.accordion {
+  margin-bottom: var(--spacing-x-large);
+}
+
+.accordion h2 {
+  margin-bottom: var(--spacing-small);
+}
+
+/* Controls visibility for show/hide elements */
+.accordion__body {
+  display: none;
+}
+
+.accordion--active-initial > .accordion__body {
+  display: block;
+}
+
+/* Accordion plus/minus icon */
+.accordion__heading {
+  padding-right: calc(var(--icon-base) * 2);
+  position: relative;
+}
+
+.accordion__heading::after {
+  content: '';
+  display: block;
+  position: absolute;
+  right: 5px;
+  top: calc(50% - 8px);
+  width: var(--icon-base);
+  height: var(--icon-base);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url(../../images/plus.svg);
+  opacity: 0.6;
+}
+
+.accordion--active-initial > .accordion__heading::after,
+.accordion--active > .accordion__heading::after {
+  background-image: url(../../images/minus.svg);
+}

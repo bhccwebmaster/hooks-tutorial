@@ -1,0 +1,7 @@
+<div class="services-block margin-bottom-xx-large">
+  <ul class="list-unstyled">
+    {% for link in links %}
+      <li><a class="action-link action-link--next margin-bottom-x-small" href="{{ link.url }}">{{ link.title }}</a></li>
+    {% endfor %}
+  </ul>
+</div>

@@ -1,0 +1,28 @@
+uuid: df8f7f6b-e76c-4729-9ddd-5e6a8f9e5741
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.news
+  module:
+    - system
+    - views
+  theme:
+    - bhcc_child
+id: bhcc_child_exposedformnewspage_1
+theme: bhcc_child
+region: sidebar_right
+weight: -7
+provider: null
+plugin: 'views_exposed_filter_block:news-page_1'
+settings:
+  id: 'views_exposed_filter_block:news-page_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: "/news\r\n/news/*"

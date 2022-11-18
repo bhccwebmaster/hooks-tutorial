@@ -1,0 +1,53 @@
+/*
+ * @file
+ *
+ * This file is for the progress bar page component
+ */
+
+.progress-bar__list,
+.progress-bar__list ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.progress-bar__list-item {
+  position: relative;
+  padding: var(--spacing-x-small) var(--spacing-x-small) var(--spacing-x-small) var(--spacing-x-large);
+}
+
+.progress-bar__list-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: var(--spacing-medium);
+  display: block;
+  width: 1px;
+  height: 100%;
+  background-color: var(--color-grey-semi-dark);
+}
+
+.progress-bar__list-item:first-child::before {
+  top: 50%;
+  height: 50%;
+}
+
+.progress-bar__list-item:last-child::before {
+  height: 50%;
+}
+
+.progress-bar__list-item::after {
+  content: '';
+  position: absolute;
+  top: calc(50% - 4px);
+  left: 15px;
+  display: block;
+  width: 11px;
+  height: 11px;
+  border-radius: 50% 50%;
+  background-color: var(--color-grey-semi-dark);
+}
+
+.progress-bar__list-item--active::after {
+  border: 1px solid var(--color-accent);
+  background-color: var(--color-white);
+}

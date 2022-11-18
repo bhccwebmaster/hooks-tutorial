@@ -1,0 +1,57 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a paragraph.
+ *
+ * @see template_preprocess_paragraph()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes }}>
+  <div class="lgd-row__full l:lgd-row__two-thirds margin-top-large">
+    <h2 class="color-secondary margin-bottom-medium">Contact this service</h2>
+    <div class="contact-card default-shadow default-radius margin-bottom-medium">
+      <div class="contact-card__content">
+
+        <ul class="contact-card__list list-unstyled">
+
+          {% if content.localgov_opening_hours %}
+            <li class="contact-card__item icon-time">{{ content.localgov_opening_hours }}</li>
+          {% endif %}
+
+          {% if content.localgov_contact_address or content.localgov_address_first_line %}
+            <li class="contact-card__item icon-location">
+              <strong>{{ content.localgov_address_first_line }}</strong>
+              {{ content.localgov_contact_address }}
+            </li>
+          {% endif %}
+
+          {% if not paragraph.localgov_contact_phone.isEmpty() %}
+            <li class="contact-card__item icon-call">{{ content.localgov_contact_phone }}</li>
+          {% endif %}
+
+          {% if not paragraph.localgov_contact_email.isEmpty() %}
+            <li class="contact-card__item icon-email">
+              {{ content.localgov_contact_email }}
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+
+    <ul class="lgd-row contact-card__actions default-shadow list-unstyled list-inline show-mobile">
+      {% if not paragraph.localgov_contact_email.isEmpty() %}
+        <li class="lgd-row__one-half contact-card__action">
+          {{ content.localgov_email_address_action }}
+        </li>
+      {% endif %}
+
+      {% if not paragraph.localgov_contact_phone.isEmpty() %}
+        <li class="lgd-row__one-half contact-card__action">
+          {{ content.localgov_phone_action }}
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+</div>

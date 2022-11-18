@@ -1,0 +1,158 @@
+/*
+ * @file
+ *
+ * This is our file to create variables that are used across the theme.
+ */
+
+:root {
+  /* Fonts */
+  --font-primary: "Source Sans Pro", sans-serif;
+  --font-secondary: "Sentinel SSm A", "Sentinel SSm B", "Sentinel", Georgia, serif;
+  --font-size: 1rem;
+
+
+  /* Widths and Spacing */
+
+  /* 1168px */
+  --page-container: 73rem;
+  /* 576px */
+  /* --content-container: 36rem; */
+  /* Temp set this to 100% */
+  --content-container: 100%;
+  /* Default - 20px */
+  --spacing: 1.25rem;
+  /* 5px */
+  --spacing-xx-small: calc(var(--spacing) * 0.25);
+  /* 10px */
+  --spacing-x-small: calc(var(--spacing) * 0.5);
+  /* 15px */
+  --spacing-small: calc(var(--spacing) * 0.75);
+  /* 20px */
+  --spacing-medium: calc(var(--spacing));
+  /* 30px */
+  --spacing-large: calc(var(--spacing) * 1.5);
+  /* 40px */
+  --spacing-x-large: calc(var(--spacing) * 2);
+  /* 60px */
+  --spacing-xx-large: calc(var(--spacing) * 3);
+  /* 120px */
+  --spacing-xxx-large: calc(var(--spacing) * 6);
+
+  /* Form Base - 36px */
+  --form-base: 2.25rem;
+  /* 18px */
+  --form-base-half: calc(var(--form-base) * 0.5);
+  /* 9px */
+  --form-base-quarter: calc(var(--form-base) * 0.25);
+
+  /* Icon Base - 18px */
+  --icon-base: 1.125rem;
+
+  /*
+    Colours Defined
+    In this section, we define the colours available in our theme.
+    We should not refer to these directly in our CSS however. Instead,
+    we use the names at our "Colours Applied" section.
+  */
+  --color-pink: #e8195c;
+  --color-green: #118823;
+  --color-blue: #0059a4;
+  --color-red: #C13633;
+  --color-indigo: #475066;
+  --color-yellow: #FFCC33;
+  --color-burgundy: #a41055;
+  --color-burgundy-alt: #781957;
+  --color-dark-blue: #262c60;
+  --color-light-blue: #f0f5fa;
+  --color-mid-blue: #0059a4;
+
+  /* Corporate colours */
+  --color-burgundy: #a41055;
+  --color-burgundy-alt: #980065;
+  --color-green-var: #006E19;
+  --color-red-var: #e30615;
+  --color-pink-var: #bb0c81;
+  --color-cyan: #00a39e;
+  --color-orange: #ec671a;
+  --color-blue-var: #1c477f;
+  --color-colourway-burgundy: #a41055;
+  --color-colourway-burgundy-var: #700034;
+  --color-colourway-green: #00986d;
+  --color-colourway-green-var: #006c5e;
+  --color-colourway-red: #e30615;
+  --color-colourway-red-var: #8F0021;
+  --color-colourway-pink: #bb0c81;
+  --color-colourway-pink-var: #87005A;
+  --color-colourway-cyan: #00a39e;
+  --color-colourway-cyan-var: #017B77;
+  --color-colourway-orange: #ec671a;
+  --color-colourway-orange-var: #BA4502;
+  --color-colourway-blue: #007dae;
+  --color-colourway-blue-var: #00587A;
+  --color-colourway-myaccount: #071a44;
+  --color-colourway-myaccount-var: #a41055;
+
+  /* Social media colours */
+  --color-facebook: #3b5998;
+  --color-twitter: #0084b4;
+  --color-youtube: #cc181e;
+  --color-linkedin: #0077b5;
+
+  /* Social media colours */
+  --color-facebook: #3b5998;
+  --color-twitter: #0084b4;
+  --color-youtube: #cc181e;
+  --color-linkedin: #0077b5;
+
+  /*
+    Grey Scale
+  */
+  --color-black: #0c0d0d;
+  --color-black-lighter: #3D3D3D;
+  --color-grey-dark: #919191;
+  --color-grey-semi-dark: #B3B3B3;
+  --color-grey-mid-dark: #d9d9d9;
+  --color-grey-mid: #e6e6e6;
+  --color-grey-mid-light: #EFEFEF;
+  --color-grey-semi-light: #F5F5F5;
+  --color-grey-light: #fafafa;
+  --color-white: #fff;
+
+  /* Colours Applied */
+  --color-primary: var(--color-burgundy);
+  --color-accent: var(--color-pink);
+  --color-accent2: var(--color-orange);
+  --color-accent3: var(--color-burgundy-alt);
+  --color-secondary-accent: var(--color-indigo);
+  --color-link: var(--color-blue);
+  --color-success: var(--color-green);
+  --color-warning: var(--color-red);
+  --color-error: var(--color-red);
+  --color-focus: var(--color-yellow);
+  --color-banner-gradient: var(--color-dark-blue);
+  --color-brand: var(--color-burgundy);
+  --color-background: var(--color-grey-mid-light);
+  --color-text: var(--color-black);
+  --color-text-lighter: var(--color-black-lighter);
+  --color-secondary-text: var(--color-indigo);
+  --color-heading-text: var(--color-primary);
+  --color-negative: var(--color-white);
+  --color-accent4: var(--color-mid-blue);
+
+  --button-background: var(--color-green);
+  --button-hover-background: var(--color-green-var);
+
+  --button-action-background: var(--color-green);
+  --button-action-hover-background: var(--color-green-var);
+
+  --button-next-background: var(--color-blue);
+  --button-next-hover-background: var(--color-blue-var);
+
+  /* Border Radius */
+  --default-radius: 4px;
+  --input-radius: 9999px;
+
+  /* Animation */
+  --transition-time: 0.3s;
+
+}

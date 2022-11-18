@@ -1,0 +1,113 @@
+/*
+ * @file
+ *
+ * This file is for styling the header search input box. This pattern will probably appear elsewhere
+ */
+
+.search-block-form .form-item-keys,
+.search-block-form > form,
+.news-search-form {
+  position: relative;
+}
+
+.search-block-form input.form-search {
+  appearance: none;
+  border-radius: var(--input-radius);
+  font-size: calc(var(--font-size) * 0.875);
+  line-height: 1.29;
+  background: var(--color-grey-mid-light) !important;
+  border: none;
+}
+
+.search-block-form input.form-search::placeholder {
+  font-weight: 600;
+  color: var(--color-secondary-text);
+}
+
+.search-block-form input.form-search,
+.news-search-form .form-autocomplete {
+  padding: var(--spacing-x-small) calc(var(--spacing) * 2) var(--spacing-x-small) var(--spacing);
+}
+
+.news-search-form .form-item {
+  margin-bottom: 0;
+}
+
+.search-block-form .form-actions,
+.news-search-form .form-actions {
+  margin: 0;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: calc((var(--form-base-quarter) * 2) + 1.25em);
+  width: calc((var(--form-base-quarter) * 2) + 1.75em);
+}
+
+.news-search-form .form-actions {
+  width: calc((var(--form-base-quarter) * 2) + 1.25em);
+  background-color: var(--color-link);
+}
+
+.background-burgundy-alt .news-search-form .form-actions {
+  background-color: var(--color-negative);
+  border-left: 1px solid var(--color-burgundy-alt);
+}
+
+.search-block-form .form-submit,
+.news-search-form .form-submit {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+}
+
+.search-block-form .form-submit span,
+.news-search-form .form-submit span {
+  position: absolute;
+  clip: rect(1px,1px,1px,1px);
+  overflow: hidden;
+  height: 0;
+  width: 1px;
+  word-wrap: normal;
+}
+
+.search-block-form .form-submit::before,
+.news-search-form .form-submit::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: calc(50% - 10px);
+  left: calc(50% - 10px);
+  width: var(--icon-base);
+  height: var(--icon-base);
+  background-image: url(../../images/icon-search.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.search-block-form .form-submit .button__icon,
+.news-search-form .form-submit .button__icon {
+  display: none;
+}
+
+.news-search-form .form-submit::before {
+  background-image: url(../../images/icon-search-white.svg);
+}
+
+.background-burgundy-alt .news-search-form .form-submit::before {
+  background-image: url(../../images/icon-search-blue.svg);
+}
+
+@media screen and (min-width: 48rem) {
+  .search-block-form {
+    min-width: 15rem;
+    max-width: 100%;
+  }
+}
+
+.background-burgundy-alt .news-search-form .form-item > input {
+  border: 1px solid var(--color-negative);
+}

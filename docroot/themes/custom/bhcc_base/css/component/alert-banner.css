@@ -1,0 +1,42 @@
+/**
+ * @file
+ * Style rules for alert banners
+ */
+
+.localgov-alert-banner {
+  padding: var(--spacing-x-small) 0;
+}
+
+.localgov-alert-banner--notable-person + .localgov-alert-banner--notable-person,
+.localgov-alert-banner--major + .localgov-alert-banner--major,
+.localgov-alert-banner--minor + .localgov-alert-banner--minor,
+.localgov-alert-banner--announcement + .localgov-alert-banner--announcement {
+  padding-top: var(--spacing-xx-small);
+}
+
+.localgov-alert-banner__inner {
+  padding: 0;
+}
+
+/* Fix the title colours */
+.localgov-alert-banner__title {
+  font-size: 1.125rem;
+  color: var(--color-negative);
+  margin-bottom: var(--spacing-x-small);
+}
+
+@media only screen and (min-width: 768px) {
+  .localgov-alert-banner__title {
+    font-size: 1.25rem;
+  }
+}
+
+/* Minor alerts have yellow background, so black text */
+.localgov-alert-banner--minor .localgov-alert-banner__title {
+  color: var(--color-black);
+}
+
+.localgov-alert-banner__actions {
+  align-items: center;
+  margin-left: var(--spacing-large);
+}

@@ -1,0 +1,30 @@
+/*
+ * @file
+ *
+ * JS states for the show/hide element and overrides for the desktop and mobile menu
+ */
+
+.show-hide--is-active {
+  display: block;
+}
+
+.show-hide-toggle--is-active::before {
+  transform: rotate(270deg);
+}
+
+.header-menu__mobile .show-hide-toggle--is-active::before {
+  right: 1em;
+}
+
+.header-menu__dropdown {
+  display: none;
+}
+
+@media screen and (min-width: 1096px) {
+  .header-menu__dropdown.show-hide--is-active {
+    display: block;
+  }
+  .mobile-menu.menu-dropdown.show-hide--is-active {
+    display: none;
+  }
+}

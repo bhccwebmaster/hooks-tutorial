@@ -1,0 +1,42 @@
+/*
+ * @file
+ *
+ * This file is for styling facet elements
+ */
+
+.facets-widget {
+  padding-top: var(--spacing-xx-small);
+  padding-bottom: var(--spacing-xx-small);
+}
+
+.facet-group__title {
+  margin-bottom: 0;
+  font-size: 1rem;
+  line-height: 1;
+  text-align: left;
+}
+
+.form-item.facet-item input[type="checkbox"] + label {
+  color: var(--color-text-lighter);
+  font-size: 0.875rem;
+  line-height: 1.25;
+}
+
+.form-item.facet-item input[type="checkbox"],
+.form-item.facet-item input[type="checkbox"] + label::before {
+  top: calc(50% - 12px);
+  width: 24px;
+  height: 24px;
+}
+
+.facets-widget__toggle {
+  width: 100%;
+  justify-content: left;
+  padding-top: var(--spacing-small);
+  padding-bottom: var(--spacing-small);
+  padding-left: 0;
+}
+
+.facets-widget__list > li:not(:last-of-type) {
+  border-bottom: 1px solid var(--color-grey-mid);
+}

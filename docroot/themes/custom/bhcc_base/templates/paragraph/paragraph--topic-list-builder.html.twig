@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * Topic list builder paragraph type.
+ */
+#}
+<section class="default-border-bottom padding-bottom-small margin-bottom-xx-large">
+  {% if header %}
+    <h2 class="">{{ header }}</h2>
+  {% endif %}
+  {{ content.topic_list_links }}
+  {% if show_more %}
+    <div class="margin-top-small clearfix">
+      <a href="{{ show_more_path }}" class="action-link action-link--next pull-right">More<span class="sr-only"> about {{ header }}</span></a>
+    </div>
+  {% endif %}
+</section>

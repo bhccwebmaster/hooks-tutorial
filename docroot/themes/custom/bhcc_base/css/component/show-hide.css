@@ -1,0 +1,42 @@
+/*
+ * @file
+ *
+ * This file is for styling the show hide component
+ */
+
+.show-hide {
+  display: none;
+}
+
+.show-hide-toggle {
+  padding-right: calc(var(--spacing) * 1.25);
+  position: relative;
+}
+
+/* Calculate extra padding when element has padding class applied */
+.show-hide-toggle--medium,
+.show-hide-toggle.padding-medium,
+.show-hide-toggle.padding-right-medium {
+  padding-right: calc(var(--spacing-medium) + var(--spacing) * 1.25) !important;
+}
+
+.show-hide-toggle::before {
+  content: '';
+  display: block;
+  position: absolute;
+  right: 0;
+  top: calc(50% - 9px);
+  width: var(--icon-base);
+  height: var(--icon-base);
+  background-image: url(../../images/arrow-right-black.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  transform: rotate(90deg);
+  transition: transform var(--transition-time) ease-in-out;
+}
+
+.show-hide-toggle--medium::before,
+.show-hide-toggle.padding-medium::before,
+.show-hide-toggle.padding-right-medium::before {
+  right: var(--spacing-medium);
+}

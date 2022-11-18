@@ -1,0 +1,103 @@
+
+/*
+ * @file
+ *
+ * This file is for theming the subsite colours.
+ * Apply modifiers for the colour variables here to alter them.
+ */
+
+
+/* Default values, use the burgandy theme. */
+body {
+  --subsite-banner-text-color: var(--color-white);
+  --subsite-banner-gradient-color: var(--color-banner-gradient);
+  --subsite-menu-background-color: var(--color-white);
+  --subsite-menu-link-color: var(--color-text);
+  --subsite-menu-highlight-color: var(--color-colourway-burgundy);
+  --subsite-menu-hover-background-color: var(--color-grey-light);
+  --call-out-box-bg-color: var(--color-colourway-burgundy);
+  --call-out-box-text-color: var(--color-white);
+  --quote-border-color: var(--color-colourway-orange);
+  --quote-bg-color: var(--color-grey-mid-light);
+  --quote-author-color: var(--color-text);
+  --fact-box-border-color: var(--color-colourway-orange);
+  --fact-box-bg-light: var(--color-grey-mid-light);
+  --fact-box-bg-dark: var(--color-black-lighter);
+}
+
+/* Colour theme modifiers. */
+body.subsite-theme--bhcc_burgundy {
+  /* Apply the burgundy banner only when burgundy explicitly selected.
+   * This is so Subsites / Campaigns with no theme don't overlay the image. */
+  --subsite-banner-bg-color: var(--color-colourway-burgundy);
+}
+
+body.subsite-theme--bhcc_blue {
+  --subsite-banner-bg-color: var(--color-colourway-blue);
+  --subsite-menu-highlight-color: var(--color-colourway-blue);
+  --call-out-box-bg-color: var(--color-colourway-blue);
+  --call-out-box-text-color: var(--color-white);
+  --quote-border-color: var(--color-colourway-blue);
+  --fact-box-border-color: var(--color-colourway-blue);
+  --breadcrumb-background-color: var(--color-colourway-blue-var);
+}
+
+body.subsite-theme--bhcc_orange {
+  --subsite-banner-bg-color: var(--color-colourway-orange);
+  --subsite-menu-highlight-color: var(--color-colourway-orange);
+  --call-out-box-bg-color: var(--color-colourway-orange);
+  --call-out-box-text-color: var(--color-white);
+  --quote-border-color: var(--color-colourway-orange);
+  --fact-box-border-color: var(--color-colourway-orange);
+  --breadcrumb-background-color: var(--color-colourway-orange-var);
+}
+
+body.subsite-theme--bhcc_cyan {
+  --subsite-banner-bg-color: var(--color-colourway-cyan);
+  --subsite-menu-highlight-color: var(--color-colourway-cyan);
+  --call-out-box-bg-color: var(--color-colourway-cyan);
+  --call-out-box-text-color: var(--color-white);
+  --quote-border-color: var(--color-colourway-cyan);
+  --fact-box-border-color: var(--color-colourway-cyan);
+  --breadcrumb-background-color: var(--color-colourway-cyan-var);
+}
+
+body.subsite-theme--bhcc_pink {
+  --subsite-banner-bg-color: var(--color-colourway-pink);
+  --subsite-menu-highlight-color: var(--color-colourway-pink);
+  --call-out-box-bg-color: var(--color-colourway-pink);
+  --call-out-box-text-color: var(--color-white);
+  --quote-border-color: var(--color-colourway-pink);
+  --fact-box-border-color: var(--color-colourway-pink);
+  --breadcrumb-background-color: var(--color-colourway-pink-var);
+}
+
+body.subsite-theme--bhcc_red {
+  --subsite-banner-bg-color: var(--color-colourway-red);
+  --subsite-menu-highlight-color: var(--color-colourway-red);
+  --call-out-box-bg-color: var(--color-colourway-red);
+  --call-out-box-text-color: var(--color-white);
+  --quote-border-color: var(--color-colourway-red);
+  --fact-box-border-color: var(--color-colourway-red);
+  --breadcrumb-background-color: var(--color-colourway-red-var);
+}
+
+body.subsite-theme--bhcc_green {
+  --subsite-banner-bg-color: var(--color-colourway-green);
+  --subsite-menu-highlight-color: var(--color-colourway-green);
+  --call-out-box-bg-color: var(--color-colourway-green);
+  --call-out-box-text-color: var(--color-white);
+  --fact-box-border-color: var(--color-colourway-green);
+  --breadcrumb-background-color: var(--color-colourway-green-var);
+}
+
+body.subsite-theme--bhcc_black {
+  --subsite-banner-bg-color: var(--color-black);
+  --subsite-menu-background-color: var(--color-black);
+  --subsite-menu-link-color: var(--color-white);
+  --subsite-menu-highlight-color: var(--color-white);
+  --subsite-menu-hover-background-color: var(--color-grey-dark);
+  --call-out-box-bg-color: var(--color-black);
+  --call-out-box-text-color: var(--color-white);
+  --fact-box-border-color: var(--color-black);
+}

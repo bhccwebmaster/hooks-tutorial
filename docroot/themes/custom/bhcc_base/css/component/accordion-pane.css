@@ -1,0 +1,56 @@
+/*
+ * @file
+ *
+ * This file is for styling accordion pane elements
+ */
+
+.accordion-pane__title > * {
+  margin-bottom: 0;
+}
+
+.accordion-pane__title button {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  border: 0;
+  border-bottom: 1px solid var(--color-grey-semi-dark);
+  padding: var(--spacing-small) 0 var(--spacing-small) var(--spacing-large);
+  font-weight: 600;
+  font-size: 1.325rem;
+  color: var(--color-heading-text);
+}
+
+.accordion-pane__content {
+  padding: var(--spacing) 0;
+}
+
+.accordion-pane__title button::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: calc(50% - calc(var(--icon-base) / 2));
+  width: var(--icon-base);
+  height: var(--icon-base);
+  background-image: url(../../images/plus.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: calc(var(--icon-base) * 0.875);
+  opacity: 0.5;
+}
+
+.accordion-pane__title button[aria-expanded="true"]::before {
+  background-image: url(../../images/minus.svg);
+}
+
+.accordion-pane__title button:hover,
+.accordion-pane__title button:focus {
+  background-color: var(--color-grey-light);
+}
+
+.accordion-pane__title button:hover::before,
+.accordion-pane__title button:focus::before {
+  opacity: 1;
+  filter: invert(12%) sepia(44%) saturate(6773%) hue-rotate(319deg) brightness(103%) contrast(97%);
+}

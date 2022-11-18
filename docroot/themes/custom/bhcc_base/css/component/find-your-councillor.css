@@ -1,0 +1,64 @@
+/*
+ * @file
+ *
+ * Style the 'Find your local councillor' block.
+ */
+
+.find-your-councillor {
+  padding: var(--spacing-small);
+}
+
+@media screen and (min-width: 768px) {
+  .find-your-councillor {
+    padding: var(--spacing);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .find-your-councillor {
+    padding: var(--spacing-large);
+  }
+}
+
+.find-your-councillor__logo {
+  width: 94px;
+  height: 63px;
+}
+
+.find-your-councillor__logo::before {
+  content: '';
+  display: block;
+  width: 94px;
+  height: 63px;
+}
+
+.find-your-councillor-form {
+  position: relative;
+  padding-right: 40px;
+  text-align: center
+}
+
+.find-your-councillor-form .button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 40px;
+  height: 100%;
+  padding: 0;
+  min-width: 0;
+  border-radius: 0;
+}
+
+
+/*.find-your-councillor-form .button::before {*/
+/*  content: '';*/
+/*  background-repeat: no-repeat;*/
+/*  background-position: center;*/
+/*  width: 40px;*/
+/*  height: 100%;*/
+/*  background-image: url(../../images/icon-search-white.svg);*/
+/*}*/
+
+.find-your-councillor-form .button span {
+  display: none;
+}

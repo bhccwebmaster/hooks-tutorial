@@ -1,0 +1,150 @@
+{#
+/**
+ * @file highway_notices.html.twig
+ * Default theme implementation to present Highway notices data.
+ *
+ * This template is used when viewing Highway notices pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_highway_notices()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass(['lgd-row', 'margin-bottom-x-large', 'rich-text__item']) }}>
+
+  <div class="lgd-row__full">
+    {{ content.field_business }}
+  </div>
+
+  <div class="lgd-row__one-quarter">
+
+    {{ content.field_address }}
+
+    <div class="margin-top-medium">
+
+      <h3 class="margin-bottom-xx-small">Opening hours</h3>
+
+      {% for day in ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] %}
+        <div class="{{ not loop.last ? 'margin-bottom-x-small' }}">
+          <strong>{{ day|capitalize }}</strong>
+          <span class="flex">{{ content['field_' ~ day ~ '_start'] }} - {{ content['field_' ~ day ~ '_end'] }}</span>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+
+  <div class="lgd-row__three-quarters">
+    <div class="margin-bottom-large">
+      <h3 class="margin-bottom-xx-small">Use</h3>
+      {{ content.field_use }}
+    </div>
+
+    <div class="margin-bottom-large">
+      <h3 class="margin-bottom-xx-small">Items on highway</h3>
+
+      <div class="lgd-row">
+        {% if content.field_cocktail_tables %}
+          <div class="lgd-row__one-quarter">
+            <h4 class="margin-bottom-xx-small">Cocktail tables</h4>
+            {{ content.field_cocktail_tables }}
+          </div>
+        {% endif %}
+
+        {% if content.field_coffee_tables %}
+          <div class="lgd-row__one-quarter">
+            <h4 class="margin-bottom-xx-small">Coffee tables</h4>
+            {{ content.field_coffee_tables }}
+          </div>
+        {% endif %}
+
+        {% if content.field_dining_chairs %}
+          <div class="lgd-row__one-quarter">
+            <h4 class="margin-bottom-xx-small">Dining chairs</h4>
+            {{ content.field_dining_chairs }}
+          </div>
+        {% endif %}
+
+        {% if content.field_dining_tables %}
+          <div class="lgd-row__one-quarter">
+            <h4 class="margin-bottom-xx-small">Dining tables</h4>
+            {{ content.field_dining_tables }}
+          </div>
+        {% endif %}
+
+        {% if content.field_outdoor_heaters %}
+          <div class="lgd-row__one-quarter">
+            <h4 class="margin-bottom-xx-small">Outdoor heaters</h4>
+            {{ content.field_outdoor_heaters }}
+          </div>
+        {% endif %}
+
+        {% if content.field_picnic_tables %}
+          <div class="lgd-row__one-quarter">
+            <h4 class="margin-bottom-xx-small">Picnic tables</h4>
+            {{ content.field_picnic_tables }}
+          </div>
+        {% endif %}
+
+        {% if content.field_seating_benches %}
+          <div class="lgd-row__one-quarter">
+            <h4 class="margin-bottom-xx-small">Benches</h4>
+            {{ content.field_seating_benches }}
+          </div>
+        {% endif %}
+
+        {% if content.field_stools %}
+          <div class="lgd-row__one-quarter">
+            <h4 class="margin-bottom-xx-small">Stools</h4>
+            {{ content.field_stools }}
+          </div>
+        {% endif %}
+
+        {% if content.field_umbrellas %}
+          <div class="lgd-row__one-quarter">
+            <h4 class="margin-bottom-xx-small">Umbrellas</h4>
+            {{ content.field_umbrellas }}
+          </div>
+        {% endif %}
+
+        {% if content.field_other_item %}
+          <div class="lgd-row__one-quarter">
+            <h4 class="margin-bottom-xx-small">Other items</h4>
+            {{ content.field_other_item }}
+            {{ content.field_other_item_label }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if content.proposed_location_and_space %}
+      <div class="margin-bottom-large">
+        <h3 class="margin-bottom-xx-small">Location and space</h3>
+        {{ content.proposed_location_and_space }}
+      </div>
+    {% endif %}
+
+    {% if content.field_proposed_extended_opening %}
+      <div class="margin-bottom-large">
+        <h3 class="margin-bottom-xx-small">Extended opening times</h3>
+        {{ content.field_proposed_extended_opening }}
+      </div>
+    {% endif %}
+
+    <div class="margin-bottom-large">
+      <h3 class="margin-bottom-xx-small">Notice period ends</h3>
+      {{ content.field_consultation_end_date }}
+    </div>
+
+    <div>
+      <h3 class="margin-bottom-xx-small">Comment</h3>
+      <a href="mailto:Pavement.Licensing@brighton-hove.gov.uk">Comment</a>
+    </div>
+  </div>
+
+</div>

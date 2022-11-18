@@ -1,0 +1,18 @@
+/*
+ * @file
+ *
+ * This file is for the pill page element
+ */
+
+.pill {
+  display: inline-block;
+  padding: 2px 5px;
+  background-color: var(--color-secondary-text);
+  color: var(--color-negative);
+  font-weight: 600;
+  font-size: 0.625rem;
+}
+
+.pill--accent {
+  background-color: var(--color-accent);
+}

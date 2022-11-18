@@ -1,0 +1,12 @@
+.ie-banner {
+  background-color: #0059a4;
+  color: #fff;
+  line-height: 1.5;
+}
+
+.ie-banner__inner {
+  padding: 20px;
+  max-width: 1168px;
+  margin-left: auto;
+  margin-right: auto;
+}

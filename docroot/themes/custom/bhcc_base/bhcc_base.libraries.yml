@@ -1,0 +1,139 @@
+typography-prod:
+  css:
+    base:
+      # Sentinal Webfont via typography.com.
+      https://cloud.typography.com/6624672/740546/css/fonts.css: { type: external }
+typography-dev:
+  css:
+    base:
+     # Temp use an embedded version of Sentinal for testing.
+      css/webfonts/845871/D9BA70D8142EB2DAD.css: {}
+global:
+  css:
+    base:
+      # Source sans pro via Google.
+      https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i: { type: external }
+      # Sentinal Webfont via typography.com.
+      # https://cloud.typography.com/6624672/740546/css/fonts.css: { type: external }
+      # Temp use an embedded version of Sentinal for testing.
+      # css/webfonts/BB2F5BEBDC37AA329.css: {}
+      css/base/normalize.css: {}
+      css/base/variables.css: {}
+      css/base/base.css: {}
+    layout:
+      css/layout/layout-utilities.css: {}
+      css/layout/grid.css: {}
+    component:
+      css/component/accordion.css: {}
+      css/component/accordion-pane.css: {}
+      css/component/action-link.css: {}
+      css/component/alert-banner.css: {}
+      css/component/arrow-title.css: {}
+      css/component/bhcc-alert.css: {}
+      css/component/body-text.css: {}
+      css/component/breadcrumbs.css: {}
+      css/component/buttons.css: {}
+      css/component/card.css: {}
+      css/component/callout-box.css: {}
+      css/component/checkboxes-radios.css: {}
+      css/component/compact-table.css: {}
+      css/component/contact-card.css: {}
+      css/component/content-list.css: {}
+      css/component/cookie-banner.css: {}
+      css/component/escape-button.css: {}
+      css/component/event.css: {}
+      css/component/facets.css: {}
+      css/component/fact-box.css: {}
+      css/component/featured-news.css: {}
+      css/component/find-your-councillor.css: {}
+      css/component/footer.css: {}
+      css/component/form-validation.css: {}
+      css/component/forms.css: {}
+      css/component/google-cse.css: {}
+      css/component/header-menu.css: {}
+      css/component/homepage-elements.css: {}
+      css/component/icasework.css: {}
+      css/component/icons.css: {}
+      css/component/ie-banner.css: {}
+      css/component/images.css: {}
+      css/component/inset-text.css: {}
+      css/component/job-card.css: {}
+      css/component/leaflet.css: {}
+      css/component/link-and-summary.css: {}
+      css/component/keystat.css: {}
+      css/component/media.css: {}
+      css/component/menu-local-tasks.css: {}
+      css/component/mobile-menu.css: {}
+      css/component/news-banner.css: {}
+      css/component/not-published-banner.css: {}
+      css/component/oembed.css: {}
+      css/component/openlayer-map.css: {}
+      css/component/overlay.css: {}
+      css/component/page-header.css: {}
+      css/component/page-header-block.css: {}
+      css/component/pager.css: {}
+      css/component/pill.css: {}
+      css/component/portal.css: {}
+      css/component/progress-bar.css: {}
+      css/component/quote.css: {}
+      css/component/search-block-form.css: {}
+      css/component/step-by-step.css: {}
+      css/component/select.css: {}
+      css/component/service-landing-update.css: {}
+      css/component/services-cta.css: {}
+      css/component/services-navigation.css: {}
+      css/component/show-hide.css: {}
+      css/component/social-media.css: {}
+      css/component/status-message.css: {}
+      css/component/subsite-banner.css: {}
+      css/component/subsite-navigation.css: {}
+      css/component/subsite-overview-banner.css: {}
+      css/component/summary-list.css: {}
+      css/component/tabs.css: {}
+      css/component/teaser.css: {}
+      css/component/tick-or-cross-list.css: {}
+      css/component/page-navigation.css: {}
+      css/component/webforms.css: {}
+      css/component/zone-info.css: {}
+    state:
+      css/state/show-hide.css: {}
+    theme:
+      css/theme/backgrounds.css: {}
+      css/theme/borders.css: {}
+      css/theme/colourways.css: {}
+      css/theme/keyline.css: {}
+      css/theme/overlays.css: {}
+      css/theme/subsite.css: {}
+      css/theme/subsite-black.css: {}
+      css/theme/shadows.css: {}
+      css/theme/typography.css: {}
+  js:
+    https://cdn.jsdelivr.net/npm/css-vars-ponyfill@2: { type: external }
+    js/css-vars-ponyfill.js: {}
+    js/active-service.js: {}
+    js/accordion.js: {}
+    js/show-hide.js: {}
+    js/tabs.js: {}
+    js/table.js: {}
+    js/html-pages.js: {}
+    js/push-down-menu.js: {}
+    js/icasework.js: {}
+    js/internet-explorer-detection.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+
+homepage-carousel:
+  css:
+    theme:
+      css/homepage-carousel/owl.carousel.min.css: { minified: true }
+      css/homepage-carousel/owl.theme.bhcc.css: { }
+
+  js:
+    js/homepage-carousel/owl.carousel.min.js: { minified: true }
+    js/homepage-carousel/homepage-icons.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once

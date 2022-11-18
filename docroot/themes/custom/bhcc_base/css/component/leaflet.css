@@ -1,0 +1,48 @@
+/*
+ * @file
+ *
+ * This file is for styling 3rd Party leaflet components
+ */
+
+/* Overrides for leaflet styling */
+
+.leaflet-container {
+   font: 0.875rem/1 "Source Sans Pro", sans-serif;
+}
+
+.leaflet-popup-content {
+  margin: var(--spacing-medium);
+}
+
+.leaflet-container a {
+  color: var(--color-link);
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+  width: 1.25rem;
+  height: 1.25rem;
+  font: 24px/1 "Source Sans Pro", sans-serif;
+  text-decoration: none;
+  color: var(--color-secondary-accent);
+}
+
+/* Overrides for teaser styling - @todo get a different display mode working for leaflet popups */
+
+.leaflet-popup-content > .teaser {
+  padding: 0;
+  box-shadow: none;
+}
+
+.leaflet-popup-content > .teaser .lgd-row {
+  display: block;
+  margin: 0;
+}
+
+.leaflet-popup-content > .teaser .lgd-row__one-half {
+  width: 100%;
+  margin: 0;
+}
+
+.leaflet-popup-content > .teaser .icon-list {
+  display: none;
+}

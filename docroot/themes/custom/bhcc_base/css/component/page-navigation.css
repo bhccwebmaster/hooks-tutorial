@@ -1,0 +1,58 @@
+/*
+ * @file
+ *
+ * This file is for styling the local links. This styling comes from localgov and isn't currently applied to the templates
+ */
+
+.page-navigation__prev,
+.page-navigation__next {
+  position: relative;
+  text-decoration: none;
+}
+
+.page-navigation__label {
+  font-size: 0.875rem;
+  line-height: 18px;
+  color: var(--color-text);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+}
+
+.page-navigation__prev {
+  padding-left: 46px;
+}
+
+.page-navigation__next {
+  padding-right: 46px;
+  text-align: right;
+}
+
+.page-navigation__prev::after,
+.page-navigation__next::after {
+  content: '';
+  position: absolute;
+  display: block;
+  height: 2.25rem;
+  width: 2.25rem;
+  top: 0;
+  background-color: var(--color-link);
+  border-radius: 9999px;
+  background-image: url(../../images/arrow-right-white.svg);
+  background-position: calc(50% - 2px) 50%;
+  background-repeat: no-repeat;
+  background-size: 12px;
+}
+
+.page-navigation__prev::after {
+  left: 0;
+  transform: rotate(180deg);
+}
+
+.page-navigation__next::after {
+  right: 0;
+}
+
+.localgov-guides__navigation {
+  margin-top: var(--spacing-large);
+}

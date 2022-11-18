@@ -1,0 +1,100 @@
+{#
+/**
+ * @file
+ * Default node template for localgov_services_landing pages.
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    'row',
+    'servicehub--contact'
+  ]
+%}
+
+<article{{ attributes.addClass(classes) }}>
+
+  {% if node.bhcc_show_body.value %}
+    <section>
+      {{ content.body }}
+    </section>
+  {% endif %}
+
+  {% if content.bhcc_portal_tiles|render %}
+    <section class="margin-bottom-xx-large margin-top-xx-large">
+      {{ content.bhcc_portal_tiles }}
+    </section>
+  {% endif %}
+
+  {% if content.localgov_destinations %}
+    {{ content.localgov_destinations }}
+  {% endif %}
+
+  {% if service_updates %}
+    {{ service_updates }}
+  {% endif %}
+
+  <div class="lgd-row">
+
+    {% if has_contact_content %}
+      <div class="lgd-row__full l:lgd-row__two-thirds margin-top-large">
+        <h2 class="color-secondary margin-bottom-medium">Contact this service</h2>
+        <div class="contact-card default-shadow default-radius margin-bottom-medium">
+          <div class="contact-card__content">
+
+            <div class="contact-card__header">
+              {% if content.localgov_address_first_line %}
+                <h3 class="contact-card__title margin-bottom-reset">{{ label }}</h3>
+              {% endif %}
+            </div>
+
+            <ul class="contact-card__list list-unstyled">
+
+              {% if content.localgov_opening_hours %}
+                <li class="contact-card__item icon-time">{{ content.localgov_opening_hours }}</li>
+              {% endif %}
+
+              {% if content.localgov_address or content.localgov_address_first_line %}
+                <li class="contact-card__item icon-location">
+                  <strong>{{ content.localgov_address_first_line }}</strong>
+                  {{ content.localgov_address }}
+                </li>
+              {% endif %}
+
+              {% if not node.localgov_phone.isEmpty() %}
+                <li class="contact-card__item icon-call">{{ content.localgov_phone }}</li>
+              {% endif %}
+
+              {% if not node.localgov_email_address.isEmpty() %}
+                <li class="contact-card__item icon-email">
+                  {{ content.localgov_email_address }}
+                </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+
+        <ul class="lgd-row contact-card__actions default-shadow list-unstyled list-inline show-mobile">
+          {% if not node.localgov_email_address.isEmpty() %}
+            <li class="lgd-row__one-half contact-card__action">
+              {{ content.localgov_email_address_action }}
+            </li>
+          {% endif %}
+
+          {% if not node.localgov_phone.isEmpty() %}
+            <li class="lgd-row__one-half contact-card__action">
+              {{ content.localgov_phone_action }}
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    {% endif %}
+
+  </div>
+
+</article>

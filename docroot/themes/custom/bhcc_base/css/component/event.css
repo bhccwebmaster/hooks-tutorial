@@ -1,0 +1,36 @@
+/*
+ * @file
+ *
+ * Styles event nodes.
+ */
+
+.event__date {
+  border-bottom: 1px solid var(--color-grey-dark);
+  padding-bottom: 1em;
+}
+
+.event-summary__item {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--color-grey-dark);
+  padding: 0.75em 0;
+}
+
+@media only screen and (min-width: 768px) {
+  .event-summary__item {
+    flex-direction: row;
+  }
+}
+
+.event-summary__label {
+  min-width: 15%;
+  padding-right: 1em;
+}
+
+@media only screen and (min-width: 768px) {
+  .event-summary__label,
+  .event-summary__content {
+    font-size: 1.188rem;
+    line-height: 1.5;
+  }
+}

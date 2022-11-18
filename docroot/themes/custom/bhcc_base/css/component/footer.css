@@ -1,0 +1,62 @@
+/*
+ * @file
+ *
+ * This file is for styling the footer region
+ */
+.footer {
+  background-color: #d5dbe0;
+}
+
+.footer a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.footer .action-link, 
+.footer .action-links > a {
+  font-weight: normal;
+}
+
+.footer-social a {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 1.375rem;
+  margin: var(--spacing-x-small) 1px;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 5px;
+  border-radius: 0.3125rem;
+  background: var(--color-black);
+  color: var(--color-negative);
+}
+
+.footer-social a:hover {
+  background: var(--color-link);
+}
+
+@media only screen and (min-width: 992px) {
+  .menu__find-out-more {
+    max-width: 350px;
+    margin-bottom: 0 !important;
+  }
+
+  .menu__find-out-more-links {
+    display: inline-block;
+  }
+
+  footer .menu__contact {
+    margin-bottom: 0 !important;
+  }
+
+  .footer__right {
+    display: flex;
+  }
+
+  .footer-social {
+    align-self: flex-end;
+    text-align: right;
+    flex: 1 0 auto;
+  }
+}

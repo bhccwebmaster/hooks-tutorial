@@ -1,0 +1,21 @@
+
+.not-published-banner {
+  background-color: var(--color-yellow);
+  color: var(--color-black);
+  z-index: 2;
+  width: 100%;
+  margin: 0 auto;
+}
+
+
+.not-published-banner__text {
+  padding: var(--spacing-small) var(--spacing-small) var(--spacing-small) calc(var(--spacing-small) + 20px);
+  font-size: var(--font-size);
+  text-align: center;
+  background-image: url(../../images/icon-alert-info-circle.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: var(--spacing-small) center;
+}
+
+

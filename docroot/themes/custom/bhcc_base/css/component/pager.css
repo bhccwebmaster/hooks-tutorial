@@ -1,0 +1,105 @@
+/*
+ * @file
+ *
+ * This file is for the pager component
+ */
+
+.pager {
+  display: flex;
+  justify-content: center;
+}
+
+.pager__item {
+  position: relative;
+  margin-right: var(--spacing-xx-small);
+  margin-left: var(--spacing-xx-small);
+  min-width: 1.5rem;
+  text-align: center;
+}
+
+.pager__item.is-active {
+  font-weight: 600;
+}
+
+.pager__item.is-active::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 2px;
+  display: block;
+  height: 3px;
+  width: calc(100% - 4px);
+  background-color: var(--color-secondary-accent);
+}
+
+.pager__item > a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.pager__item.is-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pager__item--previous {
+  margin-right: var(--spacing-medium);
+}
+
+.pager__item--next {
+  margin-left: var(--spacing-medium);
+}
+
+.pager__item--first > .pager__link,
+.pager__item--previous > .pager__link {
+  padding-left: var(--spacing-medium);
+}
+
+.pager__item--last > .pager__link,
+.pager__item--next > .pager__link {
+  padding-right: var(--spacing-medium);
+}
+
+.pager__item--first > .pager__link,
+.pager__item--previous > .pager__link
+.pager__item--last > .pager__link,
+.pager__item--next > .pager__link {
+  position: relative;
+}
+
+.pager__item--first > .pager__link::before,
+.pager__item--previous > .pager__link::before,
+.pager__item--last > .pager__link::before,
+.pager__item--next > .pager__link::before {
+  content: '';
+  display: block;
+  position: absolute;
+  right: 0;
+  top: calc(50% - 7.5px);
+  width: var(--icon-base);;
+  height: var(--icon-base);;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.pager__item--first > .pager__link::before,
+.pager__item--previous > .pager__link::before {
+  left: 0;
+  right: auto;
+  transform: rotate(180deg);
+}
+
+.pager__item--next > .pager__link::before,
+.pager__item--previous > .pager__link::before {
+  background-image: url(../../images/arrow-right-black.svg);
+}
+
+.pager__item--first > .pager__link::before,
+.pager__item--last > .pager__link::before {
+  background-image: url(../../images/arrow-right-black-double.svg);
+}
+
+
+.leaflet-container + .pager {
+  display: none;
+}

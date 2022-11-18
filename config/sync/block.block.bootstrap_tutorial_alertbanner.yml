@@ -8,8 +8,8 @@ dependencies:
     - bootstrap_tutorial
 id: bootstrap_tutorial_alertbanner
 theme: bootstrap_tutorial
-region: header
-weight: -7
+region: above_conent
+weight: -9
 provider: null
 plugin: localgov_alert_banner_block
 settings:

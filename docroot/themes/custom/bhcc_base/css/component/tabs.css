@@ -1,0 +1,64 @@
+/*
+ * @file
+ *
+ * This file is for styling the local links. This styling comes from localgov and isn't currently applied to the templates
+ */
+
+
+.tabs--initialised .tab-panel {
+  display: none;
+  padding: 1rem;
+  border: var(--tabs-border);
+  border-color: var(--tabs-border-color);
+}
+
+.tabs--initialised .tab-panel--active {
+  display: block;
+}
+
+.tabs--initialised .tabs__controls {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tabs--initialised .tabs__controls li {
+  margin: 0;
+}
+
+.tabs--initialised .tabs__controls button {
+  border: var(--tabs-border);
+  font-size: var(--tabs-button-font-size);
+  font-family: var(--tabs-button-font-family);
+  margin: 0;
+  border-color: var(--tabs-border-color);
+  color: var(--tabs-text-color);
+  background: var(--tabs-button-bg-color);
+  cursor: pointer;
+}
+
+.tabs--initialised .tabs__controls [aria-selected="true"] {
+  background-color: var(--tabs-button-active-color);
+  border-bottom-color: var(--tabs-button-active-color);
+}
+
+.tabs--initialised .tabs__controls > li + li button {
+  border-left: none;
+}
+
+.node--type-html-page .js-bhcc-tab-content,
+.webform--ajax-submit {
+  padding-top: calc(var(--ginHorizontalToolbarOffset, 0px) + var(--spacing-small));
+  margin-top: calc((var(--ginHorizontalToolbarOffset, 0px) + var(--spacing-small)) * -1);
+}
+
+@media screen and (min-width: 1096px) {
+  .node--type-html-page .js-bhcc-tab-content,
+  .webform--ajax-submit {
+    padding-top: calc(var(--ginHorizontalToolbarOffset, 0px) + 98px + var(--spacing-small));
+    margin-top: calc((var(--ginHorizontalToolbarOffset, 0px) + 98px + var(--spacing-small)) * -1);
+  }
+}
+
+

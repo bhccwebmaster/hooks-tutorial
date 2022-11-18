@@ -1,0 +1,22 @@
+uuid: a555608b-9522-429c-bc2b-15d19d7d8d2a
+langcode: en
+status: true
+dependencies:
+  theme:
+    - bhcc_child
+_core:
+  default_config_hash: ydSxdq7R66I8UMC460rOzlfzvlUL4VRbdwc6z9DWaUI
+id: bhcc_child_secondary_local_tasks
+theme: bhcc_child
+region: tabs
+weight: 0
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Secondary tabs'
+  label_display: '0'
+  provider: core
+  primary: false
+  secondary: true
+visibility: {  }

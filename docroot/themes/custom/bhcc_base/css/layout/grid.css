@@ -1,0 +1,152 @@
+/*
+  This is a basic grid system, that should be very easy to use.
+  To use, simply add an element with a class of .lgd-row, then add
+  another element as a direct descendant(s) of this with the widths
+  you want:
+   - .lgd-row__full
+   - .lgd-row__three-quarters
+   - .lgd-row__two-thirds
+   - .lgd-row__one-half
+   - .lgd-row__one-third
+   - .lgd-row__one-quarter
+
+  In some cases, this might mean adding more templates than we want, so
+  we have further classes that will give the same result by adding a modifier
+  class to the parent .lgd-row element (e.g. <div class="lgd-row lgd-row--halves">).
+  - .lgd-row--halves - direct descendants are all 50% each
+  - .lgd-row--thirds - direct descendants are all 33% each
+  - .lgd-row--quarters - direct descendants are all 25% each
+*/
+
+/* Basic fallback spacing for browsers which don't support grid */
+.lgd-row > * {
+  margin-bottom: var(--spacing-large);
+}
+
+/* We'll override it right away for modern browsers */
+@supports (display: grid) {
+  .lgd-row > * {
+    margin-bottom: 0;
+  }
+}
+
+.lgd-row__one-quarter,
+.lgd-row--quarters > * {
+  grid-column: span 3;
+}
+
+.lgd-row__one-third,
+.lgd-row--thirds > * {
+  grid-column: span 4;
+}
+
+.lgd-row__one-half,
+.lgd-row--halves > * {
+  grid-column: span 6;
+}
+
+.lgd-row__two-thirds {
+  grid-column: span 8;
+}
+
+.lgd-row__three-quarters {
+  grid-column: span 9;
+}
+
+.lgd-row__full {
+  grid-column: span 12;
+}
+
+.lgd-row__one-half-one-third,
+.lgd-row--halves-thirds > * {
+  grid-column: span 6;
+}
+
+.lgd-row {
+  display: grid;
+  grid-gap: 1rem;
+}
+
+.grid-gap-2 {
+  grid-gap: 2rem;
+}
+
+.grid-gap-v2-h1 {
+  grid-gap: 2rem 1rem;
+}
+
+.grid-gap-v1-h2 {
+  grid-gap: 1rem 2rem;
+}
+
+@media screen and (min-width: 768px) {
+  .lgd-row {
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  .m\:grid-gap-2 {
+    grid-gap: 2rem;
+  }
+
+  .m\:lgd-row__one-quarter {
+    grid-column: span 3;
+  }
+
+  .m\:lgd-row__one-third {
+    grid-column: span 4;
+  }
+
+  .m\:lgd-row__one-half {
+    grid-column: span 6;
+  }
+
+  .m\:lgd-row__two-thirds {
+    grid-column: span 8;
+  }
+
+  .m\:lgd-row__three-quarters {
+    grid-column: span 9;
+  }
+
+  .m\:lgd-row__full {
+    grid-column: span 12;
+  }
+
+}
+
+@media screen and (min-width: 1024px) {
+
+  .l\:grid-gap-2 {
+    grid-gap: 2rem;
+  }
+
+  .lgd-row__one-half-one-third,
+  .lgd-row--halves-thirds > * {
+    grid-column: span 4;
+  }
+
+  .l\:lgd-row__one-quarter {
+    grid-column: span 3;
+  }
+
+  .l\:lgd-row__one-third {
+    grid-column: span 4;
+  }
+
+  .l\:lgd-row__one-half {
+    grid-column: span 6;
+  }
+
+  .l\:lgd-row__two-thirds {
+    grid-column: span 8;
+  }
+
+  .l\:lgd-row__three-quarters {
+    grid-column: span 9;
+  }
+
+  .l\:lgd-row__full {
+    grid-column: span 12;
+  }
+
+}

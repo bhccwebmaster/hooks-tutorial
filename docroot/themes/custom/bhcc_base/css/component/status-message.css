@@ -1,0 +1,55 @@
+/*
+ * @file
+ *
+ * This file is for the status message element
+ */
+
+.status-message {
+  position: relative;
+  margin-bottom: var(--spacing-large);
+  padding: var(--spacing-small) var(--spacing-medium) var(--spacing-small) 4rem;
+  border: 2px solid var(--color-text);
+  font-weight: 600;
+}
+
+.status-message::before {
+  content: '';
+  position: absolute;
+  top: calc(50% - 15px);
+  left: 20px;
+  display: block;    
+  height: var(--spacing-large);
+  width: var(--spacing-large);
+  background-color: var(--color-text);
+  background-image: url(../../images/icon-exclaimation-white-large.svg);
+  background-position: 12.5px center;
+  background-repeat: no-repeat;
+  border-radius: var(--input-radius);
+}
+
+.status-message--error,
+.status-message--warning {
+  border-color: var(--color-warning);
+  color: var(--color-warning);
+}
+
+.status-message--error::before,
+.status-message--warning::before {
+  background-color: var(--color-warning);
+}
+
+.status-message--warning::before {
+  background-image: url(../../images/icon-cross-white-large.svg);
+  background-position: 8.5px center;
+}
+
+.status-message--success {
+  border-color: var(--color-success);
+  color: var(--color-success);
+}
+
+.status-message--success::before {
+  background-color: var(--color-success);
+  background-image: url(../../images/icon-tick-white-large.svg);
+  background-position: 6.5px center;
+}

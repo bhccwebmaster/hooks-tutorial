@@ -1,0 +1,60 @@
+<div class="jobs-wrapper">
+	<div class="lgd-row">
+		<section class="lgd-row__full content-container">
+			<p>This page brings you both Teaching and Support Staff opportunities in Brighton & Hove schools. All vacancies can be found on our <a href="/jobs/search">council jobs page</a>.</p>
+			<p>If you're interested in any of these vacancies, please download job packs <br />or apply online.</p>
+			<p>Brighton & Hove Schools - Taking Action for Equality</p>
+			<p>All schools are committed to safeguarding and promoting the welfare of children and young people and expect all staff and volunteers to share this commitment.</p>
+			{% if jobsfound %}
+				{% if jobsfound == 'Error' %}
+				  <div class="status-message status-message--warning"><strong>There is an issue with the jobs search, please try again later.</strong></div>
+				{% elseif jobsfound == 'Zero' %}
+				  <p class="jobs-wrapper--results-header"><span class="error-text">0 results</span> matched your search criteria</p>
+				{% elseif jobsfound == 1 %}
+				  <p class="jobs-wrapper--results-header"><span class="success-text">{{jobsfound}} result</span> matched your search criteria</p>
+				{% elseif jobsfound > 1 %}
+				  <p class="jobs-wrapper--results-header"><span class="success-text">{{jobsfound}} results</span> matched your search criteria</p>
+				{% endif %}
+			{% endif %}
+			{% if results %}
+				<table>
+					<thead>
+						<tr>
+							<th scope="col">Job title</th>
+							<th scope="col">Contract type</th>
+							<th scope="col">School/department</th>
+							<th scope="col">Working pattern</th>
+							<th scope="col">Pay grade</th>
+							<th scope="col">Job reference</th>
+							<th scope="col">Expiry date</th>
+						</tr>
+					</thead>
+					<tbody>
+					{% for result in results %}
+						<tr>
+							<td><a href="/jobs/job-details?job_id={{result.job_id}}">{{result.job_title}}</a></td>
+							<td>{{result.contract}}</td>
+							<td>{{result.location}}</td>
+							<td>{{result.pattern}}</td>
+							<td>{{result.salary}}</td>
+							<td>{{result.reference}}</td>
+							<td>{{result.apply}}</td>
+						</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+			{% endif %}
+			{% if pagination %}
+        {# TODO: This should be a real Drupal Pager #}
+        <nav class="pager" role="navigation" aria-labelledby="jobs-pager-label">
+          <h4 id="jobs-pager-label" class="visually-hidden">{{ 'Pagination'|t }}</h4>
+          <ul class="pager__items js-pager__items list-inline list-unstyled margin-top-xx-large margin-bottom-xx-large">
+            {% for links in pagination %}
+              <li class="pager__item"><a href="{{links.href}}">{{links.value}}</a></li>
+            {% endfor %}
+          </ul>
+        </nav>
+			{% endif %}
+		</section>
+	</div>
+</div>

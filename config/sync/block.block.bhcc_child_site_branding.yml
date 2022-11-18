@@ -1,0 +1,25 @@
+uuid: ca63de95-20de-4a76-aca5-cc10e7a1a702
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - bhcc_child
+_core:
+  default_config_hash: n_nlgjggHVfQt2H__zvLOKB2YtjPDbQ5tHijF9LE1aM
+id: bhcc_child_site_branding
+theme: bhcc_child
+region: header
+weight: -7
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: false
+visibility: {  }

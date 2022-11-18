@@ -1,0 +1,20 @@
+.link-block {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.link-block__title-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--spacing-medium);
+}
+
+.link-block__title-icon {
+  flex-shrink: 0;
+  margin-right: var(--spacing-x-small);
+}
+
+.link-block__title {
+  margin-bottom: 0;
+}

@@ -1,0 +1,45 @@
+{#
+/**
+ * @file
+ * Featured documents template.
+ *
+ * Available variables:
+ * - heading: The section heading. This is currently sourced from field_featured_documents_header.
+ * - items: All document items
+ *    - url: The document url
+ *    - name: The name of the document
+ *    - published: The data the document was published.
+ *    - description: A short document description.
+ *    - icon_class: The font awesome icon class
+ *
+ */
+#}
+
+<section class="margin-top-xx-large margin-bottom-xx-large">
+  {% if heading %}
+    <h2>{{ heading }}</h2>
+  {% endif %}
+
+  {% for item in items %}
+  <a href="{{ item.url }}" class="block margin-bottom-large padding-medium background-negative default-shadow default-shadow unstyled-link">
+    <div class="flex">
+      <div class="margin-right-small">
+        <span class="single-icon single-icon--x-large {{ item.icon_class }}"></span>
+      </div>
+      <div>
+        <div class="weight-semi larger-text margin-bottom-xx-small">{{ item.name }}</div>
+        <div class="block color-secondary smaller-text">
+          {{ item.info }}
+          {% if item.published %}
+            <strong>Published</strong> {{ item.published }}
+          {% endif %}
+        </div>
+        {% if item.description %}
+          <p>{{ item.description }}</p>
+        {% endif %}
+      </div>
+    </div>
+  </a>
+  {% endfor %}
+
+</section>

@@ -8,8 +8,8 @@ _core:
   default_config_hash: ydSxdq7R66I8UMC460rOzlfzvlUL4VRbdwc6z9DWaUI
 id: bootstrap_tutorial_secondary_local_tasks
 theme: bootstrap_tutorial
-region: header
-weight: -3
+region: above_conent
+weight: -5
 provider: null
 plugin: local_tasks_block
 settings:

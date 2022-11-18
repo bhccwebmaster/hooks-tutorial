@@ -1,0 +1,96 @@
+/*
+ * @file
+ *
+ * This file is for styling alerts.
+ */
+
+.bhcc-alert {
+  position: relative;
+  min-height: calc(2rem + (var(--spacing-x-small) * 2));
+  margin-bottom: var(--spacing);
+  padding: var(--spacing-small) var(--spacing-small) var(--spacing-small) calc((2rem + (var(--spacing-small) * 2)));
+  border: 2px solid var(--color-red);
+  font-weight: 700;
+  background-color: var(--color-grey-light);
+  background-repeat: no-repeat;
+  background-position: var(--spacing-small) center;
+  background-size: 3rem;
+}
+
+.bhcc-alert:before {
+  content: '';
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+}
+
+.bhcc-alert-info:before,
+.bhcc-alert-warning:before,
+.bhcc-alert-failure:before,
+.bhcc-alert-success:before {
+  display: block;
+  position: absolute;
+  left: var(--spacing-small);
+  top: calc(50% - 1rem);
+  width: 100%;
+  height: 100%;
+  max-width: 2rem;
+  max-height: 2rem;
+}
+
+.bhcc-alert-borderless {
+  border: none;
+  font-weight: 600;
+  background-color: transparent;
+}
+
+.bhcc-alert-small {
+  font-size: 1rem;
+  line-height: 1.125;
+}
+
+.bhcc-alert-small:before {
+  width: 1.875rem;
+  height: 1.875rem;
+  top: calc(50% - 0.9rem);
+}
+
+.bhcc-alert-info {
+  border-color: var(--color-black);
+  color: var(--color-black);
+}
+
+.bhcc-alert-info:before {
+  background-image: url(../../images/icon-alert-info-circle.svg);
+}
+
+.bhcc-alert-warning,
+.bhcc-alert-failure {
+  border-color: var(--color-red);
+  color: var(--color-red);
+}
+
+.bhcc-alert-warning:before {
+  background-image: url(../../images/icon-alert-warning-circle.svg);
+}
+
+.bhcc-alert-failure:before {
+  background-image: url(../../images/icon-alert-failure-circle.svg);
+}
+
+.bhcc-alert-success {
+  border-color: var(--color-green);
+  color: var(--color-green);
+}
+
+.bhcc-alert-success:before {
+  background-image: url(../../images/icon-alert-success-circle.svg);
+}
+
+.bhcc-alert-borderless {
+  padding: 0;
+}
+
+.bhcc-alert-content {
+  line-height: 1.25;
+}

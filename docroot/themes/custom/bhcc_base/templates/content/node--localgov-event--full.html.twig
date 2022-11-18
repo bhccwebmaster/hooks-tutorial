@@ -1,0 +1,148 @@
+{#
+This file provides the HTML structure for local offer pages.
+#}
+{%
+  set has_date = content.localgov_event_date|render|striptags and (node.bhcc_event_no_date is empty or node.bhcc_event_no_date.0.value == 0)
+%}
+
+<article{{ content_attributes.addClass('event') }}>
+
+  <section class="clearfix margin-top-large margin-bottom-large">
+
+    {% if not node.bhcc_event_past_banner.isEmpty() %}
+      {{ content.bhcc_event_past_banner }}
+    {% endif %}
+
+    {% if has_date %}
+      <div class="event__date margin-bottom-large">
+        <strong>{{ content.localgov_event_date }}</strong>
+      </div>
+    {% endif %}
+
+    <div class="lgd-row grid-gap-2">
+      <div class="lgd-row__full l:lgd-row__two-thirds">
+
+        {# Show the image here for mobile #}
+        <div class="show-mobile margin-bottom-large">
+          {{ content.localgov_event_image }}
+        </div>
+
+        <h2 class="margin-bottom-small">Details</h2>
+        {{ content.body }}
+
+        {% if not node.bhcc_booking_information.isEmpty() %}
+          <h2 class="margin-bottom-small margin-top-x-large">Booking information</h2>
+          {{ content.bhcc_booking_information }}
+        {% endif %}
+
+        {% if not node.bhcc_accessibility.isEmpty() %}
+          <h2 class="margin-bottom-small margin-top-x-large">Accessibility</h2>
+          {{ content.bhcc_accessibility }}
+        {% endif %}
+      </div>
+
+      {# Show the image here for desktop #}
+      <div class="hide-mobile lgd-row__full l:lgd-row__one-third">
+        {{ content.localgov_event_image }}
+      </div>
+
+    </div>
+
+    {# Print out any remaing content fields #}
+    {{ content|without(
+      'bhcc_accessibility',
+      'bhcc_booking_information',
+      'bhcc_event_past_banner',
+      'localgov_event_date',
+      'body',
+      'localgov_event_provider',
+      'localgov_event_venue',
+      'localgov_event_location',
+      'bhcc_cost_details',
+      'localgov_event_call_to_action',
+      'localgov_event_image',
+      'bhcc_location_details',
+      'bhcc_minimum_age',
+      'bhcc_maximum_age',
+      'bhcc_online_event',
+      'bhcc_event_geo_address'
+    ) }}
+
+  </section>
+
+  {% if has_summary_content %}
+    <section class="margin-top-large margin-bottom-large">
+      <h2 class="margin-bottom-small">Summary</h2>
+
+      <ul class="summary-list summary-list--large list-unstyled">
+
+        {% if not node.bhcc_online_event.value == 0 %}
+          <li class="summary-list__item">
+            <div class="summary-list__label weight-semi">Online event</div>
+            <div class="summary-list__content">{{ content.bhcc_online_event }}</div>
+          </li>
+        {% endif %}
+
+        {% if not node.localgov_event_provider.isEmpty() %}
+          <li class="summary-list__item">
+            <div class="summary-list__label weight-semi">Provider</div>
+            <div class="summary-list__content">{{ content.localgov_event_provider }}</div>
+          </li>
+        {% endif %}
+
+        {% if not node.localgov_event_venue.isEmpty() %}
+          <li class="summary-list__item">
+            <div class="summary-list__label weight-semi">Venue</div>
+            <div class="summary-list__content">{{ content.localgov_event_venue	}}</div>
+          </li>
+        {% endif %}
+
+        {% if not node.bhcc_location_details.isEmpty() %}
+          <li class="summary-list__item">
+            <div class="summary-list__label weight-semi">Address</div>
+            <div class="summary-list__content">{{ content.bhcc_location_details }}</div>
+          </li>
+        {% elseif content.bhcc_event_geo_address %}
+          <li class="summary-list__item">
+            <div class="summary-list__label weight-semi">Address</div>
+            <div class="summary-list__content">{{ content.bhcc_event_geo_address	}}</div>
+          </li>
+        {% endif %}
+
+        {% if not node.bhcc_cost_details.isEmpty() %}
+          <li class="summary-list__item">
+            <div class="summary-list__label weight-semi">Cost</div>
+            <div class="summary-list__content">{{ content.bhcc_cost_details }}</div>
+          </li>
+        {% endif %}
+
+        {% if content.bhcc_minimum_age.0 and node.bhcc_minimum_age.0.value > 0 %}
+          <li class="summary-list__item">
+            <div class="summary-list__label weight-semi">Minimum age</div>
+            <div class="summary-list__content">{{ content.bhcc_minimum_age	}}</div>
+          </li>
+        {% endif %}
+
+        {% if content.bhcc_maximum_age.0 and node.bhcc_maximum_age.0.value > 0 %}
+          <li class="summary-list__item">
+            <div class="summary-list__label weight-semi">Maximum age</div>
+            <div class="summary-list__content">{{ content.bhcc_maximum_age	}}</div>
+          </li>
+        {% endif %}
+
+      </ul>
+    </section>
+  {% endif %}
+
+  {% if not node.localgov_event_call_to_action.isEmpty() %}
+    <div class="margin-top-large margin-bottom-large">
+      {{ content.localgov_event_call_to_action }}
+    </div>
+  {% endif %}
+
+  {% if not node.localgov_event_location.isEmpty() %}
+    <h2 class="margin-top-large">Location</h2>
+    {{ content.localgov_event_location }}
+  {% endif %}
+
+</article>

@@ -1,0 +1,22 @@
+uuid: 0a60c140-c6f0-4d22-8873-bd1be2b14cc9
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - tutorial
+_core:
+  default_config_hash: erQSEZF2XUjNmgTl0uNRBzmg18ZGXwUcw2FhApoeuHk
+id: tutorial_content
+theme: tutorial
+region: content
+weight: -8
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

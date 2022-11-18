@@ -1,0 +1,15 @@
+<div class="facets-widget facets-widget-checkbox">
+  <ul class="facet-inactive item-list__checkbox list-unstyled facets-widget__list">
+  {% for key, facet in elements if key|first != '#' %}
+    {% set facet_open = facet['#value'] is not empty ? TRUE : FALSE %}
+    <li>
+      <button type="button" class="facets-widget__toggle button show-hide-toggle" data-target="{{ facet['#id'] }}">{{ facet['#title'] }}</button>
+      <ul id="{{ facet['#id'] }}" class="facet-{{ facet_open ? '' : 'in' }}active js-facets-checkbox-links item-list__checkbox show-hide facet-filter-checkboxes list-unstyled margin-bottom-x-small js-facets-widget{{ facet_open ? ' show-hide--is-active' : '' }}">
+        {% for item_key, item in facet if item_key|first != '#' %}
+          <li class="facet-item form-item">{{ item }}</li>
+        {% endfor %}
+      </ul>
+    </li>
+  {% endfor %}
+  </ul>
+</div>

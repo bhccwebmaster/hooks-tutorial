@@ -1,0 +1,14 @@
+/*
+ * @file
+ *
+ * This file is for the inset text component
+ */
+
+.inset-text,
+p.highlighted-text {
+  margin-bottom: var(--spacing-large);
+  margin-top: var(--spacing-large);
+  padding: var(--spacing-x-small) var(--spacing-medium);
+  border-left: 3px solid var(--color-accent);
+  font-size: 1.125rem;
+}

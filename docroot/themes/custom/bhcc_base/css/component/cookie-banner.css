@@ -1,0 +1,24 @@
+/*
+ * @file
+ *
+ * This file is for styling the cookie banner component
+ */
+
+ /* Fix overflow of the cookie banner and the toolbar */
+ .sliding-popup-bottom,
+ .sliding-popup-top {
+   z-index: 99;
+ }
+
+.eu-cookie-compliance-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/* Bugfix */
+/* Hide cookie banner markup from user after being dismissed with 'no' */
+.eu-cookie-compliance-status-0 .sliding-popup-bottom,
+.eu-cookie-compliance-status-0 .sliding-popup-top {
+  display: none;
+}

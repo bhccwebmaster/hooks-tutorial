@@ -1,0 +1,22 @@
+uuid: bb3baf39-55ec-46d6-b9a5-d3d817908eb4
+langcode: en
+status: true
+dependencies:
+  module:
+    - localgov_alert_banner
+  theme:
+    - tutorial
+id: tutorial_alertbanner
+theme: tutorial
+region: above_conent
+weight: -9
+provider: null
+plugin: localgov_alert_banner_block
+settings:
+  id: localgov_alert_banner_block
+  label: 'Alert banner'
+  label_display: '0'
+  provider: localgov_alert_banner
+  include_types:
+    localgov_alert_banner: '0'
+visibility: {  }

@@ -1,0 +1,22 @@
+uuid: fddd5102-dc81-4d2b-8e5d-ea3c4e2b7f17
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - bhcc_child
+_core:
+  default_config_hash: erQSEZF2XUjNmgTl0uNRBzmg18ZGXwUcw2FhApoeuHk
+id: bhcc_child_content
+theme: bhcc_child
+region: content
+weight: -8
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

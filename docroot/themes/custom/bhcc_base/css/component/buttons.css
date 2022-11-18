@@ -1,0 +1,247 @@
+/*
+ * @file
+ *
+ * This file is for styling buttons, including links that are styled as
+ */
+
+.button,
+.cta-button {
+  appearance: none;
+  position: relative;
+  align-items: center;
+  min-width: 9rem;
+  padding: var(--spacing-x-small) var(--spacing);
+  border: 0;
+  text-decoration: none;
+  line-height: 1.375;
+  font-weight: 600;
+  background: transparent;
+  cursor: pointer;
+}
+
+.button:not(.hidden):not(.js-hide):not(.button--single),
+.cta-button:not(.hidden) {
+  display: flex;
+}
+
+.button:not(.hidden) {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.button--search {
+  background-color: var(--color-blue);
+  color: var(--color-negative);
+}
+
+.button--search:hover,
+.button--search:focus {
+  background-color: var(--color-blue-var);
+}
+
+.button--single {
+  display: inline-flex;
+}
+
+.button--single-icon:not(.hidden) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button__icon {
+  position: relative;
+  display: block;
+  fill: currentColor;
+  height: 1em;
+  width: 1em;
+  flex-shrink: 0;
+}
+
+.button__icon--before {
+  margin-right: var(--spacing-x-small);
+  left: 0;
+  transition: left 0.25s ease;
+}
+
+.button__icon--after {
+  margin-left: var(--spacing-x-small);
+  right: 0;
+  transition: right 0.25s ease;
+}
+
+.button:hover .button__icon--before,
+.button:focus .button__icon--before {
+  left: calc(var(--spacing-xx-small) * -1);
+}
+
+.button:hover .button__icon--after,
+.button:focus .button__icon--after {
+  right: calc(var(--spacing-xx-small) * -1);
+}
+
+@media only screen and (min-width: 768px) {
+  .button,
+  .cta-button {
+    min-width: 10rem;
+  }
+}
+
+.button.inline-icon::before {
+  position: static;
+  margin-right: var(--spacing-xx-small);
+  flex-shrink: 0;
+}
+
+.button--inline:not(.hidden) {
+  display: inline-flex;
+}
+
+.webform-submission-form .button,
+.button--cta {
+  background-color: var(--button-background, var(--color-green));
+  color: var(--color-negative);
+}
+
+.webform-submission-form .button:hover,
+.webform-submission-form .button:focus,
+.button--cta:hover,
+.button--cta:focus {
+  background-color: var(--button-hover-background, #006e1a);
+}
+
+.button--action {
+  background-color: var(--color-green);
+  color: var(--color-negative);
+}
+
+.button--action:hover,
+.button--action:focus {
+  background-color: #006e1a;
+}
+
+.views-exposed-form .button--action .button__icon {
+  display: none;
+}
+
+/* Grey out disabled links, remove hover and focus styles */
+.button.link-disabled,
+.button.link-disabled:hover,
+.button.link-disabled:focus {
+  cursor: not-allowed;
+  background-color: var(--color-grey-dark);
+}
+
+/* Prevent arrow animation for disabled links. */
+/* (it makes it look like they can be used) */
+/* Also apply to button with --no-animation modifier. */
+.button.link-disabled:hover .button__icon,
+.button.link-disabled:focus .button__icon,
+.button__icon--no-animation {
+  right: 0;
+  left: 0;
+}
+
+.button--warning {
+  background-color: var(--color-warning);
+  color: var(--color-negative);
+}
+
+.button--next {
+  background-color: var(--button-next-background, var(--color-blue));
+  color: var(--color-white);
+  /* align next button to right */
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.button--next:hover,
+.button--next:focus,
+.button--previous:hover,
+.button--previous:focus {
+  background-color: var(--button-next-hover-background, var(--color-blue-var));
+}
+
+.button--previous,
+.cta-button.previous {
+  background-color: var(--button-next-background, var(--color-blue));
+  color: var(--color-white);
+  /* align next button to right */
+  margin-right: auto;
+  margin-left: 0;
+}
+
+/* As sometimes the next / prev button needs to appear standalone,
+ * remove any alignment styling,
+ * See the newsroom newsletter signup */
+.button--next.button--single,
+.button--previous.button--single,
+.cta-button.cta-single {
+  float: none;
+  justify-content: center;
+}
+
+/*
+ * Legacy wysiwyg styles
+ */
+
+.cta-button {
+  border-radius: var(--default-radius);
+  background-color: #008920;
+  color: #FFF;
+}
+
+.cta-button::before {
+  background-image: url(../../images/arrow-right-white.svg);
+}
+
+.button--small {
+  min-width: 9rem;
+}
+
+.button-red {
+  background-color: #A41355;
+  color: #FFF;
+  border-radius: 0;
+  padding-right: var(--spacing-xx-large);
+}
+
+.button-red a {
+  color: #FFF;
+  text-decoration:  none;
+}
+
+.button-red .button--next::before {
+  background-image: url(../../images/arrow-right-white.svg);
+}
+
+.cta-button {
+  padding-right: var(--spacing-xx-large);
+  margin-bottom: var(--spacing-large);
+}
+
+.cta-full {
+  max-width: 100%
+}
+
+.cta-auto {
+  max-width: 100%;
+  width: auto
+}
+
+
+.cta-medium {
+  max-width: 13.75rem
+}
+
+.cta-small {
+  width: 8.75rem
+}
+
+.cta-step {
+  max-width: 9.75rem
+}
+
+.cta-blue {
+  background-color: var(--color-blue);
+}

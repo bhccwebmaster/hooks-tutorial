@@ -1,0 +1,35 @@
+/*
+ * @file
+ *
+ * Styles summary lists.
+ */
+
+.summary-list__item {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--color-grey-dark);
+  padding: 0.75em 0;
+}
+
+@media only screen and (min-width: 768px) {
+  .summary-list__item {
+    flex-direction: row;
+  }
+}
+
+.summary-list__label {
+  min-width: 15%;
+  padding-right: 1em;
+}
+
+.summary-list--large-label .summary-list__label {
+  min-width: 25%;
+}
+
+@media only screen and (min-width: 768px) {
+  .summary-list--large .summary-list__label,
+  .summary-list--large .summary-list__content {
+    font-size: 1.188rem;
+    line-height: 1.5;
+  }
+}

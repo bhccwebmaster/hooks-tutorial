@@ -1,0 +1,35 @@
+/*
+ * @file
+ *
+ * This file is for styling zone info
+ */
+
+
+
+/* parking zone extras */
+.zone-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: -4px;
+}
+
+.zone-info > .zone-carfree-alert {
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.zone-info > .zone-alert {
+  width: auto;
+  min-width: 300px;
+  max-width: 100%;
+  margin: 4px;
+}
+
+.zone-info > .zone-buy-text {
+  width: auto;
+  min-width: 300px;
+  max-width: 100%;
+  margin: 4px;
+}

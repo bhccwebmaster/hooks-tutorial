@@ -1,0 +1,87 @@
+/*
+ * @file
+ *
+ * This file is for styling the content list component
+ */
+
+@media screen and (min-width: 768px) {
+  .content-list__wrapper {
+    display: block !important;
+  }
+}
+
+.content-list__wrapper ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.content-list__wrapper li {
+  position: relative;
+  border-bottom: 1px solid var(--color-grey-mid);
+}
+
+.content-list__wrapper a {
+  position: relative;
+  display: block;
+  padding: var(--spacing-x-small) var(--spacing);
+  padding-right: var(--spacing-large);
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.content-list__wrapper a.is-active {
+  cursor: unset;
+  color: var(--color-burgundy);
+}
+
+.content-list__wrapper a.is-active::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 6px;
+  background-color: var(--color-burgundy);
+}
+
+.content-list__wrapper a:not(.is-active):after {
+  content: '';
+  display: block;
+  position: absolute;
+  right: var(--spacing-x-small);
+  top: calc(50% - 9px);
+  width: 18px;
+  height: 18px;
+  background-image: url(../../images/arrow-right-black.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.6;
+}
+
+.content-list__toggle {
+  display: block;
+  width: 100%;
+  padding: var(--spacing-x-small) var(--spacing-small);
+  background-color: var(--color-white);
+  border-radius: 0;
+  border: 2px solid var(--color-grey-mid);
+  cursor: pointer;
+}
+
+.content-list__toggle.show-hide-toggle--is-active {
+  border-color: #d8d8d8;
+}
+
+@media screen and (min-width: 768px) {
+  .content-list__toggle {
+    display: none;
+  }
+}
+
+.content-list__toggle.show-hide-toggle::before {
+  right: var(--spacing-x-small);
+}
+

@@ -1,0 +1,25 @@
+/*
+ * @file
+ *
+ * This file is for the keyline that appears underneath headers
+ */
+
+.keyline {
+  position: relative;
+  padding-bottom: calc(var(--spacing-small) * 1.5);
+  color: var(--color-black);
+}
+
+.keyline::after {
+  content: '';
+  width: calc(var(--spacing) * 3);
+  height: 6px;
+  background-color: var(--color-black);
+  position: absolute;
+  bottom: 0;
+  display: block;
+}
+
+.color-negative .keyline::after {
+  background-color: var(--color-negative);
+}

@@ -1,0 +1,74 @@
+{#
+/**
+ * @file
+ * Theme override for the basic structure of a single Drupal page.
+ *
+ * Variables:
+ * - logged_in: A flag indicating if user is logged in.
+ * - root_path: The root path of the current page (e.g., node, admin, user).
+ * - node_type: The content type for the current node, if the page is a node.
+ * - head_title: List of text elements that make up the head_title variable.
+ *   May contain one or more of the following:
+ *   - title: The title of the page.
+ *   - name: The name of the site.
+ *   - slogan: The slogan of the site.
+ * - page_top: Initial rendered markup. This should be printed before 'page'.
+ * - page: The rendered page markup.
+ * - page_bottom: Closing rendered markup. This variable should be printed after
+ *   'page'.
+ * - db_offline: A flag indicating if the database is offline.
+ * - placeholder_token: The token for generating head, css, js and js-bottom
+ *   placeholders.
+ *
+ * @see template_preprocess_html()
+ */
+#}
+<!DOCTYPE html>
+<html{{ html_attributes }}>
+  <head>
+    <head-placeholder token="{{ placeholder_token|raw }}">
+    <title>{{ head_title|safe_join(' | ') }}</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/{{ base_path ~ directory }}/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/{{ base_path ~ directory }}/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/{{ base_path ~ directory }}/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="theme-color" content="#000000">
+
+    <css-placeholder token="{{ placeholder_token|raw }}">
+    <js-placeholder token="{{ placeholder_token|raw }}">
+  </head>
+  <body{{ attributes }}>
+  <svg class="hidden" xmlns="http://www.w3.org/2000/svg" href="http://www.w3.org/1999/xlink">
+    <symbol viewBox="0 0 34 34" id="tick">
+      <path d="M 32.78 4.553 C 33.523 3.262 33.082 1.612 31.79 0.862 C 30.497 0.117 28.847 0.559 28.1 1.853 L 11.721 26.473 L 5.531 20.842 C 4.511 19.754 2.802 19.7 1.715 20.718 C 0.624 21.735 0.57 23.447 1.588 24.535 L 10.466 32.647 C 11.483 33.736 13.194 33.789 14.281 32.771 C 14.611 32.459 32.78 4.553 32.78 4.553 Z"></path>
+    </symbol>
+    <symbol viewBox="0 0 34 34" id="cross">
+      <path d="M 20.393 17.054 L 30.64 27.299 C 31.581 28.242 31.581 29.773 30.64 30.716 C 29.693 31.664 28.163 31.664 27.222 30.716 L 16.974 20.472 L 6.661 30.789 C 5.706 31.737 4.163 31.737 3.21 30.789 C 2.262 29.836 2.262 28.294 3.21 27.34 L 13.525 17.026 L 3.281 6.778 C 2.337 5.836 2.337 4.304 3.281 3.359 C 4.227 2.415 5.756 2.415 6.7 3.359 L 16.947 13.603 L 27.339 3.214 C 28.29 2.262 29.835 2.262 30.785 3.214 C 31.74 4.168 31.74 5.71 30.785 6.662 L 20.393 17.054 Z"></path>
+    </symbol>
+    <symbol viewBox="0 0 12 22" id="arrow-right">
+      <path d="M 2.808 20.586 C 2.232 21.158 1.299 21.158 0.724 20.586 C 0.145 20.012 0.145 19.084 0.724 18.511 L 6.803 12.466 L 8.185 11 L 6.803 9.534 L 0.724 3.489 C 0.145 2.916 0.145 1.988 0.724 1.416 C 1.299 0.84 2.232 0.84 2.808 1.416 L 11.155 9.711 C 11.507 10.063 11.71 10.547 11.71 11.008 C 11.71 11.453 11.507 11.937 11.155 12.289 L 2.808 20.586 Z"></path>
+    </symbol>
+    <symbol viewBox="0 0 12 22" id="arrow-left">
+      <path d="M 5.159 9.535 L 3.746 11 L 5.159 12.464 L 11.195 18.499 C 11.766 19.072 11.766 19.999 11.195 20.571 C 10.623 21.143 9.696 21.143 9.123 20.571 L 0.838 12.287 C 0.488 11.935 0.393 11.451 0.377 10.995 C 0.371 10.537 0.488 10.064 0.838 9.712 L 9.123 1.429 C 9.696 0.857 10.623 0.857 11.195 1.429 C 11.766 2 11.766 2.927 11.195 3.5 L 5.159 9.535 Z"></path>
+    </symbol>
+    <symbol viewBox="0 0 12 16" id="file-pdf">
+      <path d="M 8 4.5 L 11 4.5 L 11 3.8280000000000003 C 11 3.563 10.895 3.308 10.707 3.121 L 8.879 1.2930000000000001 C 8.692 1.105 8.437 1 8.172 1 L 7.5 1 L 7.5 4 C 7.5 4.276 7.724 4.5 8 4.5 Z M 8.172 0 C 8.702 0 9.211 0.21100000000000002 9.586 0.586 L 11.414 2.414 C 11.789 2.7889999999999997 12 3.298 12 3.8280000000000003 L 12 14 C 12 15.105 11.105 16 10 16 L 2 16 C 0.895 16 0 15.105 0 14 L 0 2 C 0 0.895 0.895 0 2 0 Z M 11 5.5 L 11 14 C 11 14.552 10.552 15 10 15 L 2 15 C 1.448 15 1 14.552 1 14 L 1 2 C 1 1.448 1.448 1 2 1 L 6.5 1 L 6.5 4 C 6.5 4.828 7.172 5.5 8 5.5 Z M 9.792 10.579 C 9.356 10.15 8.112 10.268 7.492 10.347 C 6.873 9.967 6.408 9.382 6.176 8.693999999999999 C 6.391 8.05 6.457 7.367 6.369 6.694 C 6.28 6.085 5.565 5.8 5.082 6.182 C 4.98 6.2620000000000005 4.9 6.365 4.847 6.483 C 4.739 7.292 4.824 8.114 5.097 8.883 C 4.721 9.79 4.299 10.677 3.832 11.54 C 3.117 11.908 2.152 12.476 2.01 13.19 C 1.892 13.754 2.939 15.161 4.729 12.076 C 5.525 11.778 6.342 11.538 7.173 11.358 C 7.785 11.705 8.466 11.913 9.167 11.965 C 9.802 11.981 10.216 11.303 9.912 10.745 C 9.879 10.685 9.839 10.629 9.792 10.579 Z M 2.713 13.358 C 2.991 12.875 3.36 12.45 3.8 12.108 C 3.12 13.19 2.713 13.383 2.713 13.358 Z M 5.629 6.551 C 5.893 6.551 5.868 7.697 5.693 8.008 C 5.552 7.535 5.53 7.035 5.629 6.551 Z M 4.757 11.429 C 5.101 10.801 5.396 10.149000000000001 5.64 9.476 C 5.904 9.97 6.271 10.403 6.716 10.744 C 6.045 10.916 5.389 11.145 4.757 11.429 Z M 9.457 11.25 C 9.457 11.25 9.278 11.464 8.124 10.971 C 9.381 10.879 9.588 11.165 9.46 11.251 Z" fill-rule="evenodd"></path>
+    </symbol>
+    <symbol viewBox="0 0 18 18" id="search">
+      <path d="M 12.343 14.006 C 11.175 14.838 9.747 15.328 8.203 15.328 C 4.259 15.328 1.061 12.13 1.061 8.186 C 1.061 4.242 4.259 1.044 8.203 1.044 C 12.147 1.044 15.345 4.242 15.345 8.186 C 15.345 9.73 14.855 11.158 14.023 12.326 L 16.81 15.139 C 17.272 15.6 17.268 16.34 16.81 16.799 L 16.79 16.819 C 16.332 17.276 15.588 17.277 15.13 16.819 L 12.343 14.006 Z M 8.203 13.647 C 11.219 13.647 13.664 11.202 13.664 8.186 C 13.664 5.169 11.219 2.724 8.203 2.724 C 5.186 2.724 2.741 5.169 2.741 8.186 C 2.741 11.202 5.186 13.647 8.203 13.647 Z" id="search-plus" style=""></path>
+    </symbol>
+  </svg>
+    {#
+      Keyboard navigation/accessibility link to main content section in
+      page.html.twig.
+    #}
+    <a href="#main-content" class="visually-hidden focusable">
+      {{ 'Skip to main content'|t }}
+    </a>
+    {{ page_top }}
+    {{ page }}
+    {{ page_bottom }}
+    <js-bottom-placeholder token="{{ placeholder_token|raw }}">
+  </body>
+</html>

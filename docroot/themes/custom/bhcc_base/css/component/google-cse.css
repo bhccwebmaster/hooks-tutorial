@@ -1,0 +1,25 @@
+/*
+ * @file
+ *
+ * This file is for styling google search results pages.
+ */
+
+ #google-cse-results .gsc-above-wrapper-area-container {
+  margin-top: 0;
+}
+
+#google-cse-results .gsc-control-cse {
+  padding: 0;
+}
+
+#google-cse-results .gsc-control-cse,
+#google-cse-results .gsc-webResult {
+  border: none;
+  background-color: var(--color-background);
+}
+
+#google-cse-results .gsc-results .gsc-cursor-box .gsc-cursor-page {
+  border-color: reset;
+  background-color: var(--color-background);
+  color: var(--color-text);
+}

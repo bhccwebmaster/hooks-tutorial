@@ -1,0 +1,39 @@
+/*
+ * @file
+ *
+ * This file is for the overlay page element
+ *
+ * @todo - deprecate this and move into layout-utilities and overlays
+ */
+
+.overlay {
+  position: relative;
+  overflow: hidden;
+}
+
+.overlay__content {
+  position: relative;
+  z-index: 3;
+}
+
+.overlay__transparency,
+.overlay__image {
+  position: absolute;
+}
+
+.overlay__transparency {
+  z-index: 2;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(rgba(12, 13, 13, 0.4), rgba(12, 13, 13, 0.7));
+}
+
+.overlay__image {
+  z-index: 1;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}

@@ -1,0 +1,68 @@
+{#
+/**
+ * @file
+ * BHCC Base theme override to display an Open Vacancies block.
+ */
+#}
+<section>
+	{% if jobsfound %}
+		{% if jobsfound == 'Error' %}
+		  <div class="status-message status-message--warning"><strong>There is an issue with the jobs search, please try again later.</strong></div>
+		{% elseif jobsfound == 'Zero' %}
+		  <p class="margin-top-reset weight-semi">
+        <span class="error-text">0 results</span> matched your search criteria
+      </p>
+    {% elseif jobsfound > 1 %}
+		  <p class="margin-top-reset weight-semi">
+        <span class="success-text">{{ jobsfound }} {{ jobsfound == 1 ? 'result' : 'results' }}</span> matched your search criteria
+      </p>
+		{% endif %}
+	{% endif %}
+	{% if results %}
+		{% for result in results %}
+			<article class="job-card card default-shadow background-negative margin-bottom-large">
+        <a class="unstyled-link" href="/jobs/job-details?job_id={{ result.job_id }}">
+          <div class="job-card__contract weight-semi">
+            <span class="sr-only">Contract</span>{{ result.contract }}
+          </div>
+          <h2 class="margin-bottom-medium">
+            {{ result.job_title }}
+          </h2>
+
+          <ul class="job-card__list list-unstyled">
+
+            <li class="job-card__item icon-currency-gbp">
+              <div class="job-card__salary">
+                <span class="sr-only">Salary</span>
+                <span>{{ result.salary }}</span>
+              </div>
+            </li>
+
+            <li class="job-card__item icon-location">
+              <ul class="list-unstyled">
+                {% if result.directorate != 'BHCC: External' %}
+                  <li class="margin-bottom-xx-small">
+                    <span class="sr-only">Directorate</span>
+                    {{ result.directorate }}
+                  </li>
+                {% endif %}
+                <li>
+                  <span class="sr-only">Location</span>
+                  {{ result.location }}
+                </li>
+              </ul>
+            </li>
+
+            {% if result.apply %}
+              <li class="job-card__item icon-time">
+                <p class="margin-reset">Apply by {{ result.apply }}</p>
+              </li>
+            {% endif %}
+
+          </ul>
+        </a>
+			</article>
+		{% endfor %}
+	{% endif %}
+  {{ pager }}
+</section>

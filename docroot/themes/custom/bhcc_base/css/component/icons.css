@@ -1,0 +1,196 @@
+/*
+ * @file
+ *
+ * This file is for styling elements that are preceded by an icon
+ * @todo - move "next" icons into this file
+ */
+
+.single-icon {
+  position: relative;
+  display: inline-block;
+  width: var(--icon-base);
+  height: var(--icon-base);
+  flex-shrink: 0;
+}
+
+.single-icon--large {
+  width: var(--spacing-x-large);
+  height: var(--spacing-x-large);
+}
+
+.single-icon--x-large {
+  width: 3rem;
+  height: 3rem;
+}
+
+.single-icon--xx-large {
+  width: 4.375rem;
+  height: 4.375rem;
+}
+
+.inline-icon {
+  position: relative;
+  display: inline;
+  padding-left: calc(var(--icon-base) * 2);
+}
+
+.icon-list li {
+  margin-bottom: var(--spacing-x-small);
+  padding-left: calc(var(--icon-base) * 2);
+  position: relative;
+}
+
+.inline-icon::before,
+.single-icon::before,
+.icon-list__item::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: calc(50% - 9px);
+  width: var(--icon-base);
+  height: var(--icon-base);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: var(--icon-base) var(--icon-base);
+}
+
+.inline-icon.inline-icon--large::before {
+  width: 1.2em;
+  height: 1.4em;
+  background-size: calc(var(--icon-base) * 1) calc(var(--icon-base) * 1.9); 
+  top: calc(50% - 11px);
+}
+
+.single-icon--large::before {
+  left: calc(50% - 10px);
+  top: calc(50% - 10px);
+  width: var(--spacing-medium);
+  height: var(--spacing-medium);
+  background-size: contain;
+}
+
+.single-icon--x-large::before {
+  left: 0;
+  top: calc(50% - 1.5rem);
+  width: 2.1875rem;
+  height: 3rem;
+  background-size: 3rem 3rem ; 
+}
+
+.single-icon--xx-large::before {
+  left: calc(50% - 17.5px);
+  top: calc(50% - 17px);
+  width: 2.1875rem;
+  height: 2.1875rem;
+  background-size: contain;
+}
+
+.icon-currency-gbp::before {
+  background-image: url(../../images/icon-currency-gbp.svg);
+}
+
+.icon-time::before {
+  background-image: url(../../images/icon-clock.svg);
+}
+
+.icon-location::before {
+  background-image: url(../../images/icon-location.svg);
+}
+
+.icon-call::before {
+  background-image: url(../../images/icon-call.svg);
+}
+
+.icon-email::before {
+  background-image: url(../../images/icon-email.svg);
+}
+
+.icon-email--white::before {
+  background-image: url(../../images/icon-email-white.svg);
+}
+
+.icon-file-excel::before {
+  background-image: url(../../images/icon-file-excel.svg);
+}
+
+.icon-logo::before {
+  background-image: url(../../images/logo.svg);
+}
+
+.icon-website::before {
+  background-image: url(../../images/icon-website.svg);
+}
+
+.icon-pdf::before {
+  background-image: url(../../images/icon-pdf.svg);
+}
+
+.icon-file::before {
+  background-image: url(../../images/icon-file.svg);
+}
+
+.icon-file-pdf::before {
+  background-image: url(../../images/icon-file-pdf.svg);
+}
+
+.icon-file-word::before {
+  background-image: url(../../images/icon-file-word.svg);
+}
+
+.icon-facebook::before {
+  background-image: url(../../images/icon-facebook.svg)
+}
+.icon-twitter::before {
+  background-image: url(../../images/icon-twitter.svg)
+}
+.icon-youtube::before {
+  background-image: url(../../images/icon-youtube.svg)
+}
+.icon-linkedin::before {
+  background-image: url(../../images/icon-facebook.svg)
+}
+
+
+
+
+
+
+.service-icon {
+  padding-left: 35px;
+  position: relative;
+}
+
+.service-icon:before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0px;
+  top: calc(50% - 12px);
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url(../../images/icon-housing.svg);
+}
+
+.service-icon--home:before {
+  background-image: url(../../images/icon-home-pink.svg);
+}
+
+.service-icon--council-tax:before {
+  background-image: url(../../images/icon-service-council-tax.svg);
+}
+
+.service-icon--all-services:before {
+  background-image: url(../../images/icon-all-services.svg);
+}
+
+.services-navigation__landing-heading .service-icon:before {
+  filter: invert(12%) sepia(44%) saturate(6773%) hue-rotate(319deg) brightness(103%) contrast(97%);
+}
+
+/* helper just to flip icon colours */
+.icon-invert::before {
+  filter: invert(1);
+}

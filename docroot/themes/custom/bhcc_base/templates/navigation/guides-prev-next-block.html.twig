@@ -1,0 +1,24 @@
+{#
+/**
+* @file
+* Default theme implementation for the guides_prev_next_block block.
+*/
+#}
+<nav class="localgov-guides__navigation flex flex-space-between constrain-width">
+  {% if previous_url %}
+    <a href="{{ previous_url }}" class="button button--previous" aria-label="{{ 'Previous'|t }}: {{ previous_title }}">
+      <svg viewBox="0 0 13 22" class="button__icon button__icon--before">
+        <use xmlns="http://www.w3.org/1999/xlink" xlink:href="#arrow-left"></use>
+      </svg>
+      {{ 'Previous'|t }}
+    </a>
+  {% endif %}
+  {% if next_url %}
+    <a href="{{ next_url }}" class="button button--next" aria-label="{{ 'Next'|t }}: {{ next_title }}">
+      {{ 'Next'|t }}
+      <svg viewBox="0 0 13 22" class="button__icon button__icon--after">
+        <use xmlns="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
+      </svg>
+    </a>
+  {% endif %}
+</nav>

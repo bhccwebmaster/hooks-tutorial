@@ -1,0 +1,170 @@
+{#
+/**
+ * @file
+ * BHCC Base theme override to display a Job Details block.
+ */
+#}
+<section class="job-details">
+	{% if returned == true %}
+
+		<h2 class="margin-bottom-x-small">{{ title }}</h2>
+		<span class="block weight-semi margin-bottom-x-large">Posted on {{ posteddate }}</span>
+
+    {{ apply_button }}
+
+		<div class="margin-top-large margin-bottom-large">
+
+      <ul class="list-unstyled">
+        {% if directorate != 'BHCC: External' %}
+          <li class="margin-bottom-medium">
+            <span class="block weight-semi margin-bottom-xx-small">Directorate</span>
+            {{ directorate }}
+          </li>
+        {% endif %}
+
+        <li class="margin-bottom-medium">
+          <span class="block weight-semi margin-bottom-xx-small">Salary</span>
+          {{ salary }}
+        </li>
+
+        <li class="margin-bottom-medium">
+          <span class="block weight-semi margin-bottom-xx-small">Contract</span>
+          {{ contract }}
+        </li>
+
+        <li class="icon-list__item">
+          <span class="block weight-semi margin-bottom-xx-small">Closing Date</span>
+          {% if jobexpired == 'expired' %}
+            <strong class="job-expired">This vacancy has closed</strong>
+          {% elseif closingdate %}
+            Apply by {{ closingdate }}
+          {% endif %}
+        </li>
+
+      </ul>
+
+		</div>
+
+    <div class="margin-bottom-large">
+      <h2 class="margin-bottom-x-small">Location</h2>
+
+      <p>{{ location }}</p>
+
+      <div id="map-wrapper">
+        <div id="map" style="height: 170px;" class="ol-map-small"></div>
+      </div>
+      <div class="margin-top-small">
+        <button id="resize-map" class="button padding-x-small background-white"><span class="fas fa-expand-arrows-alt padding-right-x-small"></span> Larger map</button>
+      </div>
+    </div>
+
+    <div class="margin-top-x-large margin-bottom-x-large">
+      <h2 class="margin-bottom-x-small">Job Summary</h2>
+      <ul class="summary-list summary-list--large-label list-unstyled">
+
+        <li class="summary-list__item">
+          <div class="summary-list__label weight-semi">Job reference</div>
+          <div class="summary-list__content">
+            {{ reference }}
+          </div>
+        </li>
+
+        <li class="summary-list__item">
+          <div class="summary-list__label weight-semi">Positions available</div>
+          <div class="summary-list__content">
+            {{ positions }}
+          </div>
+        </li>
+
+        <li class="summary-list__item">
+          <div class="summary-list__label weight-semi">Working hours</div>
+          <div class="summary-list__content">
+            {{ hours }}
+          </div>
+        </li>
+
+        {% if jobexpired == 'expired' %}
+          <li class="summary-list__item">
+            <div class="summary-list__label weight-semi">Closing date</div>
+            <div class="summary-list__content">
+              <strong class="job-expired">This vacancy has closed</strong>
+            </div>
+          </li>
+        {% elseif closingdate %}
+          <li class="summary-list__item">
+            <div class="summary-list__label weight-semi">Closing date</div>
+            <div class="summary-list__content">
+              {{ closingdate }}
+            </div>
+          </li>
+        {% endif %}
+
+        <li class="summary-list__item">
+          <div class="summary-list__label weight-semi">Job category</div>
+          <div class="summary-list__content">
+            {{ category }}
+          </div>
+        </li>
+
+        <li class="summary-list__item">
+          <div class="summary-list__label weight-semi">Organisation</div>
+          <div class="summary-list__content">
+            {{ organisation }}
+          </div>
+        </li>
+
+        {% if directorate == 'BHCC: External' %}
+          <li class="summary-list__item">
+            <div class="summary-list__label weight-semi">Directorate</div>
+            <div class="summary-list__content">
+              {{ directorate }}
+            </div>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+
+		<div class="lgd-row">
+			<div class="lgd-row__full rich-text__item">
+				<h2>Job introduction</h2>
+				<p>{{ package }}</p>
+
+				<h2>About the role</h2>
+				<p>{{ introduction }}</p>
+
+				<h2>Additional information</h2>
+				<p>{{ additionalinfo }}</p>
+
+				<h2>Company information</h2>
+				<p>{{ companyinfo }}</p>
+
+				{% if files %}
+					<h2>Files</h2>
+					<ul>
+            {% for file in files %}
+              <li>
+                <a href="{{ file.url }}" target="_blank">{{ file.filename }}</a>
+              </li>
+            {% endfor %}
+					</ul>
+				{% endif %}
+
+				{% if logo %}
+          <img src="{{ logo }}" alt="directorate logo">
+				{% endif %}
+
+        <img class="margin-top-large margin-bottom-large" src="/{{ modulepath }}/img/logos-for-jobs-page-update.jpg" alt="Living Wage Employer logo, Armed Forces Covenant logo, Equality Framework for Local Government Logo, Disability Confident Employer logo">
+
+        {{ apply_button }}
+
+        <div class="margin-top-large">
+					<a href="javascript:void(0);" onclick="window.print();return false;" class="action-link action-link--print">
+            Print this page
+          </a>
+				</div>
+			</div>
+		</div>
+	{% else %}
+		<p>{{error}}</p>
+	{% endif %}
+</section>

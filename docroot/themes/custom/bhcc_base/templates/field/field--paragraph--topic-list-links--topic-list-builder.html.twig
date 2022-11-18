@@ -1,0 +1,14 @@
+{#
+/**
+ * @file
+ * Template for topic list builder paragraphs topic list links field.
+#}
+<div{{ attributes.addClass('lgd-row') }}>
+  {% for item in items %}
+    {% if item.content|render|striptags %}
+    <div class="lgd-row__one-half-one-third flex">
+      {{ item.content }}
+    </div>
+    {% endif %}
+  {% endfor %}
+</div>

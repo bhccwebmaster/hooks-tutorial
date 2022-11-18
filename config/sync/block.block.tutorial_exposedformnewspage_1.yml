@@ -1,0 +1,28 @@
+uuid: ab4cfeab-5f71-4846-b5c8-9a615482487c
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.news
+  module:
+    - system
+    - views
+  theme:
+    - tutorial
+id: tutorial_exposedformnewspage_1
+theme: tutorial
+region: sidebar_second
+weight: -9
+provider: null
+plugin: 'views_exposed_filter_block:news-page_1'
+settings:
+  id: 'views_exposed_filter_block:news-page_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: "/news\r\n/news/*"

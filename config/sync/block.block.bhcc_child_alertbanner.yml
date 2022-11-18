@@ -1,0 +1,22 @@
+uuid: 19ed7001-6279-4277-bfd2-8e63117bec57
+langcode: en
+status: true
+dependencies:
+  module:
+    - localgov_alert_banner
+  theme:
+    - bhcc_child
+id: bhcc_child_alertbanner
+theme: bhcc_child
+region: banner
+weight: -7
+provider: null
+plugin: localgov_alert_banner_block
+settings:
+  id: localgov_alert_banner_block
+  label: 'Alert banner'
+  label_display: '0'
+  provider: localgov_alert_banner
+  include_types:
+    localgov_alert_banner: '0'
+visibility: {  }

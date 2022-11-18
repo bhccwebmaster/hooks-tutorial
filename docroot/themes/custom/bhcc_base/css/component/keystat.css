@@ -1,0 +1,29 @@
+/*
+ * @file
+ *
+ * This file is for the keystat component
+ */
+
+p.keystat--fact + p.keystat--subtitle {
+  margin-top: calc(var(--spacing-x-small) * -1);
+  margin-bottom: calc(var(--spacing-x-large));
+}
+
+p.keystat--subtitle+p.keystat--fact {
+  margin-top: calc(var(--spacing-x-small) * -1)
+}
+
+p.keystat--subtitle {
+  margin-bottom: var(--spacing-x-small);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  line-height: 1;
+}
+
+p.keystat--fact {
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1;
+  word-break: break-all;
+}

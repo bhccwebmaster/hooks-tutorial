@@ -1,0 +1,29 @@
+uuid: 430d39c4-20df-4374-9fce-ce3f7fed8c2d
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.recent_articles
+  module:
+    - system
+    - views
+  theme:
+    - bhcc_child
+id: bhcc_child_views_block__recent_articles_block_1
+theme: bhcc_child
+region: sidebar_right
+weight: -6
+provider: null
+plugin: 'views_block:recent_articles-block_1'
+settings:
+  id: 'views_block:recent_articles-block_1'
+  label: ''
+  label_display: visible
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: "/news\r\n"

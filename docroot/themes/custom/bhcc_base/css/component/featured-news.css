@@ -1,0 +1,13 @@
+/*
+ * @file
+ *
+ * This file is for styling the featured news component.
+ */
+
+/* To set the primary news item to fit the layout now it is a 4:3 ratio. */
+@media only screen and (min-width: 768px) {
+  .featured-news__secondary > .lgd-row {
+    /* TODO: Should not need !important here */
+    margin-bottom: 24px !important;
+  }
+}

@@ -1,0 +1,30 @@
+{#
+/**
+ * @file
+ * Documents listing template.
+ *
+ * Available variables:
+ * - heading: The section heading. This is currently sourced from field_featured_documents_header.
+ * - items: All document items
+ *    - url: The document url
+ *    - name: The name of the document
+ *    - info: Basic document information line.
+ *
+ */
+#}
+
+<section class="margin-top-xx-large margin-bottom-xx-large">
+  {% if heading %}
+    <h2>{{ heading }}</h2>
+  {% endif %}
+  <ul class="list-unstyled">
+    {% for item in items %}
+      <li class="padding-top-x-small padding-bottom-x-small default-border-bottom">
+        <a href="{{ item.url }}">
+          <span class="inline-icon inline-icon--large {{ item.icon_class }}"></span>{{ item.name }}
+        </a>
+        <span class="margin-left-x-small smaller-text color-secondary">{{ item.info }}</span>
+      </li>
+    {% endfor %}
+  </ul>
+</section>

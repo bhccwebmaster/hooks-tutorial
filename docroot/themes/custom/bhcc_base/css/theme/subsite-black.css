@@ -1,0 +1,97 @@
+/*
+ * @file
+ *
+ * This file is for the black subsite theme.
+ */
+
+body.subsite-theme--bhcc_black .page-header {
+  background-color: var(--color-black);
+}
+
+body.subsite-theme--bhcc_black .layout-container,
+body.subsite-theme--bhcc_black .layout-sidebar-first,
+body.subsite-theme--bhcc_black .footer {
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+body.subsite-theme--bhcc_black .paragraph {
+  text-align: center;
+}
+
+@media only screen and (min-width: 768px) {
+  body.subsite-theme--bhcc_black .paragraph--type--localgov-text {
+    max-width: 920px;
+    margin: 0 auto;
+  }
+}
+
+body.subsite-theme--bhcc_black .paragraph--type--localgov-text a {
+  color: var(--color-light-blue);
+}
+
+/* Fix horizontal scroll on mobile. */
+body.subsite-theme--bhcc_black .paragraph--type--localgov-image img {
+  max-width: 100%;
+  margin: 0 auto var(--spacing-x-large);
+}
+
+/* Fix image max 600px once it fits in the viewport. */
+@media only screen and (min-width: 600px) {
+  body.subsite-theme--bhcc_black .paragraph--type--localgov-image img {
+    max-width: 600px;
+  }
+}
+
+body.subsite-theme--bhcc_black .footer h2 {
+  color: var(--color-grey-light);
+}
+
+body.subsite-theme--bhcc_black .horizontal-menu .menu-level-1 > li > .menu__services-links__link {
+  color: var(--color-grey-light);
+}
+
+body.subsite-theme--bhcc_black .horizontal-menu .menu-level-1 > li > .menu__services-links__link:hover {
+  background-color: var(--color-grey-dark);
+}
+
+body.subsite-theme--bhcc_black .horizontal-menu .menu-level-1 > li > .menu__services-links__link.active {
+  background-color: var(--color-burgundy);
+}
+
+body.subsite-theme--bhcc_black .horizontal-menu .menu-level-1 > li > .menu__services-links__link::after,
+body.subsite-theme--bhcc_black .site-logo img {
+  filter: invert(100%);
+}
+
+/** Push menu */
+body.subsite-theme--bhcc_black .push-menu {
+  background-color: var(--color-black);
+}
+
+body.subsite-theme--bhcc_black .push-menu .menu__services-links__link {
+  color: var(--color-white);
+}
+
+body.subsite-theme--bhcc_black .push-menu .menu__services-links__link:hover,
+body.subsite-theme--bhcc_black .push-menu .menu__services-links__link:focus {
+  background-color: var(--color-grey-dark);
+}
+
+body.subsite-theme--bhcc_black .push-menu .menu__services-links__link::after {
+  filter: invert(100%);
+}
+
+body.subsite-theme--bhcc_black .push-menu .menu__services-links__link:hover::after,
+body.subsite-theme--bhcc_black .push-menu .menu__services-links__link:focus::after {
+  /* use the black arrow that then gets inverted. */
+  background-image: url(../../images/arrow-right-black.svg);
+}
+
+/* Mobile menu */
+body.subsite-theme--bhcc_black .mobile-menu .menu-level-1 > li > .menu__services-links__link:not(.menu-link--orange):not(.menu-link--burgandy) {
+  background-color: var(--color-grey-dark);
+}
+body.subsite-theme--bhcc_black .mobile-menu .menu__services-links__link {
+  color: var(--color-white);
+}

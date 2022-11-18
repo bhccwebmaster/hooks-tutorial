@@ -56,6 +56,7 @@ module:
   token: 0
   toolbar: 0
   tour: 0
+  twig_tweak: 0
   update: 0
   user: 0
   views_ui: 0
@@ -71,4 +72,9 @@ theme:
   bootstrap_barrio: 0
   bootstrap_barrio_subtheme: 0
   bootstrap_tutorial: 0
+  stable9: 0
+  tutorial: 0
+  stable: 0
+  bhcc_base: 0
+  bhcc_child: 0
 profile: standard

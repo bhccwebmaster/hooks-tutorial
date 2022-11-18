@@ -1,0 +1,100 @@
+/*
+ * @file
+ *
+ * This file is for styling the header region
+ */
+
+.page-header {
+  background-color: var(--color-white);
+  border-bottom: 5px solid var(--color-brand);
+  z-index: 99;
+}
+
+@media screen and (min-width: 1096px) {
+  .page-header {
+    position: sticky;
+    top: var(--ginHorizontalToolbarOffset, 0);
+  }
+}
+
+.page-header__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  padding: var(--spacing-small);
+}
+
+@media screen and (min-width: 1024px) {
+  .page-header__container {
+    height: auto;
+  }
+}
+
+.page-header[class*="background-colourway-"] {
+  border: none;
+}
+
+.page-header__left {
+  flex: 0 0 auto;
+}
+
+.bhcc-portal .page-header__left {
+  flex-direction: column;
+  text-align: center;
+}
+
+@media only screen and (min-width: 768px) {
+  .bhcc-portal .page-header__left {
+    flex-direction: row;
+    text-align: left;
+  }
+}
+
+.site-logo {
+  /* max-width: 6rem; */
+  /* Fix needed for IE11 flex/max-width issue */
+/*  background-image: url(../../images/logo.svg); **/
+  background-repeat: no-repeat;
+  display: inline-block;
+  background-size: contain;
+  background-position: center;
+  font-size: 1.3em;
+  text-decoration: none;
+  margin: 0;
+  padding-right: 1em;
+  border-right: solid 1px var(--color-black);
+  flex: 1
+}
+
+[class*="background-colourway-"] .site-logo {
+  border-color: var(--color-white);
+}
+
+.site-logo img {
+  width: 94px;
+}
+
+.page-header__right {
+  display: flex;
+  align-items: center;
+  align-self: end;
+  justify-content: flex-end;
+  flex: 1 0 auto;
+}
+
+@media only screen and (min-width: 768px) {
+
+  .page-header__right {
+    align-self: center;
+  }
+}
+
+.page-header__right__site-menu {
+  flex: 1 0 auto;
+  padding-left: 1em;
+}
+
+.page-header__home {
+  background-color: transparent;
+}

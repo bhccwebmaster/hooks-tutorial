@@ -1,0 +1,22 @@
+uuid: ccb3547a-feff-457c-af30-cc90c8fba05d
+langcode: en
+status: true
+dependencies:
+  theme:
+    - tutorial
+_core:
+  default_config_hash: nGE3EoPQQaQCuqTUtZgw0-KIzmrqdKDzdNQf2JyPUt4
+id: tutorial_primary_local_tasks
+theme: tutorial
+region: above_conent
+weight: -6
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Primary tabs'
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: false
+visibility: {  }

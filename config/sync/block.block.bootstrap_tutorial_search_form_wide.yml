@@ -1,6 +1,6 @@
 uuid: aab1761a-e539-4db1-9070-1e91f7587b11
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - search

@@ -1,0 +1,31 @@
+/*
+ * @file
+ *
+ * Compact table, for displaying large tables.
+ */
+
+.table.compact-table,
+.table.compact-table th {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.table.compact-table td,
+.table.compact-table th {
+  padding: 0.3125rem 0.46875rem;
+}
+
+.table.compact-table td > p,
+.table.compact-table td > ul,
+.table.compact-table td > ol,
+.table.compact-table td > li,
+.table.compact-table td > div,
+.table.compact-table th > p,
+.table.compact-table th > ul,
+.table.compact-table th > ol,
+.table.compact-table th > li,
+.table.compact-table th > div {
+  font-size: 0.875rem;
+  line-height: inherit;
+  font-weight: inherit;
+}

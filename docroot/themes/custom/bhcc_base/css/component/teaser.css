@@ -1,0 +1,49 @@
+/*
+ * @file
+ *
+ * This file is for styling the card display mode
+ */
+
+.teaser__title {
+  line-height: 1.25;
+}
+
+.teaser__content .field--name-body p {
+  line-height: 1.5;
+}
+
+.teaser__content > h3 > a {
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+.teaser__content p:first-of-type {
+  margin-top: 0;
+}
+
+.taxonomy-index__item .teaser__content {
+  padding-bottom: var(--spacing-large);
+  border-bottom: 2px solid var(--color-grey-dark);
+}
+
+.teaser__image {
+  flex-shrink: 0;
+  max-width: 20rem;
+}
+
+@media screen and (min-width: 768px) {
+  .teaser__image {
+    max-width: 12rem;
+  }
+}
+
+/* News teasers */
+.teaser--localgov-news-article {
+  flex-direction: column;
+}
+
+@media screen and (min-width: 768px) {
+  .teaser--localgov-news-article {
+    flex-direction: row;
+  }
+}

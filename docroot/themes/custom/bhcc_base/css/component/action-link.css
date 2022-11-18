@@ -1,0 +1,30 @@
+/*
+ * @file
+ *
+ * This file is for action links - links that sit in menus, sidebars and individual CTAs
+ */
+
+.action-link,
+.action-links > a {
+  position: relative;
+  display: block;
+  padding-right: var(--spacing);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+}
+
+.action-link--next::before,
+.action-links--next > a::before {
+  content: '';
+  display: block;
+  position: absolute;
+  right: 0;
+  top: calc(50% - 8px);
+  width: var(--icon-base);
+  height: var(--icon-base);
+  background-image: url(../../images/arrow-right-blue.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}

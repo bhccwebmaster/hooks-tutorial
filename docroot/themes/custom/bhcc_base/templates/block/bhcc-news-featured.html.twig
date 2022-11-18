@@ -1,0 +1,36 @@
+{% if featured_news_list %}
+
+  <div class="lgd-row margin-bottom-xx-large grid-gap-2 featured-news">
+    <div class="lgd-row__one-half featured-news__primary">
+      <div class="margin-bottom-medium larger-subtitle">
+        {% if featured_news_list[0].media %}
+          <a href="{{ featured_news_list[0].link }}">{{ featured_news_list[0].media }}</a>
+        {% endif %}
+      </div>  
+      <h2>{{ featured_news_list[0].title}}</h2>
+    </div>  
+    
+    <div class="lgd-row__one-half featured-news__secondary">
+        <div class="lgd-row margin-bottom-medium grid-gap-2">
+            <div class="lgd-row__one-half">
+              {% if featured_news_list[1].media %}
+                <a href="{{ featured_news_list[1].link }}">{{ featured_news_list[1].media }}</a>
+              {% endif %}
+            </div>
+            <div class="lgd-row__one-half">
+              <h2 class="larger-text">{{ featured_news_list[1].title}}</h2>
+            </div>  
+        </div>    
+        <div class="lgd-row margin-bottom-medium grid-gap-2">  
+            <div class="lgd-row__one-half">                
+              {% if featured_news_list[2].media %}
+                <a href="{{ featured_news_list[2].link }}">{{ featured_news_list[2].media }}</a>
+              {% endif %}
+            </div>  
+            <div class="lgd-row__one-half">            
+              <h2 class="larger-text">{{ featured_news_list[2].title}}</h2>
+            </div>  
+        </div>
+    </div> 
+  </div>
+{% endif %}

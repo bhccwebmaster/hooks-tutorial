@@ -1,0 +1,12 @@
+{#
+/**
+ * @file
+ * Template for topic list builder paragraphs topic list links field.
+#}
+<div{{ attributes.addClass('lgd-row margin-bottom-medium') }}>
+  {% for item in items %}
+  <div class="lgd-row__one-half-one-third flex">
+    {{ item.content }}
+  </div>
+  {% endfor %}
+</div>

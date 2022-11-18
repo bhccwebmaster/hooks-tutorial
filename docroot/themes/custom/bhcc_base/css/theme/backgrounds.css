@@ -1,0 +1,53 @@
+/*
+ * @file
+ *
+ * This file is for the sitewide backgrounds
+ */
+
+.background-white,
+.background-negative {
+  background-color: var(--color-white);
+}
+
+.background-grey-mid-light {
+  background-color: var(--color-grey-mid-light);
+}
+
+.background-burgundy-alt {
+  background-color: var(--color-burgundy-alt);
+}
+
+.background-light-blue {
+  background-color: var(--color-light-blue);
+}
+
+.background-action {
+  background-color: var(--color-link);
+}
+
+.background-transparent {
+  background-color: transparent;
+}
+
+.background-accent {
+  background-color: var(--color-accent);
+}
+
+
+/* Social Media */
+
+.background-facebook {
+  background-color: var(--color-facebook)
+}
+
+.background-twitter {
+  background-color: var(--color-twitter)
+}
+
+.background-youtube {
+  background-color: var(--color-youtube)
+}
+
+.background-linkedin {
+  background-color: var(--color-linkedin)
+}

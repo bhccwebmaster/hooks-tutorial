@@ -1,0 +1,93 @@
+/*
+ * @file
+ *
+ * Styles the subsite navigation.
+ */
+
+.subsite-navigation {
+  background-color: var(--subsite-menu-background-color);
+}
+
+@media screen and (min-width: 768px) {
+  .subsite-navigation {
+    display: block !important;
+  }
+}
+
+.subsite-navigation__menu-item {
+  display: block;
+}
+
+.subsite-navigation__menu--child .subsite-navigation__menu--child {
+  padding-left: var(--spacing-small);
+}
+
+.subsite-navigation__menu--root,
+.subsite-navigation__menu-item:not(:last-of-type) {
+  border-bottom: 1px solid var(--color-grey-mid);
+}
+
+.subsite-navigation__menu--child .subsite-navigation__menu--child .subsite-navigation__menu-item {
+  border-bottom: 0;
+}
+
+.subsite-navigation__menu--root .subsite-navigation__menu--child .subsite-navigation__menu-item:first-child {
+  border-top: 1px solid var(--color-grey-mid);
+}
+
+.subsite-navigation__menu-item a {
+  position: relative;
+  display: block;
+  padding: var(--spacing-x-small) var(--spacing-small);
+  text-decoration: none;
+  color: var(--subsite-menu-link-color);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.subsite-navigation__menu-item a:hover,
+.subsite-navigation__menu-item a:focus {
+  background-color: var(--subsite-menu-hover-background-color);
+}
+
+.subsite-navigation__menu--root > .menu-item--active-trail > a {
+  position: relative;
+  font-size: 1.125rem;
+  color: var(--subsite-menu-highlight-color);
+}
+
+.subsite-navigation__menu-item a.is-active::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 6px;
+  background-color: var(--subsite-menu-highlight-color);
+}
+
+.subsite-navigation__toggle {
+  display: block;
+  width: 100%;
+  padding: var(--spacing-x-small) var(--spacing-small);
+  background-color: var(--color-white);
+  border-radius: 0;
+  border: 2px solid var(--color-grey-mid);
+  cursor: pointer;
+}
+
+.subsite-navigation__toggle.show-hide-toggle--is-active {
+  border-color: #d8d8d8;
+}
+
+@media screen and (min-width: 768px) {
+  .subsite-navigation__toggle {
+    display: none;
+  }
+}
+
+.subsite-navigation__toggle.show-hide-toggle::before {
+  right: var(--spacing-x-small);
+}
+

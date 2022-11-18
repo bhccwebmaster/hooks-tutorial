@@ -1,0 +1,91 @@
+/*
+ * @file
+ *
+ * This file is for styling form elements
+ *
+ * Most elements are namespaced with form-item or form-element
+ *
+ * @todo - break these up into components where suitable
+ */
+
+
+/* Generic Form Classes */
+
+.form-item {
+  position: relative;
+}
+
+/* Autocomplete */
+
+.js input.form-autocomplete {
+  background-image: none;
+}
+
+/* Specific forms */
+
+.node--type-localgov-directory .views-exposed-form {
+  display: none;
+}
+
+.form-item-search-api-fulltext {
+  margin-bottom: var(--spacing-medium);
+}
+
+.localgov-search-channel {
+  display: block;
+  margin-top: var(--spacing-x-small);
+}
+
+.address-select-container + .link-button {
+
+}
+
+/* Form actions */
+
+.form-actions,
+.form-element-actions {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.form-actions,
+.form-element-actions:not(.address-actions) {
+  justify-content: space-between;
+}
+
+.form-actions .button:not(:last-of-type),
+.form-element-actions .button:not(:last-of-type) {
+  margin-right: var(--spacing-medium);
+}
+
+.link-button {
+  border: none;
+  background: transparent;
+  color: var(--color-blue);
+  text-decoration: underline;
+  padding: 0;
+}
+
+/* Remove clearfix style from wraper so flex justify alignment works properly */
+.form-actions::after {
+  content: none;
+}
+
+/* Form actions in sidebars need to be vertical */
+.layout-sidebar-first .form-actions,
+.layout-sidebar-second .form-actions {
+  flex-direction: column;
+}
+
+.layout-sidebar-first .form-actions .button,
+.layout-sidebar-second .form-actions .button {
+  margin-right: 0;
+  margin-bottom: var(--spacing-medium);
+  width: 100%;
+}
+
+.layout-sidebar-first .form-actions .button:last-child,
+.layout-sidebar-second .form-actions .button:last-child {
+  margin-bottom: 0;
+}
+

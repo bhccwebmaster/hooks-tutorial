@@ -1,0 +1,29 @@
+.fact-box {
+  text-align: center;
+  border-bottom: 1px solid var(--fact-box-border-color);
+}
+
+.fact-box--fact-box-light,
+.fact-box--fact-box-grey {
+  background-color: var(--fact-box-bg-light);
+}
+
+.fact-box--fact-box-dark {
+  color: var(--color-white);
+  background-color: var(--fact-box-bg-dark);
+}
+
+.fact-box--fact-box-accent {
+  color: var(--color-negative);
+  background-color: var(--color-accent);
+}
+
+.fact-box--border-left {
+
+  margin-top: var(--spacing-medium);
+  padding: var(--spacing-medium);
+  border-left: 1px solid var(--fact-box-border-color);
+  border-bottom: 1px solid var(--color-grey-mid-light);
+}
+
+

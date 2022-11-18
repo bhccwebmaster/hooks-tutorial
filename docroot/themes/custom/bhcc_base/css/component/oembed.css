@@ -1,0 +1,11 @@
+/*
+ * @file
+ *
+ * This file is for styling the mobile menu.
+ */
+
+.field--name-field-media-oembed-video > iframe {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+}

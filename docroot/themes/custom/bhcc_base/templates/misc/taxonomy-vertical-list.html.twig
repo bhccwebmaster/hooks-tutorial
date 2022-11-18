@@ -1,0 +1,12 @@
+{% if items %}
+  <h2 class="smaller-heading color-secondary">{{ title }}</h2>
+
+  <ul class="list-unstyled">
+    {% for item in items %}
+    <li>
+      <a class="action-link action-link--next margin-bottom-x-small" href="{{ path("entity.taxonomy_term.canonical", {'taxonomy_term': item.id}) }}">{{ item.getName }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+
+{% endif %}

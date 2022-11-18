@@ -1,0 +1,297 @@
+/*
+ * @file
+ *
+ * This file is styling markup that appears within text field with summary fields where classes can't be applied directly
+ */
+
+.rich-text__item,
+.rich-text__item p {
+  line-height: 1.5;
+}
+
+@media only screen and (min-width: 768px) {
+  .rich-text__item,
+  .rich-text__item p {
+    font-size: 1.063rem;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .rich-text__item,
+  .rich-text__item p {
+    font-size: 1.188rem;
+  }
+}
+
+.rich-text__item p:first-child {
+  margin-top: 0;
+}
+
+.rich-text__item h1 {
+  font-weight: 700;
+  font-size: 2.75rem;
+  margin-bottom: var(--spacing-small);
+}
+
+.rich-text__item h2 {
+  font-weight: 700;
+  font-size: 1.75rem;
+  margin-bottom: var(--spacing-small);
+}
+
+.rich-text__item h2 + p,
+.rich-text__item h3 + p,
+.rich-text__item h4 + p,
+.rich-text__item h5 + p,
+.rich-text__item h6 + p {
+  margin-top: 0;
+}
+
+.rich-text__item h2:not(:first-child) {
+  margin-top: calc(var(--spacing) * 2);
+}
+
+.rich-text__item h3 {
+  margin-bottom: var(--spacing);
+  font-size: 1.375rem;
+  font-weight: 700;
+}
+
+.rich-text__item h4 {
+  margin-bottom: var(--spacing);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.rich-text__item h3:not(:first-child) {
+  margin-top: calc(var(--spacing) * 2);
+}
+
+.rich-text__item h4:not(:first-child),
+.rich-text__item h5:not(:first-child),
+.rich-text__item h6:not(:first-child) {
+  margin-top: calc(var(--spacing) * 1.5);
+}
+
+.rich-text__item ul,
+.rich-text__item ol {
+  padding-left: calc(var(--spacing) * 1.5);
+}
+
+/* Add vertical spacing between nested lists and their surrounding elements */
+/* Not ideal to use important here, */
+/* would rather remove 'collapse-margins' from field--text-long */
+/* but not right before launch */
+.rich-text__item ul ul,
+.rich-text__item ul ol,
+.rich-text__item ol ul,
+.rich-text__item ol ol {
+  margin: var(--spacing) 0 !important;
+}
+
+.rich-text__item ul > li,
+.rich-text__item ol > li {
+  margin: var(--spacing-xx-small) 0;
+}
+
+.rich-text__item li {
+  line-height: 1.5;
+}
+
+@media only screen and (min-width: 768px) {
+  .rich-text__item li {
+    font-size: 1.063rem;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .rich-text__item li {
+    font-size: 1.188rem;
+  }
+}
+
+.rich-text__item table {
+  font-size: 1rem;
+}
+
+table,
+tbody {
+  display: flex;
+  flex-direction: column;
+}
+
+@media only screen and (min-width: 768px) {
+  table {
+    display: table;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  tbody {
+    display: table-row-group;
+  }
+}
+
+table thead {
+  display: none;
+}
+
+@media only screen and (min-width: 768px) {
+  table thead {
+    display: table-header-group;
+  }
+}
+
+table tbody tr {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1.875rem;
+  flex-direction: column;
+}
+
+@media only screen and (min-width: 992px) {
+  table tbody tr {
+    display: table-row;
+    margin-bottom: 0;
+  }
+}
+
+table td {
+  border-bottom: 1px solid var(--color-grey-mid-dark);
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+@media only screen and (min-width: 768px) {
+  table td {
+    padding-left: var(--spacing-xx-small);
+    padding-right: var(--spacing-xx-small);
+  }
+}
+
+table td:nth-child(1) {
+  background: #fff;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+@media only screen and (min-width: 768px) {
+  table td:nth-child(1) {
+    background: transparent;
+    font-weight: 400;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  table tbody tr {
+    border-bottom: none;
+  }
+}
+
+table caption {
+  font-size: 1.25rem;
+  color: var(--color-secondary-text);
+  margin-bottom: 0.5em;
+  text-align: left;
+  font-weight: 600;
+}
+
+table + table {
+  margin-top: var(--spacing-x-large);
+}
+
+/* Special case for content inside subsites, */
+/* and snippet components */
+.field--name-localgov-subsites-content > *,
+.paragraph--type--indexed-snippet-content > * {
+  margin-bottom: var(--spacing-large);
+}
+
+/* Add some extra spacing around fact boxes. */
+.paragraph--type--bhcc-fact-box-listing {
+  margin: var(--spacing-x-large) 0;
+}
+
+.rich-text__item table p {
+  margin-top: 0;
+}
+
+table:not(.simple) {
+  margin-bottom: var(--spacing-medium);
+}
+
+@media only screen and (min-width: 992px) {
+  table:not(.simple) {
+    margin-bottom: 0;
+  }
+}
+
+table:not(.simple) thead tr {
+  display: none;
+}
+
+@media only screen and (min-width: 992px) {
+  table:not(.simple) thead tr {
+    display: table-row;
+  }
+}
+
+table:not(.simple) tbody tr {
+  border-bottom: 2px solid var(--color-grey-mid-dark);
+}
+
+@media only screen and (min-width: 768px) {
+  table:not(.simple) tbody tr {
+    display: grid;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  table:not(.simple) tbody tr {
+    display: table-row;
+    border-bottom: none;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  table:not(.simple) td {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 1em;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  table:not(.simple) td {
+    display: table-cell;
+  }
+}
+
+table:not(.simple) td div {
+  display: grid;
+  grid-column: span 8;
+}
+
+@media only screen and (min-width: 992px) {
+  table:not(.simple) td div {
+    display: block;
+  }
+}
+
+table:not(.simple) td:before {
+  content: attr(data-label);
+  grid-column: span 12;
+  font-weight: 600;
+}
+
+@media only screen and (min-width: 768px) {
+  table:not(.simple) td:before {
+    grid-column: span 4;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  table:not(.simple) td:before {
+    content: none;
+  }
+}

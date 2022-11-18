@@ -1,0 +1,47 @@
+/*
+ * @file
+ *
+ * This file is for styling a job card.
+ */
+
+.job-card {
+  position: relative;
+  padding: var(--spacing-x-large) var(--spacing-medium) var(--spacing-medium);
+}
+
+.job-card__contract {
+  position: absolute;
+  top: 0;
+  left: var(--spacing-medium);
+  padding: var(--spacing-xx-small) var(--spacing-x-small);
+  background: var(--color-light-blue);
+}
+
+.job-card__salary {
+  font-size: 1.125rem;
+  line-height: 1.375;
+}
+
+
+.job-card__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--spacing-xx-small) 0 var(--spacing-xx-small) calc(var(--icon-base) * 3);
+  min-height: calc(var(--icon-base) + (var(--spacing-xx-small) * 2) + 1rem);
+}
+
+.job-card__item::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  width: var(--icon-base);
+  height: var(--icon-base);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: var(--color-light-blue);
+  top: calc(var(--spacing-xx-small) + 2px);
+  padding: 1rem;
+}

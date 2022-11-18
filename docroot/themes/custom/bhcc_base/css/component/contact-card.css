@@ -1,0 +1,85 @@
+/*
+ * @file
+ *
+ * This file is for styling the card display mode
+ */
+
+.contact-card__content {
+  background-color: var(--color-white);
+  padding: var(--spacing-small);
+}
+
+@media screen and (min-width: 48rem) {
+  .contact-card__content {
+    padding: var(--spacing);
+  }
+}
+
+.contact-card__header {
+  position: relative;
+  padding-right: 5rem;
+}
+
+.contact-card__title {
+  color: var(--color-heading-text);
+}
+
+.contact-card__content p {
+  margin: var(--spacing-x-small) 0;
+}
+
+.contact-card__content .rich-text__item,
+.contact-card__content .rich-text__item p {
+  font-size: inherit;
+}
+
+.contact-card__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--spacing-medium) 0 var(--spacing-medium) calc(var(--icon-base) * 3);
+  min-height: calc(var(--icon-base) + (var(--spacing-medium) * 2) + 1rem);
+}
+
+.contact-card__item:not(:last-of-type) {
+  border-bottom: 3px solid var(--color-light-blue);
+}
+
+.contact-card__item::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  width: var(--icon-base);
+  height: var(--icon-base);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: var(--color-light-blue);
+  top: calc(var(--spacing-medium) + 2px);
+  padding: 1rem;
+}
+
+.contact-card__action {
+  position: relative;
+  background-color: var(--color-white);
+}
+
+.contact-card__action::after {
+  content: '';
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: calc(var(--icon-base) + (var(--spacing-medium) * 2));
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url(../../images/arrow-right-blue.svg);
+  background-color: var(--color-light-blue);
+}
+
+.contact-card__action-link {
+  display: block;
+  padding: var(--spacing-small);
+}

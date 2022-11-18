@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * Template for topic list builder paragraphs topic list links field.
+#}
+{%
+  set classes = [
+    'field',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+  ]
+%}
+
+<div{{ attributes.addClass(classes).addClass('lgd-row l:grid-gap-2 margin-bottom-medium') }}>
+  {% for item in items %}
+    {% set promoted = item.content['#paragraph'].bhcc_promoted.value %}
+    <div class="lgd-row__full{% if not promoted %} m:lgd-row__one-half l:lgd-row__one-third{% endif %} flex">
+      {{ item.content }}
+    </div>
+  {% endfor %}
+</div>

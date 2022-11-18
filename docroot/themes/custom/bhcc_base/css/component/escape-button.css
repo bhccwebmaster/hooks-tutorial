@@ -1,0 +1,56 @@
+/*
+ * @file
+ *
+ * Styles the escape button.
+ */
+
+.escape-button {
+  position: fixed;
+  bottom: 1em;
+  right: 2em;
+  z-index: 100;
+  background: var(--color-white);
+  padding: 0.75em 1.25em 0.75em 2.75em;
+  border-radius: 1.25em;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 70%);
+  overflow: hidden;
+  cursor: pointer;
+  text-align: left;
+  text-decoration: none;
+  color: var(--color-black);
+  border: 2px solid var(--color-yellow);
+}
+
+.escape-button::before {
+  content: '!';
+  font-size: 3.5rem;
+  display: block;
+  position: absolute;
+  left: 0.187em;
+  top: 0;
+  width: 1em;
+  height: 100%;
+  font-weight: 700;
+  color: var(--color-yellow);
+}
+
+.escape-button__title {
+  display: block;
+  position: relative;
+  font-weight: 600;
+  font-size: 1.25em;
+  color: var(--color-black-lighter);
+}
+
+.escape-button__title::after {
+  content: '';
+  display: block;
+  position: absolute;
+  right: 11px;
+  top: calc(50% - 7px);
+  width: 18px;
+  height: 18px;
+  background-image: url(../../images/arrow-right-black.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}

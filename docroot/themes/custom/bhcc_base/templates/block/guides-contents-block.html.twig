@@ -1,0 +1,28 @@
+{#
+/**
+* @file
+* Default theme implementation for the guides_contents_block block.
+*/
+#}
+
+{% if links %}
+
+  {% if format == 'ordered' %}
+    {% set list_type = 'ol' %}
+  {% else %}
+    {% set list_type = 'ul' %}
+  {% endif %}
+
+  <nav class="progress-bar" aria-label="{{ 'Guide'|t }}">
+    <{{ list_type }} class="progress-bar__list">
+      {% for link in links %}
+        {% if link.url.options.attributes.class == 'active' %}
+          <li class="progress-bar__list-item progress-bar__list-item--active" aria-current="page">{{ link.text }}</li>
+          {% else %}
+            <li class="progress-bar__list-item">{{ link }}</li>
+        {% endif %}
+      {% endfor %}
+    </{{ list_type }}>
+  </nav>
+
+{% endif %}

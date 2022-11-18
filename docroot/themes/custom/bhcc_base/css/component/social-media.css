@@ -1,0 +1,47 @@
+/*
+ * @file
+ *
+ * This file is for styling the social media icons that appear in the footer
+ */
+
+
+.menu__social-media {
+  display: flex;
+}
+
+.menu__social-media-links {
+  margin-right: var(--spacing-x-small);
+}
+
+.menu__social-media-links > a {
+  position: relative;
+  display: block;
+  border-radius: var(--input-radius);
+  width: var(--spacing-x-large);
+  height: var(--spacing-x-large);
+  background-color: var(--color-text);
+  font-size: 0;
+}
+
+.menu__social-media-links > a::after {
+  content: '';
+  position: absolute;
+  width: var(--spacing-x-large);
+  height: var(--spacing-x-large);
+  top: 0;
+  left: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.icon-facebook::after {
+  background-image: url(../../images/icon-facebook.svg);
+}
+
+.icon-twitter::after {
+  background-image: url(../../images/icon-twitter.svg);
+}
+
+.icon-youtube::after {
+  background-image: url(../../images/icon-youtube.svg);
+}

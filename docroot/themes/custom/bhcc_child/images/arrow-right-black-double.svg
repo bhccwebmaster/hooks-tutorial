@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+  <g id="arrow-right-black-double" transform="translate(-1180 -2089)">
+    <rect id="Rectangle_1384" data-name="Rectangle 1384" width="18" height="18" transform="translate(1180 2089)" fill="none"/>
+    <rect id="Rectangle_1385" data-name="Rectangle 1385" width="18" height="18" transform="translate(1180 2089)" fill="none"/>
+    <g id="Group_845" data-name="Group 845" transform="translate(-3)">
+      <g id="priority-low" transform="translate(1179 2105) rotate(-90)">
+        <path id="Path_990" data-name="Path 990" d="M2,8l5,5,5-5" fill="none" stroke="#000" stroke-linecap="square" stroke-miterlimit="10" stroke-width="1"/>
+      </g>
+      <g id="priority-low-2" data-name="priority-low" transform="translate(1184 2105) rotate(-90)">
+        <path id="Path_990-2" data-name="Path 990" d="M2,8l5,5,5-5" fill="none" stroke="#000" stroke-linecap="square" stroke-miterlimit="10" stroke-width="1"/>
+      </g>
+    </g>
+  </g>
+</svg>

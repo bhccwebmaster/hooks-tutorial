@@ -1,0 +1,85 @@
+/*
+ * @file
+ *
+ * This file is for the sitewide borders
+ */
+
+.default-border {
+  border: 1px solid var(--color-grey-mid);
+}
+.default-border-top {
+  border-top: 1px solid var(--color-grey-mid);
+}
+.default-border-right {
+  border-right: 1px solid var(--color-grey-mid);
+}
+.default-border-bottom {
+  border-bottom: 1px solid var(--color-grey-mid);
+}
+.default-border-left {
+  border-left: 1px solid var(--color-grey-mid);
+}
+
+.dark-border {
+  border: 1px solid var(--color-grey-dark);
+}
+.dark-border-top {
+  border-top: 1px solid var(--color-grey-dark);
+}
+.dark-border-right {
+  border-right: 1px solid var(--color-grey-dark);
+}
+.dark-border-bottom {
+  border-bottom: 1px solid var(--color-grey-dark);
+}
+.dark-border-left {
+  border-left: 1px solid var(--color-grey-dark);
+}
+
+.accent2-border {
+  border: 3px solid var(--color-accent2);
+}
+.accent2-border-top {
+  border-top: 3px solid var(--color-accent2);
+}
+.accent2-border-right {
+  border-right: 3px solid var(--color-accent2);
+}
+.accent2-border-bottom {
+  border-bottom: 3px solid var(--color-accent2);
+}
+.accent2-border-left {
+  border-left: 3px solid var(--color-accent2);
+}
+
+.accent3-border {
+  border: 3px solid var(--color-accent3);
+}
+.accent3-border-top {
+  border-top: 3px solid var(--color-accent3);
+}
+.accent3-border-right {
+  border-right: 3px solid var(--color-accent3);
+}
+.accent3-border-bottom {
+  border-bottom: 3px solid var(--color-accent3);
+}
+.accent3-border-left {
+  border-left: 3px solid var(--color-accent3);
+}
+.accent4-border-left {
+  border-left: 3px solid var(--color-accent4);
+}
+.default-radius {
+  border-radius: var(--default-radius);
+}
+
+.small-radius {
+  border-radius: 2px;
+}
+
+.circular-radius {
+  border-radius: 9999px;
+}
+
+

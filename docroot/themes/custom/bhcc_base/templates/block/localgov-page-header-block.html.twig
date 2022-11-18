@@ -1,0 +1,25 @@
+{#
+/**
+* @file
+* Default theme implementation of localgov_header_block.
+*
+* @see template_preprocess_block()
+*
+* @ingroup themeable
+*/
+#}
+{% set classes = [
+  'page-header-block',
+  'margin-bottom-x-large',
+] %}
+
+{% if title %}
+  <div{{ attributes.addClass(classes) }}>
+
+    <h1 class="page-header-block__title keyline">{{ title }}</h1>
+
+    {% if lede %}
+      <div class="page-header-block__subtitle">{{ lede }}</div>
+    {% endif %}
+  </div>
+{% endif %}

@@ -1,0 +1,38 @@
+/*
+ * @file
+ *
+ * This file is styling the local tasks bar so it's easier to use.
+ */
+
+.menu-local-tasks {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 100;
+  background-color: var(--color-cyan);
+  padding: var(--spacing-small) var(--spacing-small) var(--spacing-xx-small);
+}
+
+.menu-local-tasks__item {
+  margin-right: 0.5em;
+  font-size: 0.875em;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 0.5em 0;
+  margin-bottom: 0.375em;
+}
+
+.menu-local-tasks__item > a {
+  text-decoration: none;
+  border-bottom: 2px solid var(--color-dark-blue);
+  padding: 0.5em 0.875em;
+  color: var(--color-black);
+  background-color: var(--color-grey-light);
+}
+
+.menu-local-tasks__item > a:focus,
+.menu-local-tasks__item > a:hover,
+.menu-local-tasks__item > a:active {
+  border-bottom-color: var(--color-yellow);
+}

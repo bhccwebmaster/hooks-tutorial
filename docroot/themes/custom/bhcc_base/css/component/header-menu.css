@@ -1,0 +1,232 @@
+/*
+ * @file
+ *
+ * This file is for styling the dropdown menu in the header
+ */
+
+.page-header__right__site-menu,
+.header-menu__desktop,
+.header-search__desktop {
+  display: none;
+}
+
+.header-menu__mobile .show-hide-toggle {
+  position: relative;
+  z-index: 1;
+  background: var(--color-white);
+  border-radius: 0;
+}
+
+.header-menu__mobile .show-hide-toggle.show-hide-toggle--is-active {
+  background: var(--color-grey-mid-light);
+  color: var(--color-burgundy);
+}
+
+@media screen and (min-width: 1096px) {
+
+  .header-menu__mobile {
+    display: none;
+  }
+
+  .page-header__right__site-menu {
+    display: block;
+  }
+
+  .header-menu__desktop,
+  .header-search__desktop {
+    display: block;
+  }
+
+  .header-menu__desktop.horizontal-menu .menu__menu-top-right,
+  .header-search__desktop {
+    margin-left: 1em;
+  }
+
+  .header-menu__show-hide-toggle {
+    margin-right: calc(var(--spacing) * 2.5);
+  }
+}
+
+.header-menu__dropdown {
+  background-color: var(--color-white);
+}
+
+.mobile-menu .search-block-form {
+  padding: var(--spacing);
+}
+
+/* New drop down menu */
+.horizontal-menu .menu-level-1 {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.horizontal-menu .menu-level-1 {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.horizontal-menu .menu-level-1 > li {
+  margin-left: var(--spacing-xx-small);
+}
+
+.horizontal-menu .menu-level-1 > li > .menu__services-links__link {
+  position: relative;
+  display: block;
+  padding: var(--spacing-x-small) calc(var(--icon-base) * 2) var(--spacing-x-small) var(--spacing-small);
+  white-space: nowrap;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--color-black);
+}
+
+.horizontal-menu .menu-level-1 > li > .menu__services-links__link.active {
+  background-color: var(--color-grey-semi-light);
+  color: var(--color-brand);
+}
+
+.horizontal-menu .menu-level-1 > li > .menu__services-links__link:hover {
+  color: var(--color-brand);
+}
+
+.horizontal-menu .menu-level-1 > li > .menu__services-links__link:focus {
+  outline: 4px solid var(--color-focus);
+}
+
+.horizontal-menu .menu-level-1 > li > .menu__services-links__link::after {
+  content: ' ';
+  position: absolute;
+  right: var(--spacing-small);
+  top: calc(50% - 8px);
+  width: var(--icon-base);
+  height: var(--icon-base);
+  background-image: url(../../images/arrow-right-black.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.horizontal-menu .menu-level-1 > li > .menu__services-links__link--has-children::after {
+  background-image: url(../../images/plus.svg);
+}
+
+.horizontal-menu .menu-level-1 > li .menu__services-links__link.active::after {
+  background-image: url(../../images/minus.svg);
+}
+
+.horizontal-menu .menu-level-1 > li > .menu__services-links__link:hover::after,
+.horizontal-menu .menu-level-1 > li > .menu__services-links__link.active::after {
+  /* Convert the icon svg to the hover colour
+   * Use: https://codepen.io/sosuke/pen/Pjoqqp to convert.
+   * Source color: #a41055; */
+  filter: invert(12%) sepia(44%) saturate(6773%) hue-rotate(319deg) brightness(103%) contrast(97%);
+}
+
+.horizontal-menu .menu-level-1 ul.menu__submenu {
+  display: none;
+}
+
+/* Push menu */
+.push-menu {
+  background-color: #FCFAFA;
+}
+
+.push-menu .page-container {
+  padding: var(--spacing-large) var(--spacing-small);
+  border-top: 2px solid var(--color-grey-mid-light);
+}
+
+.push-menu ul {
+  display: none;
+  margin-left: calc(0px - var(--spacing-small));
+  margin-right: calc(0px - var(--spacing-small));
+}
+
+@media screen and (min-width: 1096px) {
+
+  .push-menu ul {
+    display: block;
+  }
+
+  @supports (display: grid) {
+    .push-menu ul {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}
+
+
+.push-menu .menu__services-links {
+  display: block;
+}
+
+.push-menu .menu__services-links__link {
+  position: relative;
+  display: block;
+  color: var(--color-black);
+  text-decoration: none;
+  padding: var(--spacing-x-small) var(--spacing-small);
+  margin-top: 2px;
+  margin-bottom: 2px;
+  font-weight: 600;
+  font-size: 0.875em;
+}
+
+.push-menu .menu__services-links__link:hover,
+.push-menu .menu__services-links__link:focus {
+  color: var(--color-burgundy);
+  background-color: var(--color-grey-mid-light);
+}
+
+.push-menu .menu__services-links__link::after {
+  content: '';
+  position: absolute;
+  right: var(--spacing-small);
+  top: calc(50% - 8px);
+  width: var(--icon-base);
+  height: var(--icon-base);
+  background-image: url(../../images/arrow-right-black.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.push-menu .menu__services-links__link:hover::after,
+.push-menu .menu__services-links__link:focus::after {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="7px" height="11px" viewBox="0 0 7 11"> <path style="fill: none; stroke: rgb(164 16 85); stroke-linecap: square; stroke-miterlimit: 10; stroke-width: 2px;" d="M 1.5 9.5 L 5.5 5.5 L 1.5 1.5"/></svg>');
+  color: var(--color-brand);
+}
+
+/* Menu colours */
+.menu-link--burgandy {
+  background-color: var(--color-colourway-burgundy);
+  color: var(--color-negative) !important;
+}
+
+.menu-link--burgandy:hover {
+  background-color: var(--color-colourway-burgundy-var);
+}
+
+.menu-link--red {
+  background-color: var(--color-colourway-red);
+  color: var(--color-negative) !important;
+}
+
+.menu-link--red:hover {
+  background-color: var(--color-colourway-red-var);
+}
+
+.menu-link--orange {
+  background-color: var(--color-colourway-orange);
+  color: var(--color-negative) !important;
+}
+
+.menu-link--orange:hover {
+  background-color: var(--color-colourway-orange-var);
+}
+
+[class*="menu-link--"]::after {
+  filter:invert(100%) !important;
+}

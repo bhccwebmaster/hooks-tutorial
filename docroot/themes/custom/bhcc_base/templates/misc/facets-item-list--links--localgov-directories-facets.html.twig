@@ -1,0 +1,79 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a facets item list.
+ *
+ * Available variables:
+ * - items: A list of items. Each item contains:
+ *   - attributes: HTML attributes to be applied to each list item.
+ *   - value: The content of the list element.
+ * - title: The title of the list.
+ * - list_type: The tag for list element ("ul" or "ol").
+ * - wrapper_attributes: HTML attributes to be applied to the list wrapper.
+ * - attributes: HTML attributes to be applied to the list.
+ * - empty: A message to display when there are no items. Allowed value is a
+ *   string or render array.
+ * - context: A list of contextual data associated with the list. May contain:
+ *   - list_style: The ID of the widget plugin this facet uses.
+ * - facet: The facet for this result item.
+ *   - id: the machine name for the facet.
+ *   - label: The facet label.
+ *
+ * @see facets_preprocess_facets_item_list()
+ *
+ * @ingroup themeable
+ */
+#}
+
+<div class="margin-bottom-large padding-medium background-negative default-shadow padding-top-xx-small padding-bottom-xx-small facets-widget facets-widget- {{- facet.widget.type -}}">
+  {% if facet.widget.type %}
+    {%- set attributes = attributes.addClass('item-list__' ~ facet.widget.type) %}
+  {% endif %}
+  {% if items or empty %}
+  {%- if title is not empty -%}
+    <h3>{{ title }}</h3>
+  {%- endif -%}
+
+  {%- if items -%}
+  {#
+    The js-facets-checkbox-links class is only meant for those ul/ol elements
+    whose *direct* children are facet items and not titles or other ul/ol.
+
+    @see facets/templates/facets-item-list.html.twig
+    @see Drupal.facets.makeCheckboxes()
+  #}
+  {% set top_list_type_attr = create_attribute(attributes.toArray()).addClass('list-unstyled facets-widget__list').removeClass('js-facets-checkbox-links') %}
+  <{{ list_type }}{{ top_list_type_attr }}>
+  {%- for group in items -%}
+    <li{{ group.attributes }}>
+      <button class="facets-widget__toggle button show-hide-toggle{% if group.open %} show-hide-toggle--is-active{% endif %}" data-target="{{ group.title|clean_class }}" aria-controls="{{ group.title|clean_class }}" aria-expanded="{% if group.open %}true{% else %}false{% endif %}"><h4 class="facet-group__title margin-bottom-reset default-text line-height-smallest">{{ group.title|striptags|raw }}</h4></button>
+      
+      {# 
+        Classes for the facet group li element
+        Note: This gets set once and is always present, which is why we have 
+        to use a removeClass('show-hide--is-active') to make sure only the 
+        show-hide--is-active is present on facets that are open by default.
+      #}
+
+      {% set facet_group_classes = [
+        'show-hide',
+        'facet-filter-checkboxes',
+        'list-unstyled',
+        'margin-bottom-x-small',
+        group.open ? 'show-hide--is-active'
+        ]
+      %}
+
+      <{{ list_type }}{{ attributes.removeClass('show-hide--is-active').addClass(facet_group_classes) }} id="{{ group.title|clean_class }}">
+        {%- for item in group.items -%}
+          <li{{ item.attributes.addClass('form-item', 'relative') }}>{{ item.value }}</li>
+        {%- endfor -%}
+      </{{ list_type }}>
+    </li>
+  {%- endfor -%}
+  </{{ list_type }}>
+  {%- else -%}
+    {{- empty -}}
+    {%- endif -%}
+  {%- endif %}
+</div>

@@ -1,0 +1,230 @@
+/*
+ * @file
+ *
+ * This file is for colourways
+ */
+
+/* Type */
+
+.color-colourway-burgundy {
+  color: var(--color-colourway-burgundy);
+}
+
+.color-colourway-green {
+  color: var(--color-colourway-green);
+}
+
+.color-colourway-red {
+  color: var(--color-colourway-red);
+}
+
+.color-colourway-pink {
+  color: var(--color-colourway-pink);
+}
+
+.color-colourway-cyan {
+  color: var(--color-colourway-cyan);
+}
+
+.color-colourway-orange {
+  color: var(--color-colourway-orange);
+}
+
+.color-colourway-blue {
+  color: var(--color-colourway-blue);
+}
+
+.color-colourway-myaccount {
+  color: var(--color-colourway-myaccount-var);
+}
+
+
+/* Backgrounds */
+
+.background-colourway-burgundy,
+.background-colourway-burgundy-cta,
+a.background-colourway-burgundy-var:hover,
+.menubar-portal.background-colourway-burgundy-var a.is-active,
+.menubar-portal.background-colourway-burgundy-var a:hover {
+  background-color: var(--color-colourway-burgundy);
+}
+
+.background-colourway-burgundy-var,
+a.background-colourway-burgundy:hover,
+a.background-colourway-burgundy-cta:hover,
+a.background-colourway-burgundy-cta:focus {
+  background-color: var(--color-colourway-burgundy-var);
+}
+
+.background-colourway-green,
+.background-colourway-green-cta,
+a.background-colourway-green-var:hover,
+.menubar-portal.background-colourway-green-var a.is-active,
+.menubar-portal.background-colourway-green-var a:hover {
+  background-color: var(--color-colourway-green);
+}
+
+.background-colourway-green-var,
+a.background-colourway-green:hover,
+a.background-colourway-green-cta:hover,
+a.background-colourway-green-cta:focus {
+  background-color: var(--color-colourway-green-var);
+}
+
+.background-colourway-red,
+.background-colourway-red-cta,
+a.background-colourway-red-var:hover,
+.menubar-portal.background-colourway-red-var a.is-active,
+.menubar-portal.background-colourway-red-var a:hover {
+  background-color: var(--color-colourway-red);
+}
+
+.background-colourway-red-var,
+a.background-colourway-red:hover,
+a.background-colourway-red-cta:hover,
+a.background-colourway-red-cta:focus {
+  background-color: var(--color-colourway-red-var);
+}
+
+.background-colourway-pink,
+.background-colourway-pink-cta,
+a.background-colourway-pink-var:hover,
+.menubar-portal.background-colourway-pink-var a.is-active,
+.menubar-portal.background-colourway-pink-var a:hover {
+  background-color: var(--color-colourway-pink);
+}
+
+.background-colourway-pink-var,
+a.background-colourway-pink:hover,
+a.background-colourway-pink-cta:hover,
+a.background-colourway-pink-cta:focus {
+  background-color: var(--color-colourway-pink-var);
+}
+
+.background-colourway-cyan,
+.background-colourway-cyan-cta,
+a.background-colourway-cyan-var:hover,
+.menubar-portal.background-colourway-cyan-var a.is-active,
+.menubar-portal.background-colourway-cyan-var a:hover  {
+  background-color: var(--color-colourway-cyan);
+}
+
+.background-colourway-cyan-var,
+a.background-colourway-cyan:hover,
+a.background-colourway-cyan-cta:hover,
+a.background-colourway-cyan-cta:focus {
+  background-color: var(--color-colourway-cyan-var);
+}
+
+.background-colourway-orange,
+.background-colourway-orange-cta,
+a.background-colourway-orange-var:hover,
+.menubar-portal.background-colourway-orange-var a.is-active,
+.menubar-portal.background-colourway-orange-var a:hover  {
+  background-color: var(--color-colourway-orange);
+}
+
+.background-colourway-orange-var,
+a.background-colourway-orange:hover,
+a.background-colourway-orange-cta:hover,
+a.background-colourway-orange-cta:focus {
+  background-color: var(--color-colourway-orange-var);
+}
+
+.background-colourway-blue,
+.background-colourway-blue-cta,
+a.background-colourway-blue-var:hover,
+.menubar-portal.background-colourway-blue-var a.is-active,
+.menubar-portal.background-colourway-blue-var a:hover {
+  background-color: var(--color-colourway-blue);
+}
+
+.background-colourway-blue-var,
+a.background-colourway-blue:hover,
+a.background-colourway-blue-cta:hover,
+a.background-colourway-blue-cta:focus {
+  background-color: var(--color-colourway-blue-var);
+}
+
+.background-colourway-myaccount,
+.menubar-portal.background-colourway-myaccount-var a.is-active,
+.menubar-portal.background-colourway-myaccount-var a:hover {
+  background-color: var(--color-colourway-myaccount);
+}
+
+.background-colourway-myaccount-var,
+.background-colourway-myaccount-cta {
+  background-color: var(--color-colourway-myaccount-var);
+}
+
+a.background-colourway-myaccount-var:hover,
+a.background-colourway-myaccount-cta:hover,
+a.background-colourway-myaccount-cta:focus {
+  background-color: var(--color-colourway-burgundy-var);
+}
+
+/* Change colour variables based on colourway */
+.bhcc-colourway-burgundy {
+  --color-primary: var(--color-colourway-burgundy);
+  --color-heading-text: var(--color-colourway-burgundy);
+  --button-background: var(--color-colourway-burgundy);
+}
+
+.bhcc-colourway-green {
+  --color-primary: var(--color-colourway-green);
+  --color-heading-text: var(--color-colourway-green);
+  --button-background: var(--color-colourway-green);
+  --button-hover-background: var(--color-colourway-green-var);
+  --breadcrumb-background-color: var(--color-colourway-green-var);
+}
+
+.bhcc-colourway-red {
+  --color-primary: var(--color-colourway-red);
+  --color-heading-text: var(--color-colourway-red);
+  --button-background: var(--color-colourway-red);
+  --button-hover-background: var(--color-colourway-red-var);
+  --breadcrumb-background-color: var(--color-colourway-red-var);
+}
+
+.bhcc-colourway-pink {
+  --color-primary: var(--color-colourway-pink);
+  --color-heading-text: var(--color-colourway-pink);
+  --button-background: var(--color-colourway-pink);
+  --button-hover-background: var(--color-colourway-pink-var);
+  --breadcrumb-background-color: var(--color-colourway-pink-var);
+}
+
+.bhcc-colourway-cyan {
+  --color-primary: var(--color-colourway-cyan);
+  --color-heading-text: var(--color-colourway-cyan);
+  --button-background: var(--color-colourway-cyan);
+  --button-hover-background: var(--color-colourway-cyan-var);
+  --breadcrumb-background-color: var(--color-colourway-cyan-var);
+}
+
+.bhcc-colourway-orange {
+  --color-primary: var(--color-colourway-orange);
+  --color-heading-text: var(--color-colourway-orange);
+  --button-background: var(--color-colourway-orange);
+  --button-hover-background: var(--color-colourway-orange-var);
+  --breadcrumb-background-color: var(--color-colourway-orange-var)
+}
+
+.bhcc-colourway-blue {
+  --color-primary: var(--color-colourway-blue);
+  --color-heading-text: var(--color-colourway-blue);
+  --button-background: var(--color-colourway-blue);
+  --button-hover-background: var(--color-colourway-blue-var);
+  --breadcrumb-background-color: var(--color-colourway-blue-var);
+}
+
+.bhcc-colourway-myaccount {
+  --color-primary: var(--color-colourway-myaccount);
+  --color-heading-text: var(--color-colourway-myaccount);
+  --button-background: var(--color-colourway-myaccount);
+  --button-hover-background: var(--color-colourway-myaccount-var);
+  --breadcrumb-background-color: var(--color-colourway-myaccount);
+}
+
+
+

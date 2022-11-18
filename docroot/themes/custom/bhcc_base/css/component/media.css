@@ -1,0 +1,14 @@
+/*
+ * @file
+ *
+ * This file is for styling the media elements.
+ */
+
+/* Override events listing image style */
+.views-field-localgov-event-image img,
+.media--view-mode-localgov-event-thumbnail img {
+  float: right;
+  width: auto;
+  height: auto;
+  margin: 0 0 0 var(--spacing-medium);
+}
