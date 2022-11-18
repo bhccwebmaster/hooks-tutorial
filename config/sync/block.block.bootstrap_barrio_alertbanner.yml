@@ -1,0 +1,22 @@
+uuid: 1b28c359-44a9-4f74-a246-4723094cbfd0
+langcode: en
+status: true
+dependencies:
+  module:
+    - localgov_alert_banner
+  theme:
+    - bootstrap_barrio
+id: bootstrap_barrio_alertbanner
+theme: bootstrap_barrio
+region: highlighted
+weight: -7
+provider: null
+plugin: localgov_alert_banner_block
+settings:
+  id: localgov_alert_banner_block
+  label: 'Alert banner'
+  label_display: '0'
+  provider: localgov_alert_banner
+  include_types:
+    localgov_alert_banner: '0'
+visibility: {  }
