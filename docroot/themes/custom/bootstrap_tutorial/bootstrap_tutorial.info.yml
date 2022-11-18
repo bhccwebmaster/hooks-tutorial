@@ -9,7 +9,9 @@ regions:
   primary_menu: 'Primary menu'
   secondary_menu: 'Secondary menu'
   breadcrumb: Breadcrumb
+  above_conent: 'Above content'
   content: Content
+  below_content: 'Below content'
   sidebar_first: 'Sidebar first'
   sidebar_second: 'Sidebar second'
   footer: Footer
