@@ -1,0 +1,14 @@
+<?php
+
+function bhcc_child_preprocess_node(&$variables) {
+  /** @var Drupal\node\Entity\Node $node */
+  $node = $variables['node'];
+  $view_mode = $variables['view_mode'];
+  $bundle = $node->bundle();
+
+  if ($bundle == 'news_article' && $view_mode == 'full') {
+    if ($node->hasField('field_embargoed')) {
+      $variables['embargoed'] = $node->field_embargoed->value;
+    }
+  }
+}
