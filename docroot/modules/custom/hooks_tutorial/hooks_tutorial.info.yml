@@ -1,0 +1,4 @@
+name: 'Hooks tutorial'
+type: module
+description: 'Placeholder for hooks'
+core_version_requirement: ^9 || ^10
