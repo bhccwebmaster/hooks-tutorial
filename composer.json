@@ -31,7 +31,8 @@
         "drupal/pathauto": "^1.11",
         "drupal/twig_tweak": "^3.2",
         "drush/drush": "^11.2",
-        "localgovdrupal/localgov_alert_banner": "^1.5"
+        "localgovdrupal/localgov_alert_banner": "^1.5",
+        "localgovdrupal/localgov_core": "^2.1"
     },
     "conflict": {
         "drupal/drupal": "*"

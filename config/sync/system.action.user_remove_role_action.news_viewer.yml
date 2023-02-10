@@ -1,0 +1,14 @@
+uuid: 1e8c029f-1d17-4d50-b191-718128314216
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.news_viewer
+  module:
+    - user
+id: user_remove_role_action.news_viewer
+label: 'Remove the News viewer role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: news_viewer

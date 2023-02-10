@@ -1,0 +1,21 @@
+uuid: 1ea52f88-a324-4395-a6b7-43fe4bec2969
+langcode: en
+status: true
+dependencies:
+  module:
+    - search
+  theme:
+    - bhcc_child
+id: searchform
+theme: bhcc_child
+region: search
+weight: 0
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: 'Search form'
+  label_display: '0'
+  provider: search
+  page_id: ''
+visibility: {  }

@@ -1,6 +1,6 @@
 uuid: 9d783a22-56c4-4bfe-a098-ea88f846d00d
 langcode: en
-status: true
+status: false
 dependencies:
   theme:
     - bhcc_child
@@ -9,7 +9,7 @@ _core:
 id: bhcc_child_page_title
 theme: bhcc_child
 region: content_top
-weight: -7
+weight: -6
 provider: null
 plugin: page_title_block
 settings:

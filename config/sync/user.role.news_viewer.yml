@@ -1,0 +1,9 @@
+uuid: dce624dc-5efd-41d5-8ab0-841abf46a92c
+langcode: en
+status: true
+dependencies: {  }
+id: news_viewer
+label: 'News viewer'
+weight: 4
+is_admin: null
+permissions: {  }

@@ -1,0 +1,20 @@
+uuid: b0479205-e435-4606-ae97-162371524c10
+langcode: en
+status: true
+dependencies:
+  module:
+    - localgov_core
+  theme:
+    - bhcc_child
+id: pageheaderblock
+theme: bhcc_child
+region: content_top
+weight: -8
+provider: null
+plugin: localgov_page_header_block
+settings:
+  id: localgov_page_header_block
+  label: 'Page header block'
+  label_display: '0'
+  provider: localgov_core
+visibility: {  }
