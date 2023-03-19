@@ -1,0 +1,6 @@
+services:
+  # Alter page header.
+  hooks_tutorial.page_header:
+    class: Drupal\hooks_tutorial\EventSubscriber\PageHeaderSubscriber
+    tags:
+      - { name: 'event_subscriber' }

@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.news_article.field_embargoed
     - field.field.node.news_article.field_featured_image
     - field.field.node.news_article.field_featured_media
+    - field.field.node.news_article.field_restrict_to_users
     - field.field.node.news_article.field_tags
     - node.type.news_article
   module:
@@ -25,6 +26,14 @@ content:
       trim_length: 600
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_restrict_to_users:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
     region: content
 hidden:
   field_category: true
