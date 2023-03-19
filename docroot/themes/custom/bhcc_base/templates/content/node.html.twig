@@ -76,6 +76,8 @@
   ]
 %}
 
+{# {{ dump(_context|keys) }} #}
+
 <div{{ attributes.addClass(classes).removeAttribute('role') }}>
 
   {{ title_prefix }}
@@ -106,6 +108,10 @@
       <h3{{ title_attributes }}>
         <a href="{{ url }}" rel="bookmark">{{ label }}</a>
       </h3>
+    {% endif %}
+
+    {% if component_based_page is not empty %}
+      <h2>Components!</h2>
     {% endif %}
 
     {{ content }}

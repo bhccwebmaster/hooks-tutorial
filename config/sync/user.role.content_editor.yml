@@ -3,11 +3,15 @@ langcode: en
 status: true
 dependencies:
   config:
+    - node.type.component_based_page
+    - node.type.freeform_page
+    - node.type.news_article
     - node.type.page
     - taxonomy.vocabulary.tags
   module:
     - contextual
     - file
+    - hooks_tutorial
     - node
     - path
     - system
@@ -22,20 +26,49 @@ weight: 2
 is_admin: false
 permissions:
   - 'access administration pages'
+  - 'access all restricted articles'
   - 'access content overview'
   - 'access contextual links'
   - 'access files overview'
   - 'access toolbar'
   - 'access tour'
   - 'administer url aliases'
+  - 'create component_based_page content'
+  - 'create freeform_page content'
+  - 'create news_article content'
   - 'create page content'
   - 'create terms in tags'
   - 'create url aliases'
+  - 'delete any component_based_page content'
+  - 'delete any freeform_page content'
+  - 'delete any news_article content'
+  - 'delete any page content'
+  - 'delete component_based_page revisions'
+  - 'delete freeform_page revisions'
+  - 'delete news_article revisions'
+  - 'delete own component_based_page content'
+  - 'delete own freeform_page content'
+  - 'delete own news_article content'
   - 'delete own page content'
   - 'delete page revisions'
+  - 'edit any component_based_page content'
+  - 'edit any freeform_page content'
+  - 'edit any news_article content'
+  - 'edit any page content'
+  - 'edit own component_based_page content'
+  - 'edit own freeform_page content'
+  - 'edit own news_article content'
   - 'edit own page content'
   - 'edit terms in tags'
   - 'revert all revisions'
+  - 'revert component_based_page revisions'
+  - 'revert freeform_page revisions'
+  - 'revert news_article revisions'
+  - 'revert page revisions'
   - 'view all revisions'
+  - 'view component_based_page revisions'
+  - 'view freeform_page revisions'
+  - 'view news_article revisions'
   - 'view own unpublished content'
+  - 'view page revisions'
   - 'view the administration theme'

@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.news_article.field_embargoed
     - field.field.node.news_article.field_featured_image
     - field.field.node.news_article.field_featured_media
+    - field.field.node.news_article.field_restrict_to_users
     - field.field.node.news_article.field_tags
     - node.type.news_article
   module:
@@ -69,6 +70,7 @@ third_party_settings:
         - field_category
         - field_tags
         - field_embargoed
+        - field_restrict_to_users
       label: Meta
       region: content
       parent_name: group_tabs
@@ -121,6 +123,16 @@ content:
     region: content
     settings:
       media_types: {  }
+    third_party_settings: {  }
+  field_restrict_to_users:
+    type: entity_reference_autocomplete
+    weight: 12
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_tags:
     type: entity_reference_autocomplete_tags

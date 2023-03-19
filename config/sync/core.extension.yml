@@ -35,6 +35,7 @@ module:
   image: 0
   layout_discovery: 0
   layout_paragraphs: 0
+  layout_paragraphs_toggle_publish: 0
   link: 0
   link_attributes: 0
   localgov_alert_banner: 0

@@ -3,6 +3,7 @@
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\node\NodeInterface;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Access\AccessResult;
 
 /**
  * Implements hook_module_implements_alter().
@@ -18,6 +19,82 @@ function hooks_tutorial_preprocess_html(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_html().
+ */
+function hooks_tutorial_preprocess_node(&$variables) {
+  // dpm(array_keys($variables));
+  // dpm(array_keys($variables['content']));
+  // dpm($variables['attributes']);
+  $node = $variables['node'];
+  // dpm(get_class_methods($node));
+  $nid = $node->id();
+  $bundle = $node->bundle();
+  if ($bundle == 'component_based_page') {
+    $variables['content']['fake_field'] = [
+      '#type' => 'markup',
+      '#markup' => t('This is a fake field'),
+      '#weight' => 999,
+    ];
+  }
+  // dpm(array_keys($variables['content']));
+}
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function hooks_tutorial_preprocess_node__component_based_page(&$variables) {
+  // dpm(array_keys($variables));
+  // dpm(array_keys($variables['content']));
+  // dpm($variables['attributes']);
+  $node = $variables['node'];
+  // dpm(get_class_methods($node));
+  $nid = $node->id();
+  $variables['content']['fake_field_2'] = [
+    '#type' => 'markup',
+    '#markup' => t('This is a second fake field from hooks_tutorial_preprocess_node__component_based_page'),
+    '#weight' => 999,
+  ];
+  $variables['component_based_page'] = 1;
+  // dpm(array_keys($variables['content']));
+}
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function hooks_tutorial_preprocess_node__286(&$variables) {
+  // dpm(array_keys($variables));
+  // dpm(array_keys($variables['content']));
+  // dpm($variables['attributes']);
+  $node = $variables['node'];
+  // dpm(get_class_methods($node));
+  $nid = $node->id();
+  $variables['content']['fake_field_286'] = [
+    '#type' => 'markup',
+    '#markup' => t('This is a second fake field from hooks_tutorial_preprocess_node__286'),
+    '#weight' => 999,
+  ];
+  dpm(array_keys($variables['content']));
+}
+
+function hooks_tutorial_preprocess_node__news_article__taxonomy(&$variables) {
+  $node = $variables['node'];
+  // dpm(get_class_methods($node));
+  $nid = $node->id();
+  $variables['content']['fake_field_news_listing'] = [
+    '#type' => 'markup',
+    '#markup' => t('This is a second fake field from hooks_tutorial_preprocess_node__news_article__taxonomy'),
+    '#weight' => 999,
+  ];
+  // $variables['attributes']['class'][] = 'card';
+  // $variables['attributes']['class'][] = 'margin-bottom-large';
+  $new_classes = [
+    'card',
+    'margin-bottom-large',
+  ];
+  $variables['attributes']['class'] = array_merge($variables['attributes']['class'] ?? [], $new_classes);
+}
+
+/**
  * Implements hook_preprocess_node_news_article().
  */
 function hooks_tutorial_preprocess_node_news_article(&$varaibles) {
@@ -27,25 +104,59 @@ function hooks_tutorial_preprocess_node_news_article(&$varaibles) {
 /**
  * Implements hook_form_alter().
  */
-function hooks_tutorial_form_alter(Array $form, FormStateInterface $form_state, $form_id) {
-  $form_ids = ['node_news_article_form', 'node_news_article_edit_form'];
-  if (in_array($form_id, $form_ids)) {
+function hooks_tutorial_form_alter(Array &$form, FormStateInterface $form_state, $form_id) {
+  // $form['actions']['submit']['#value'] = t('Make it so');
+  // dpm($form_id);
+  $form_ids_to_check = ['node_news_article_form', 'node_news_article_edit_form'];
+  if (in_array($form_id, $form_ids_to_check)) {
+    $form['actions']['submit']['#value'] = t('Save news');
+    // dpm(array_keys($form));
+    // dpm(array_keys($form['field_restrict_to_users']));
+    $form['field_restrict_to_users']['#states'] = [
+      'visible' => [
+        ':input[name="field_embargoed[value]"]' => ['checked' => TRUE],
+      ],
+    ];
+    $form['#validate'][] = '_hooks_tutorial_news_embargoed_validate';
+    // dpm(array_keys($form['field_restrict_to_users']));
+    // dpm($form['#validate']);
   }
 
+}
+
+function _hooks_tutorial_news_embargoed_validate($form, $form_state) {
+  $embargoed = $form_state->getValue('field_embargoed');
+  $users = $form_state->getValue('field_restrict_to_users');
+  if ($embargoed['value'] == 1 && empty($users[0]['target_id'])) {
+    $form_state->setErrorByName('field_restrict_to_users', t('You must restrict this to at least 1 user'));
+  }
+}
+
+function hooks_tutorial_form_node_news_article_edit_form_alter(Array &$form, FormStateInterface $form_state) {
+  // dpm('just the edit form');
 }
 
 /**
  * Implements hook_form_search_block_form_alter().
  */
 function hooks_tutorial_form_search_block_form_alter(&$form, FormStateInterface $form_state) {
-
+  // dpm(array_keys($form['keys']['#attributes']));
+  unset($form['keys']['#attributes']['placeholder']);
 }
 
 /**
  * Implements hook_form_views_exposed_form_alter().
  */
 function hooks_tutorial_form_views_exposed_form_alter(&$form, FormStateInterface $form_state) {
+  // dpm('views exposed form');
   if (isset($form['#id']) && $form['#id'] == 'views-exposed-form-news-page-1') {
+    // dpm($form['created']['#options']);
+    $form['created']['#type'] = 'hidden';
+    $form['created']['#value'] = 'Any';
+    // dpm(array_keys($form['created_1_wrapper']['created_1']['min']));
+    // $form['created_1']['#value'] = 'Any';
+    $form['created_1_wrapper']['created_1']['min']['#type'] = 'date';
+    $form['created_1_wrapper']['created_1']['max']['#type'] = 'date';
   }
 }
 
@@ -53,7 +164,27 @@ function hooks_tutorial_form_views_exposed_form_alter(&$form, FormStateInterface
  * Implements hook_node_access().
  */
 function hooks_tutorial_node_access(NodeInterface $node, $operation, AccountInterface $account) {
-  if ($node->bundle() == 'news_article' && $operation == 'view') {
-
+  if ($node->bundle() == 'news_article' && ($operation == 'view' || $operation == 'view all revisions')) {
+    if ($node->hasField('field_embargoed') && $node->field_embargoed->value) {
+      // dpm(get_class_methods($node->get('field_restrict_to_users')));
+      $users = $node->get('field_restrict_to_users')->getValue();
+      $owner = $node->getOwnerId();
+      $target_users = array_column($users, 'target_id');
+      // dpm($node->getOwnerId());
+      $valid_users = array_merge($target_users, [$owner]);
+      // $valid_users = array_column($users, 'target_id');
+      // dpm($users);
+      // dpm(array_column($users, 'target_id'));
+      // dpm($account->id());
+      if (in_array($account->id(), $valid_users)) {
+        // dpm('allowed');
+        return AccessResult::allowed();
+      } elseif ($account->hasPermission('access all restricted articles')) {
+        return AccessResult::allowed();
+      } else {
+        // dpm('go away!');
+        return AccessResult::forbidden();
+      }
+    }
   }
 }

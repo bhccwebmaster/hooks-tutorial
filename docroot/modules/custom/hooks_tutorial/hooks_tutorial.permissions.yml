@@ -1,0 +1,4 @@
+access all restricted articles:
+  title: 'Access all embargoed articles'
+  description: 'Bybass embargoed access control.'
+  restrict access: TRUE
